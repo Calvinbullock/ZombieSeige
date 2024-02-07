@@ -1,9 +1,9 @@
 class Game {
 
-    upKey;
-    downKey;
-    leftKey;
-    rightKey;
+    upKey = 'w';
+    downKey = 's';
+    leftKey = 'a';
+    rightKey = 'd';
     mouseButton;
     interactKey;
    
