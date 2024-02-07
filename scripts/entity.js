@@ -8,7 +8,8 @@ class Entity {
     #img;
     #direction;
     
-    constructor(sprite_in, direction_in, health_in, speed_in, img_in pos_y_in) {
+    // added a comma since there was an error ;)
+    constructor(sprite_in, direction_in, health_in, speed_in, img_in, pos_y_in) {
         this.#pos_x = sprite_in;
         this.#pos_y = direction_in;
         this.#speed = speed_in;
