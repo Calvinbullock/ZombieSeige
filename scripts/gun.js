@@ -43,7 +43,7 @@ class Gun {
         return this.#bullet_duration
     }
 
-    get_bullet_duration() {
+    get_bullet_count() {
         return this.#bullet_count
     }
     get_fire_sfx() {
@@ -71,5 +71,7 @@ class Gun {
         this.#current_ammo = this.#max_ammo
     }
 
-    shoot() {}
+    shoot() {
+        
+    }
 }
