@@ -19,7 +19,11 @@ class Entity {
         this.#direction = direction_in;
     }
 
-    moveBy() { }
+    moveBy(x_movement, y_movement) 
+    {
+        this.#pos_x += x_movement;
+        this.#pos_y += y_movement;
+    }
 
     update_health() { }
 
