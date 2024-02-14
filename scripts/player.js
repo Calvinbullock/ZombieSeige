@@ -1,18 +1,22 @@
-class player extends Entity{
+import { Entity } from './entity.js';
 
-#gun1;
-#gun2;
+export class Player extends Entity{
 
-constructor(gun1_in, gun2_in){
-    this.#gun1 = gun1_in
-    this.#gun2 = gun2_in
-}
+    #gun1;
+    #gun2;
 
-swich_gun(){
+    constructor(gun1_in, gun2_in, sprite_in, direction_in, health_in, max_health_in, speed_in){
+        super(sprite_in, direction_in, health_in, max_health_in, speed_in, 100, 100);
+        this.#gun1 = gun1_in;
+        this.#gun2 = gun2_in;
+    }
 
-}
+    switch_gun(){
 
-Shoot(){
-    
-}
+    }
+
+    Shoot(){
+
+    }
+
 }

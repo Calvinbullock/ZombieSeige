@@ -1,4 +1,4 @@
-class Entity {
+export class Entity {
 
     #pos_x; 
     #pos_y;
@@ -15,7 +15,8 @@ class Entity {
         this.#speed = speed_in;
         this.#health = health_in;
         this.#max_health = max_health_in;
-        this.#sprite = sprite_in;
+        this.#sprite = new Image();
+        this.#sprite.src = sprite_in; // Set the source of the image
         this.#direction = direction_in;
     }
 
@@ -28,7 +29,15 @@ class Entity {
     update_health() { }
 
     reset_health() {
-        health = this.#max_health;
+        this.#health = this.#max_health;
+    }
+    Draw(ctx){
+        // Assuming sprite_in represents the player's image or sprite
+        // Assuming sprite_in is a pre-loaded image or sprite sheet
+        // Assuming this.x and this.y represent the player's position
+        ctx.drawImage(this.#sprite, this.#pos_x, this.#pos_y);
+
+        // Additional drawing for guns, health bar, etc. can be added here
     }
 }
 
