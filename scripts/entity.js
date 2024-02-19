@@ -25,17 +25,24 @@ export class Entity {
         this.#pos_x += x_movement;
         this.#pos_y += y_movement;
     }
+    getX() {
+        return this.#pos_x;
+    }
+    getY()
+    {
+        return this.#pos_y;
+    }
 
     update_health() { }
 
     reset_health() {
         this.#health = this.#max_health;
     }
-    Draw(ctx){
+    Draw(ctx,x,y){
         // Assuming sprite_in represents the player's image or sprite
         // Assuming sprite_in is a pre-loaded image or sprite sheet
         // Assuming this.x and this.y represent the player's position
-        ctx.drawImage(this.#sprite, this.#pos_x, this.#pos_y);
+        ctx.drawImage(this.#sprite, x, y);
 
         // Additional drawing for guns, health bar, etc. can be added here
     }
