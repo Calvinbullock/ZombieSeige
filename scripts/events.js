@@ -11,5 +11,12 @@ setInterval(() => gameInstance.gameLoop(), 16);
 
 
 
-document.addEventListener("keydown", (event) => eventHandler.handleKeys(event, gameInstance.player));
 
+
+document.addEventListener("keydown", (event) => {
+    eventHandler.handleKeyDown(event, gameInstance.player);
+});
+
+document.addEventListener("keyup", (event) => {
+    eventHandler.handleKeyUp(event, gameInstance.player);
+});

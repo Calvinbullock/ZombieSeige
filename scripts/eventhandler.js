@@ -1,5 +1,4 @@
-export class EventHandler 
-{
+export class EventHandler {
 
     upKey = 'w';
     downKey = 's';
@@ -7,22 +6,62 @@ export class EventHandler
     rightKey = 'd';
     mouseButton;
     interactKey;
-   
-   
-    handleKeys(keyPressed, player) {
-      if (keyPressed.key === this.upKey) {
-          player.moveBy(0, -2); // Assuming moving up decrements the y-coordinate
-      } else if (keyPressed.key === this.downKey) {
-          player.moveBy(0, 2); // Assuming moving down increments the y-coordinate
-      } else if (keyPressed.key === this.leftKey) {
-          player.moveBy(-2, 0); // Assuming moving left decrements the x-coordinate
-      } else if (keyPressed.key === this.rightKey) {
-          player.moveBy(2, 0); // Assuming moving right increments the x-coordinate
-      }
-  }
-     handleClick() {}
-     handleFrameClock() {}
-   
-   }
-   
-   
+    movementSpeed = 2;
+
+    movementInterval = null;
+    keysPressed = {};
+
+    handleKeyDown(event, player) {
+        if (event.repeat) return; // If the key is being held down and repeating, ignore the event
+        this.keysPressed[event.key] = true;
+        this.startMovement(player);
+    }
+    
+    handleKeyUp(event) {
+        delete this.keysPressed[event.key];
+        if (Object.keys(this.keysPressed).length === 0) {
+            this.stopMovement();
+        }
+    }
+    
+    startMovement(player) {
+        if (!this.movementInterval) {
+            this.movementInterval = setInterval(() => {
+                let dx = 0;
+                let dy = 0;
+    
+                if (this.keysPressed[this.upKey]) {
+                    dy -= this.movementSpeed;
+                }
+                if (this.keysPressed[this.downKey]) {
+                    dy += this.movementSpeed;
+                }
+                if (this.keysPressed[this.leftKey]) {
+                    dx -= this.movementSpeed;
+                }
+                if (this.keysPressed[this.rightKey]) {
+                    dx += this.movementSpeed;
+                }
+    
+                // Normalize movement speed
+                if (dx !== 0 && dy !== 0) {
+                    // Calculate the diagonal movement speed
+                    let diagonalSpeed = Math.sqrt(Math.pow(this.movementSpeed, 2) / 2);
+                    dx = Math.sign(dx) * diagonalSpeed;
+                    dy = Math.sign(dy) * diagonalSpeed;
+                }
+    
+                player.moveBy(dx, dy);
+            }, 1000 / 60); // Update every frame
+        }
+    }
+    
+    stopMovement() {
+        clearInterval(this.movementInterval);
+        this.movementInterval = null;
+    }
+
+    handleClick() {}
+    handleFrameClock() {}
+
+}
