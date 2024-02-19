@@ -6,7 +6,7 @@ export class EventHandler {
     rightKey = 'd';
     mouseButton;
     interactKey;
-    movementSpeed = 2;
+    movementSpeed = 1;
 
     movementInterval = null;
     keysPressed = {};

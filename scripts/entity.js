@@ -24,7 +24,7 @@ export class Entity {
     {
         if (this.#pos_x > 0 && x_movement < 0)
         {
-            this.#pos_x += x_movement;a
+            this.#pos_x += x_movement;
         }
         if (this.#pos_x < 640 && x_movement > 0)
         {
