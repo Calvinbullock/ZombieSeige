@@ -11,7 +11,7 @@ export class Map {
   constructor() {
     this.#readMapFromFile();
     this.#canvas = document.querySelector("#myCanvas").getContext('2d');
-    this.#grass.src = "./assets/zombie_male.png"; // Set the source of the image
+    this.#grass.src = "./assets/temp_grass.png"; // Set the source of the image
   }
 
   #readMapFromFile() 
@@ -44,10 +44,10 @@ export class Map {
   getHeight() {
     return this.#height;
   }
-  
+
   draw(x, y) {
-    for (let i = 0; i < 128; i+=32) {
-        for (let j = 0; j < 128; j+=32) {
+    for (let i = 0; i < 288; i+=32) {
+        for (let j = 0; j < 192; j+=32) {
             // Perform some action or call some function here
             // For demonstration, let's log the coordinates
             this.#canvas.drawImage(this.#grass, i+x, j+y);

@@ -33,7 +33,7 @@ export class Game {
 
     // draw map
 
-    this.#map.draw(10, 20);
+    this.#map.draw(-31,-31);
 
     //draw player
     this.player.Draw(this.canvas);
