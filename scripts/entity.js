@@ -22,8 +22,23 @@ export class Entity {
 
     moveBy(x_movement, y_movement) 
     {
-        this.#pos_x += x_movement;
-        this.#pos_y += y_movement;
+        if (this.#pos_x > 0 && x_movement < 0)
+        {
+            this.#pos_x += x_movement;a
+        }
+        if (this.#pos_x < 640 && x_movement > 0)
+        {
+            this.#pos_x += x_movement;
+        }
+        if (this.#pos_y > 0 && y_movement < 0)
+        {
+            this.#pos_y += y_movement;  
+        }
+        if (this.#pos_y < 640 && y_movement > 0)
+        {
+            this.#pos_y += y_movement;  
+        }
+
     }
     getX() {
         return this.#pos_x;
