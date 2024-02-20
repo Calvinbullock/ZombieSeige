@@ -2,7 +2,7 @@
 export class Camera {
     #pixelWidth = 640;
     #pixelHeight = 640;
-    #screenHeight = 140;
+    #screenHeight = 128;
     #screenWidth = 256;
     #halfScreenWidth;
     #rightSide;
@@ -74,7 +74,7 @@ export class Camera {
         }
         if (playerY > this.#bottomSide)
         {
-            return -20;
+            return 0;
         }
         return 0-(playerY%32);
     }
@@ -99,9 +99,9 @@ export class Camera {
             return 0;
         }
         let y = Math.floor(playerY/32-2);
-        if (y > 15)
+        if (y > 16)
         {
-            y = 15;
+            y = 16;
         }
         return y;
         
