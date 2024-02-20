@@ -4,4 +4,6 @@ from django.shortcuts import render
 
 def server_index(request):
     return render(request, "index.html")
-    
+ 
+def game_page(request):
+    return render(request, "game.html")
