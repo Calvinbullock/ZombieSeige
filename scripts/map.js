@@ -14,7 +14,7 @@ export class Map {
   constructor() {
     this.#readMapFromFile();
     this.#canvas = document.querySelector("#myCanvas").getContext('2d');
-    this.#grass.src = "./assets/temp_grass.png"; // Set the source of the image
+    this.#grass.src = "./assets/green_grass.png"; // Set the source of the image
     this.#edge.src = "./assets/edge.png"; // Set the source of the image
 
   }
