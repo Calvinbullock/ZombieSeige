@@ -2,18 +2,20 @@
 export class Map {
   #path = "./assets/map.txt";
   #mapArray = [];
-  #width = 0;
-  #height = 0;
+  #width = 20;
+  #height = 20;
   #pixelWidth;
   #pixelHeight;
   #canvas;
   #grass = new Image();
+  #edge = new Image();
   
 
   constructor() {
     this.#readMapFromFile();
     this.#canvas = document.querySelector("#myCanvas").getContext('2d');
     this.#grass.src = "./assets/temp_grass.png"; // Set the source of the image
+    this.#edge.src = "./assets/edge.png"; // Set the source of the image
 
   }
 
@@ -48,20 +50,26 @@ export class Map {
   }
 
   getWidth() {
-    return this.#pixelWidth;
+    return this.#width *32;
   }
 
   getHeight() {
-    return this.#pixelHeight;
+    return this.#height * 32;
   }
 
-  draw(x, y) {
-    for (let i = 0; i < 288; i+=32) {
-        for (let j = 0; j < 192; j+=32) {
+  draw(x, y, xindex, yindex) {
+
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 6; j++) {
             // Perform some action or call some function here
             // For demonstration, let's log the coordinates
-            let x_index = Math.trunc((x+i)/32);
-            let y_index = Math.trunc((y+j)/32);
+
+            let x_index = xindex + i;
+            let y_index = yindex + j;
+
+            let x_pos = x + i * 32;
+            let y_pos = y + j *32;
+
 
             // console.log(x_index);
             // console.log(y_index);
@@ -70,12 +78,18 @@ export class Map {
 
 
 
-
-          let tile = this.#mapArray[x_index][y_index];
-          
-          if (tile == 1) {
-              this.#canvas.drawImage(this.#grass, i+x, j+y);
+          if (x_index < this.#width && y_index < this.#height)
+          {
+            let tile = this.#mapArray[x_index][y_index];
+            
+            if (tile == 1) {
+              this.#canvas.drawImage(this.#grass, x_pos, y_pos);
+            }
+            if (tile == 2) {
+              this.#canvas.drawImage(this.#edge, x_pos, y_pos);
+            }
           }
+
 
           
         }

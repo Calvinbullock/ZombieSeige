@@ -35,9 +35,15 @@ export class Game {
     let playerX = this.player.getX()
     let playerY = this.player.getY()
 
+    console.log("player x position " + playerX);
+    console.log("player y position " + playerY);
+
     // player position
     let x = this.#camera.getPlayerX(playerX);
     let y = this.#camera.getPlayerY(playerY);
+
+    console.log("player x screen position "+ x);
+    console.log("player y screen position "+ y);
 
 
     // clear canvas
@@ -48,10 +54,17 @@ export class Game {
 
     let mapX = this.#camera.getMapX(playerX);
     let mapY = this.#camera.getMapY(playerY);
-    this.#map.draw(mapX,mapY);
 
-    console.log(playerX);
-    console.log(mapX);
+    console.log("mapX " + mapX + "mapY " + mapY);
+
+    let mapXIndex = this.#camera.getMapXIndex(playerX);
+    let mapYIndex = this.#camera.getMapYIndex(playerY);
+
+    console.log("Map X index " + mapXIndex);
+    console.log("Map Y index " + mapYIndex);
+
+    this.#map.draw(mapX,mapY,mapXIndex,mapYIndex);
+
 
     //draw player
     this.player.Draw(this.canvas,x,y);
