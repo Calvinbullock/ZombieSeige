@@ -80,7 +80,7 @@ export class Map {
 
           if (x_index < this.#width && y_index < this.#height)
           {
-            let tile = this.#mapArray[x_index][y_index];
+            let tile = this.#mapArray[y_index][x_index];
             
             if (tile == 1) {
               this.#canvas.drawImage(this.#grass, x_pos, y_pos);
