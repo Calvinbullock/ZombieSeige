@@ -1,21 +1,53 @@
-import { Entity } from './entity.js';
+import { Entity } from "./entity.js";
 
-export class Zombie extends Entity{
+export class Zombie extends Entity {
+  #damage;
+  #SFX;
 
-#damage;
-#SFX;
+  constructor(
+    damage_in,
+    sprite_in,
+    direction_in,
+    health_in,
+    max_health_in,
+    speed_in
+  ) {
+    super(
+      sprite_in,
+      direction_in,
+      health_in,
+      max_health_in,
+      speed_in,
+      300,
+      300
+    );
 
-constructor(damage_in, sprite_in, direction_in, health_in, max_health_in, speed_in){
-    super(sprite_in, direction_in, health_in, max_health_in, speed_in, 300, 300);
+    this.#damage = this.damage_in;
+  }
 
-    this.#damage = this.damage_in
+  getDamage() {
+    return this.#damage;
+  }
 
+  move() {
+    // a simple form of movement as a placeholder
+    Diff_y == this.testZombie.getY() - this.player.getY();
+    Diff_x == this.testZombie.getX() - this.player.getX();
+
+    if (diff_x > 0) {
+      dx += this.testZombie.speed;
+    } else if (diff_x < 0) {
+      dx -= this.testZombie.speed;
     }
 
-    getDamage(){
-        return this.#damage
-
+    if (diff_y > 0) {
+      dy -= this.testZombie.speed;
+    } else if (diff_y < 0) {
+      dy -= this.testZombie.speed;
     }
 
-    pathFinding(){}
+    testZombie.moveby(dx, dy);
+  }
+
+  pathFinding() {}
 }
