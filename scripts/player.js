@@ -42,12 +42,13 @@ export class Player extends Entity{
         }
     
         // Normalize the movement vector
-        // const magnitude = Math.sqrt(movementX * movementX + movementY * movementY);
-        // if (magnitude !== 0) {
-        //     movementX /= magnitude;
-        //     movementY /= magnitude;
-        // }
-    
+        const magnitude = Math.sqrt(movementX * movementX + movementY * movementY);
+        if (magnitude !== 0) {
+            movementX /= magnitude;
+            movementY /= magnitude;
+        }
+
+        Math.floor(movementY);
         // Apply the normalized movement
         this.moveBy(movementX, movementY);
     }
