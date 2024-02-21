@@ -9,57 +9,59 @@ export class EventHandler {
     movementSpeed = 1;
 
     movementInterval = null;
-    keysPressed = {};
 
     handleKeyDown(event, player) {
+        let key = event.key;
         if (event.repeat) return; // If the key is being held down and repeating, ignore the event
-        this.keysPressed[event.key] = true;
-        this.startMovement(player);
-    }
-    
-    handleKeyUp(event) {
-        delete this.keysPressed[event.key];
-        if (Object.keys(this.keysPressed).length === 0) {
-            this.stopMovement();
+
+        if (key == this.upKey)
+        {
+            player.movingUp = true;
+        }
+
+        if (key == this.leftKey)
+        {
+            player.movingLeft = true;
+        }
+
+        if (key == this.rightKey)
+        {
+            player.movingRight = true;
+        }
+
+        if (key == this.downKey)
+        {
+            player.movingDown = true;
         }
     }
     
-    startMovement(player) {
-        if (!this.movementInterval) {
-            this.movementInterval = setInterval(() => {
-                let dx = 0;
-                let dy = 0;
-    
-                if (this.keysPressed[this.upKey]) {
-                    dy -= this.movementSpeed;
-                }
-                if (this.keysPressed[this.downKey]) {
-                    dy += this.movementSpeed;
-                }
-                if (this.keysPressed[this.leftKey]) {
-                    dx -= this.movementSpeed;
-                }
-                if (this.keysPressed[this.rightKey]) {
-                    dx += this.movementSpeed;
-                }
-    
-                // Normalize movement speed
-                if (dx !== 0 && dy !== 0) {
-                    // Calculate the diagonal movement speed
-                    let diagonalSpeed = Math.sqrt(Math.pow(this.movementSpeed, 2) / 2);
-                    dx = Math.sign(dx) * diagonalSpeed;
-                    dy = Math.sign(dy) * diagonalSpeed;
-                }
-    
-                player.moveBy(dx, dy);
-            }, 1000 / 60); // Update every frame
+    handleKeyUp(event,player) {
+        let key = event.key;
+        if (event.repeat) return; // If the key is being held down and repeating, ignore the event
+
+        if (key == this.upKey)
+        {
+            player.movingUp = false;
         }
+
+        if (key == this.leftKey)
+        {
+            player.movingLeft = false;
+        }
+
+        if (key == this.rightKey)
+        {
+            player.movingRight = false;
+        }
+
+        if (key == this.downKey)
+        {
+            player.movingDown = false;
+        }
+
     }
     
-    stopMovement() {
-        clearInterval(this.movementInterval);
-        this.movementInterval = null;
-    }
+
 
     handleClick() {}
     handleFrameClock() {}
