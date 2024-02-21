@@ -31,43 +31,43 @@ class Gun {
     // --- methods ---
 
     // --getters--
-    get_name() {
+    getName() {
         return this.#name;
     }
 
-    get_damage() {
+    getDamage() {
         return this.#damage;
     }
 
-    get_bullet_duration() {
+    getBulletDuration() {
         return this.#bullet_duration;
     }
 
-    get_bullet_count() {
+    getBulletCount() {
         return this.#bullet_count;
     }
-    get_fire_sfx() {
+    getFireSfx() {
         return this.#fire_sfx;
     }
 
-    get_reload_sfx() {
+    getReloadSfx() {
         return this.#reload_sfx;
     }
 
-    get_img() {
+    getImg() {
         return this.#img;
     }
 
-    get_ammo() {
+    getAmmo() {
         return this.#current_ammo;
     }
 
     // --setters--
-    remove_ammo(casing) {
+    removeAmmo(casing) {
         casing -= this.#current_ammo;
     }
 
-    refill_ammo() {
+    refillAmmo() {
         this.#current_ammo = this.#max_ammo;
     }
 

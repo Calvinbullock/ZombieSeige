@@ -17,11 +17,11 @@ export class Player extends Entity{
         this.#gun2 = gun2_in;
     }
 
-    switch_gun(){
+    switchGun(){
 
     }
 
-    Shoot(){
+    shoot(){
 
     }
     move() {

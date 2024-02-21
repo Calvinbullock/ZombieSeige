@@ -1,58 +1,49 @@
-
 export class Camera {
-    #pixelWidth = 640;
-    #pixelHeight = 640;
-    #screenHeight = 128;
-    #screenWidth = 256;
-    #halfScreenWidth;
-    #rightSide;
+  #pixelWidth = 640;
+  #pixelHeight = 640;
+  #screenHeight = 128;
+  #screenWidth = 256;
+  #halfScreenWidth;
+  #rightSide;
+  #halfScreenHeight;
+  #bottomSide;
 
-    #halfScreenHeight;
-    #bottomSide;
-  
-    constructor(width,height) {
-        // this.#pixelHeight = height;
-        // this.#pixelWidth = width;
-        console.log(this.#pixelHeight);
+  constructor(width, height) {
+    // this.#pixelHeight = height;
+    // this.#pixelWidth = width;
+    console.log(this.#pixelHeight);
 
-        this.#halfScreenWidth = this.#screenWidth/2;
-        this.#rightSide = this.#pixelWidth - this.#halfScreenWidth;
+    this.#halfScreenWidth = this.#screenWidth / 2;
+    this.#rightSide = this.#pixelWidth - this.#halfScreenWidth;
 
-        this.#halfScreenHeight = this.#screenHeight/2;
-        this.#bottomSide = this.#pixelHeight - this.#halfScreenHeight;
-  
+    this.#halfScreenHeight = this.#screenHeight / 2;
+    this.#bottomSide = this.#pixelHeight - this.#halfScreenHeight;
+  }
+
+  getPlayerX(x) {
+    if (x < this.#halfScreenWidth) {
+      return x;
     }
-    getPlayerX(x)
-    {
-        if (x < this.#halfScreenWidth)
-        {
-            return x;
-        }
-        if (x > this.#rightSide)
-        {
-            let xpos = this.#halfScreenWidth + (x - this.#rightSide);
-            console.log(xpos);
-            return xpos;
-        }
-
-        return this.#halfScreenWidth;
-        
+    if (x > this.#rightSide) {
+      let xpos = this.#halfScreenWidth + (x - this.#rightSide);
+      console.log(xpos);
+      return xpos;
     }
-    getPlayerY(y)
-    {
-        if (y < this.#halfScreenHeight)
-        {
-            return y;
-        }
-        if (y > this.#bottomSide)
-        {
-            let ypos = this.#halfScreenHeight + (y - this.#bottomSide);
-            return ypos;
-        }
 
-        return this.#halfScreenHeight;
-        
+    return this.#halfScreenWidth;
+  }
+
+  getPlayerY(y) {
+    if (y < this.#halfScreenHeight) {
+      return y;
     }
+    if (y > this.#bottomSide) {
+      let ypos = this.#halfScreenHeight + (y - this.#bottomSide);
+      return ypos;
+    }
+
+    return this.#halfScreenHeight;
+  }
 
     getMapX(playerX)
     {

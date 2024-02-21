@@ -1,8 +1,7 @@
-class bullet extends entity{
+class bullet extends entity {
+  #duration;
 
-    #duration;
-
-    constructor(duration_in){
-        this.#duration = duration_in;
-    }
+  constructor(duration_in) {
+    this.#duration = duration_in;
+  }
 }
