@@ -58,26 +58,28 @@ export class Camera {
     {
         if (playerX < this.#halfScreenWidth)
         {
-            return 0;
+            return 0.0;
         }
         if (playerX > this.#rightSide)
         {
-            return 0;
+            return 0.0;
         }
-        return 0-(playerX%32);
+        return -1.0 * (playerX % 32.0);
     }
+    
     getMapY(playerY)
     {
         if (playerY < this.#halfScreenHeight)
         {
-            return 0;
+            return 0.0;
         }
         if (playerY > this.#bottomSide)
         {
-            return 0;
+            return 0.0;
         }
-        return 0-(playerY%32);
+        return -1.0 * (playerY % 32.0);
     }
+    
     getMapXIndex(playerX)
     {
         if (playerX < this.#halfScreenWidth)

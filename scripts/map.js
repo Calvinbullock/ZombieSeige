@@ -58,7 +58,8 @@ export class Map {
   }
 
   draw(x, y, xindex, yindex) {
-
+    x = Math.floor(x);
+    y = Math.floor(y);
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 6; j++) {
             // Perform some action or call some function here
@@ -68,7 +69,7 @@ export class Map {
             let y_index = yindex + j;
 
             let x_pos = x + i * 32;
-            let y_pos = y + j *32;
+            let y_pos = y + j * 32;
 
 
             // console.log(x_index);

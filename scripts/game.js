@@ -35,8 +35,8 @@ export class Game {
   #spawnZombies() { }
 
   #drawScreen() { 
-    let playerX = Math.floor(this.player.getX())
-    let playerY = Math.floor(this.player.getY())
+    let playerX = (this.player.getX())
+    let playerY = (this.player.getY())
 
     // console.log("player x position " + playerX);
     // console.log("player y position " + playerY);

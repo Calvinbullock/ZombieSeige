@@ -6,7 +6,7 @@ const eventHandler = new EventHandler;
 
 
 
-setInterval(() => gameInstance.gameLoop(), 16);
+setInterval(() => gameInstance.gameLoop(), 8.333);
 
 
 

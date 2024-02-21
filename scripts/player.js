@@ -9,6 +9,7 @@ export class Player extends Entity{
     movingUp = false;
     movingDown = false;
     movingRight = false;
+    #speed = .7;
 
     constructor(gun1_in, gun2_in, sprite_in, direction_in, health_in, max_health_in, speed_in){
         super(sprite_in, direction_in, health_in, max_health_in, speed_in, 300, 300);
@@ -29,26 +30,28 @@ export class Player extends Entity{
         let movementY = 0;
         
         if (this.movingUp) {
-            movementY -= 1;
+            movementY -= this.#speed;
         }
         if (this.movingDown) {
-            movementY += 1;
+            movementY += this.#speed;
         }
         if (this.movingLeft) {
-            movementX -= 1;
+            movementX -= this.#speed;
         }
         if (this.movingRight) {
-            movementX += 1;
+            movementX += this.#speed;
         }
     
         // Normalize the movement vector
-        const magnitude = Math.sqrt(movementX * movementX + movementY * movementY);
-        if (magnitude !== 0) {
-            movementX /= magnitude;
-            movementY /= magnitude;
+
+        const diagonalFactor = 0.6; // Adjust this value as needed, lower values result in slower diagonal movement
+        
+        if (movementX !== 0 && movementY !== 0) {
+            movementX *=  diagonalFactor;
+            movementY *=  diagonalFactor;
         }
 
-        Math.floor(movementY);
+
         // Apply the normalized movement
         this.moveBy(movementX, movementY);
     }
