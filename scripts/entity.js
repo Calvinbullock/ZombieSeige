@@ -61,5 +61,13 @@ export class Entity {
 
         // Additional drawing for guns, health bar, etc. can be added here
     }
+    getTileIndexX()
+    {
+        return Math.floor(this.#pos_x/32);
+    }
+    getTileIndexY()
+    {
+        return Math.floor(this.#pos_y/32);
+    }
 }
 

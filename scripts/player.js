@@ -52,6 +52,7 @@ export class Player extends Entity{
         }
 
 
+
         // Apply the normalized movement
         this.moveBy(movementX, movementY);
     }
