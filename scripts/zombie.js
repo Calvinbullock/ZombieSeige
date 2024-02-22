@@ -29,24 +29,26 @@ export class Zombie extends Entity {
     return this.#damage;
   }
 
-  move() {
+  move(goal_x, goal_y) {
     // a simple form of movement as a placeholder
-    Diff_y == this.testZombie.getY() - this.player.getY();
-    Diff_x == this.testZombie.getX() - this.player.getX();
+    let dx
+    let dy
+    let diff_y = this.getX() - goal_y;
+    let diff_x = this.getY() - goal_x;
 
     if (diff_x > 0) {
-      dx += this.testZombie.speed;
+      dx += this.getSpeed();
     } else if (diff_x < 0) {
-      dx -= this.testZombie.speed;
+      dx -= this.getSpeed();
     }
 
     if (diff_y > 0) {
-      dy -= this.testZombie.speed;
+      dy -= this.getSpeed();
     } else if (diff_y < 0) {
-      dy -= this.testZombie.speed;
+      dy -= this.getSpeed();
     }
 
-    testZombie.moveby(dx, dy);
+    this.moveBy(dx, dy);
   }
 
   pathFinding() {}

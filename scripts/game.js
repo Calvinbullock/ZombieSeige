@@ -10,6 +10,7 @@ export class Game {
   #direction;
   canvas;
   #camera;
+
   constructor() {
     this.player = new Player("gun1", "gun2", "./assets/player_male.png", "direction_in", 100, 100, 100);
     // makes test zombie
@@ -30,6 +31,7 @@ export class Game {
 
   #moveEntities() {
     this.player.move();
+    this.testZombie.move(this.player.getX(), this.player.getY());
   }
 
   #spawnZombies() {

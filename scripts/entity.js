@@ -50,6 +50,10 @@ export class Entity {
     return this.#pos_y;
   }
 
+  getSpeed(){
+    return this.#speed
+  }
+
   updateHealth() {}
 
   resetHealth() {
