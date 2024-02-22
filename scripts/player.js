@@ -56,6 +56,18 @@ export class Player extends Entity{
         // Apply the normalized movement
         this.moveBy(movementX, movementY);
     }
+
+    Draw(camera)
+    {
+
+        let ctx = camera.getCanvas();
+
+        let mapPositionX = camera.getPlayerScreenPositionX(this.getX(),this.getX());
+        let mapPositionY = camera.getPlayerScreenPositionY(this.getY(),this.getY());
+
+        ctx.drawImage(this.getSprite(), mapPositionX, mapPositionY);
+
+    }
     
 
 }

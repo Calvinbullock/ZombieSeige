@@ -5,13 +5,11 @@ export class Map {
   #height = 20;
   #pixelWidth;
   #pixelHeight;
-  #canvas;
   #grass = new Image();
   #edge = new Image();
 
   constructor() {
     this.#readMapFromFile();
-    this.#canvas = document.querySelector("#myCanvas").getContext("2d");
     this.#grass.src = "./assets/green_grass.png"; // Set the source of the image
     this.#edge.src = "./assets/edge.png"; // Set the source of the image
   }
@@ -51,9 +49,27 @@ export class Map {
     return this.#height * 32;
   }
 
-  draw(x, y, xindex, yindex) {
+  draw(player,camera) {
+
+    let ctx = camera.getCanvas();
+
+    let playerX = player.getX();
+    let playerY = player.getY();
+
+    // Gets the x and y values where the top left tile starts drawing
+    let x = camera.getMapScreenPositionX(playerX);
+    let y = camera.getMapScreenPositionY(playerY);
+
+    // gets the top left tile index
+    let xindex = camera.getMapXIndex(playerX);
+    let yindex = camera.getMapYIndex(playerY);
+
+
     x = Math.floor(x);
     y = Math.floor(y);
+
+    
+
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 6; j++) {
         // Perform some action or call some function here
@@ -65,20 +81,14 @@ export class Map {
             let x_pos = x + i * 32;
             let y_pos = y + j * 32;
 
-
-        // console.log(x_index);
-        // console.log(y_index);
-
-        // console.log(this.#mapArray);
-
         if (x_index < this.#width && y_index < this.#height) {
           let tile = this.#mapArray[y_index][x_index];
 
           if (tile == 1) {
-            this.#canvas.drawImage(this.#grass, x_pos, y_pos);
+            ctx.drawImage(this.#grass, x_pos, y_pos);
           }
           if (tile == 2) {
-            this.#canvas.drawImage(this.#edge, x_pos, y_pos);
+            ctx.drawImage(this.#edge, x_pos, y_pos);
           }
         }
       }

@@ -28,24 +28,36 @@ export class Zombie extends Entity {
   getDamage() {
     return this.#damage;
   }
+  Draw(camera,player)
+  {
 
+    let ctx = camera.getCanvas();
+
+    let mapPositionX = camera.getObjectScreenPositionX(player.getX(),this.getX());
+    let mapPositionY = camera.getObjectScreenPositionY(player.getY(),this.getY());
+
+    ctx.drawImage(this.getSprite(), mapPositionX, mapPositionY);
+
+  }
   move(goal_x, goal_y) {
     // a simple form of movement as a placeholder
-    let dx
-    let dy
-    let diff_y = this.getX() - goal_y;
-    let diff_x = this.getY() - goal_x;
+
+    let dx = 0;
+    let dy = 0;
+    let diff_y = this.getY() - goal_y;
+    let diff_x = this.getX() - goal_x;
+
 
     if (diff_x > 0) {
-      dx += this.getSpeed();
-    } else if (diff_x < 0) {
       dx -= this.getSpeed();
+    } else if (diff_x < 0) {
+      dx += this.getSpeed();
     }
 
     if (diff_y > 0) {
       dy -= this.getSpeed();
     } else if (diff_y < 0) {
-      dy -= this.getSpeed();
+      dy += this.getSpeed();
     }
 
     this.moveBy(dx, dy);

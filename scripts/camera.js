@@ -1,4 +1,5 @@
-export class Camera {
+export class Camera 
+{
   #pixelWidth = 640;
   #pixelHeight = 640;
   #screenHeight = 128;
@@ -7,6 +8,7 @@ export class Camera {
   #rightSide;
   #halfScreenHeight;
   #bottomSide;
+  canvas;
 
   constructor(width, height) {
     // this.#pixelHeight = height;
@@ -18,9 +20,12 @@ export class Camera {
 
     this.#halfScreenHeight = this.#screenHeight / 2;
     this.#bottomSide = this.#pixelHeight - this.#halfScreenHeight;
+
+    this.canvas = document.querySelector("#myCanvas").getContext("2d");
   }
 
-  getPlayerX(x) {
+  // gets the y screen position of the player
+  getPlayerScreenPositionX(x) {
     if (x < this.#halfScreenWidth) {
       return x;
     }
@@ -33,7 +38,8 @@ export class Camera {
     return this.#halfScreenWidth;
   }
 
-  getPlayerY(y) {
+  // Gets the x screen position of the player
+  getPlayerScreenPositionY(y) {
     if (y < this.#halfScreenHeight) {
       return y;
     }
@@ -45,8 +51,9 @@ export class Camera {
     return this.#halfScreenHeight;
   }
 
-    getMapX(playerX)
-    {
+  // gets the X position that the left column of tiles start drawing on.
+  getMapScreenPositionX(playerX)
+  {
         if (playerX < this.#halfScreenWidth)
         {
             return 0.0;
@@ -56,68 +63,84 @@ export class Camera {
             return 0.0;
         }
         return -1.0 * (playerX % 32.0);
-    }
-    
-    getMapY(playerY)
+  }
+  
+  // gets the Y position that the top row of tiles start drawing on.
+  getMapScreenPositionY(playerY)
+  {
+    if (playerY < this.#halfScreenHeight)
     {
-        if (playerY < this.#halfScreenHeight)
-        {
-            return 0.0;
-        }
-        if (playerY > this.#bottomSide)
-        {
-            return 0.0;
-        }
-        return -1.0 * (playerY % 32.0);
+        return 0.0;
     }
-    
-    getMapXIndex(playerX)
+    if (playerY > this.#bottomSide)
     {
-        if (playerX < this.#halfScreenWidth)
-        {
-            return 0;
-        }
-        let x = Math.floor(playerX/32-4);
-        if (x > 12)
-        {
-            x = 12;
-        }
-        return x;
-        
+        return 0.0;
     }
-    getMapYIndex(playerY)
-    {
-        if (playerY < this.#halfScreenHeight)
-        {
-            return 0;
-        }
-        let y = Math.floor(playerY/32-2);
-        if (y > 16)
-        {
-            y = 16;
-        }
-        return y;
-        
-    }
+    return -1.0 * (playerY % 32.0);
+  }
 
-    getEntityX(playerX,entityX)
-    {
-      let playerScreenX = this.getPlayerX(playerX);
+  // Returns the left X index for drawing the map
+  getMapXIndex(playerX)
+  {
+      if (playerX < this.#halfScreenWidth)
+      {
+          return 0;
+      }
+      let x = Math.floor(playerX/32-4);
+      if (x > 12)
+      {
+          x = 12;
+      }
+      return x;
+      
+  }
+  // Returns the top Y index for drawing the map
+  getMapYIndex(playerY)
+  {
+      if (playerY < this.#halfScreenHeight)
+      {
+          return 0;
+      }
+      let y = Math.floor(playerY/32-2);
+      if (y > 16)
+      {
+          y = 16;
+      }
+      return y;
+      
+  }
+  // Gets the screen X position for an item should work for both bullets and zombies.
+  getObjectScreenPositionX(playerX,objectX)
+  {
 
-      let entityScreenX = playerScreenX - (playerX - entityX );
 
-      return entityScreenX;
+    let playerScreenX = this.getPlayerScreenPositionX(playerX);
 
-    }
-    getEntityY(playerY,entityY)
-    {
-      let playerScreenY = this.getPlayerY(playerY);
+    let entityScreenX = playerScreenX - (playerX - objectX );
 
-      let entityScreenY = playerScreenY - (playerY - entityY);
 
-      return entityScreenY;
-
-    }
+    return entityScreenX;
 
   }
+
+  // Gets the screen Y position for an item should work for both bullets and zombies.
+  getObjectScreenPositionY(playerY,objectY)
+  {
+    let playerScreenY = this.getPlayerScreenPositionY(playerY);
+
+    let entityScreenY = playerScreenY - (playerY - objectY);
+
+    return entityScreenY;
+
+  }
+  getCanvas()
+  {
+    return this.canvas;
+  }
+  clearScreen()
+  {
+    this.canvas.clearRect(0, 0, 600, 400);
+  }
+
+}
   

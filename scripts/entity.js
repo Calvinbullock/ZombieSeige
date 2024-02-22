@@ -49,6 +49,10 @@ export class Entity {
   getY() {
     return this.#pos_y;
   }
+  getSprite()
+  {
+    return this.#sprite;
+  }
 
   getSpeed(){
     return this.#speed
@@ -59,21 +63,13 @@ export class Entity {
   resetHealth() {
     this.#health = this.#max_health;
   }
+  getTileIndexX()
+  {
+      return Math.floor(this.#pos_x/32);
+  }
+  getTileIndexY()
+  {
+      return Math.floor(this.#pos_y/32);
+  }
 
-  Draw(ctx, x, y) {
-    // Assuming sprite_in represents the player's image or sprite
-    // Assuming sprite_in is a pre-loaded image or sprite sheet
-    // Assuming this.x and this.y represent the player's position
-    ctx.drawImage(this.#sprite, x, y);
-
-        // Additional drawing for guns, health bar, etc. can be added here
-    }
-    getTileIndexX()
-    {
-        return Math.floor(this.#pos_x/32);
-    }
-    getTileIndexY()
-    {
-        return Math.floor(this.#pos_y/32);
-    }
 }
