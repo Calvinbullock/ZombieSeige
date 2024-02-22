@@ -76,6 +76,19 @@ export class Game {
 
     //draw player
     this.player.Draw(this.canvas, x, y);
+
+
+
+    let zomX = this.testZombie.getX();
+    let zomY = this.testZombie.getY();
+
+    console.log("zombie x position " + zomX);
+    console.log("zombie y position " + zomY);
+
+    let zomScreenX = this.#camera.getEntityX(playerX,zomX);
+    let zomScreenY = this.#camera.getEntityY(playerY,zomY);
+
+    this.testZombie.Draw(this.canvas, zomScreenX, zomScreenY);
   }
 
   #damage() {}

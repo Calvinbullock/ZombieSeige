@@ -100,5 +100,24 @@ export class Camera {
         
     }
 
+    getEntityX(playerX,entityX)
+    {
+      let playerScreenX = this.getPlayerX(playerX);
+
+      let entityScreenX = playerScreenX - (playerX - entityX );
+
+      return entityScreenX;
+
+    }
+    getEntityY(playerY,entityY)
+    {
+      let playerScreenY = this.getPlayerY(playerY);
+
+      let entityScreenY = playerScreenY - (playerY - entityY);
+
+      return entityScreenY;
+
+    }
+
   }
   

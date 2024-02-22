@@ -18,8 +18,8 @@ export class Zombie extends Entity {
       health_in,
       max_health_in,
       speed_in,
-      300,
-      300
+      100,
+      100
     );
 
     this.#damage = this.damage_in;
