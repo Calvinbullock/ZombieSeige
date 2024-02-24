@@ -13,6 +13,10 @@ export class Camera
   constructor(width, height) {
     // this.#pixelHeight = height;
     // this.#pixelWidth = width;
+
+    // this.#pixelWidth  = width * 32;
+    // this.#pixelHeight = height * 32;
+
     console.log(this.#pixelHeight);
 
     this.#halfScreenWidth = this.#screenWidth / 2;
@@ -31,7 +35,6 @@ export class Camera
     }
     if (x > this.#rightSide) {
       let xpos = this.#halfScreenWidth + (x - this.#rightSide);
-      console.log(xpos);
       return xpos;
     }
 
@@ -139,7 +142,7 @@ export class Camera
   }
   clearScreen()
   {
-    this.canvas.clearRect(0, 0, 600, 400);
+    this.canvas.clearRect(0, 0, 256, 128);
   }
 
 }
