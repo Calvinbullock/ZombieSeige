@@ -1,9 +1,6 @@
 import { Game } from './game.js';
 import { EventHandler } from './eventhandler.js';
 
-(import game from './game.js';)
-(import EventHandler from './eventhandler.js';)
-
 const gameInstance = new Game(); // Create an instance of the Game class
 const eventHandler = new EventHandler;
 
