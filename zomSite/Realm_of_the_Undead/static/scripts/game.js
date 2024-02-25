@@ -1,6 +1,7 @@
 import { Player } from './player.js';
 import { Map } from './map.js';
 import { Camera } from './camera.js';
+
 export class Game {
 
   player; 
@@ -11,7 +12,7 @@ export class Game {
   canvas;
   #camera;
   constructor(){
-    this.player = new Player("gun1", "gun2", "./assets/player_male.png", 'direction_in', 100, 100, 100);
+    this.player = new Player("gun1", "gun2", 'static/assets/player_male.png', 'direction_in', 100, 100, 100);
     this.canvas = document.querySelector("#myCanvas").getContext('2d');
     this.#map = new Map();
     let x = this.#map.getWidth();
