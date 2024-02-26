@@ -34,7 +34,10 @@ export class Entity {
         if (this.#pos_y < 640 && y_movement > 0) {
             this.#pos_y += y_movement;
         }
-
+    }
+    getSpeed()
+    {
+        return this.#speed
     }
     getX() {
         return this.#pos_x;
@@ -42,6 +45,19 @@ export class Entity {
     getY()
     {
         return this.#pos_y;
+    }
+    getSprite()
+    {
+      return this.#sprite;
+    }
+
+    getTileIndexX()
+    {
+        return Math.floor(this.#pos_x/32);
+    }
+    getTileIndexY()
+    {
+        return Math.floor(this.#pos_y/32);
     }
 
     update_health() { }
