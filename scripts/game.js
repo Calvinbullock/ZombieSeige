@@ -14,9 +14,16 @@ export class Game {
     this.player = new Player("gun1", "gun2", "./assets/player_male.png", "direction_in", 100, 100, 100);
     // makes test zombie
     this.testZombie = new Zombie(25, "./assets/zombie_fem.png", "direction_in", 100, 100, .3);
+
     this.#map = new Map();
+
+   
+
     let x = this.#map.getWidth();
     let y = this.#map.getHeight();
+
+    console.log(x + " " + y);
+
     this.#camera = new Camera(x, y);
   }
 
