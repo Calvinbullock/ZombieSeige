@@ -1,5 +1,6 @@
 import { Entity } from './entity.js';
 import { Pistol } from "./pistol.js";
+import { Shotgun } from "./shotgun.js";
 
 export class Player extends Entity{
 
@@ -15,8 +16,9 @@ export class Player extends Entity{
     constructor(gun1_in, gun2_in, sprite_in, direction_in, health_in, max_health_in, speed_in){
         super(sprite_in, direction_in, health_in, max_health_in, speed_in, 300, 300);
         this.#gun1 = new Pistol();
-        this.#gun2 = gun2_in;
+        this.#gun2 = new Shotgun();
         this.activegun = this.#gun1
+        this.activegun = this.#gun2
     }
 
     switchGun(){

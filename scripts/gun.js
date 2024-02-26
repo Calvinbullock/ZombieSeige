@@ -11,6 +11,7 @@ export class Gun {
     #damage; // int
     #bullet_duration; // double
     #bullet_count; // int - the amount of bullets spawned when fire button clicked
+    #bullet_accuracy; // the lower this is the more accurate
     #fire_sfx; // filepath
     #reload_sfx; // filepath
     #img; // filepath
@@ -18,8 +19,8 @@ export class Gun {
     #posY;
 
     
-    constructor(current_ammo_in, max_ammo_in, name_in, damage_in, bullet_duration_in, bullet_count_in, fire_sfx_in, reload_sfx_in, img_in) {
-        this.#current_ammo = current_ammo_in; 
+    constructor(max_ammo_in, name_in, damage_in, bullet_duration_in, bullet_count_in, fire_sfx_in, reload_sfx_in, img_in, accuracy_in) {
+        this.#current_ammo = max_ammo_in; 
         this.#max_ammo = max_ammo_in;
         this.#name = name_in;
         this.#damage = damage_in;
@@ -29,7 +30,7 @@ export class Gun {
         this.#reload_sfx = reload_sfx_in;
         this.#img = new Image();
         this.#img.src = img_in;
-        
+        this.#bullet_accuracy = accuracy_in;
     }
 
 
@@ -89,11 +90,17 @@ export class Gun {
 
         let angle = Math.atan2(deltaY, deltaX);
 
-        // Create a new bullet object with the calculated angle
-        let bullet = new Bullet(10, this.#posX + 4, this.#posY + 2, angle);
+        for (let i = 0; i < this.#bullet_count; i++) 
+        {
+            let angle_offset = Math.random() * (this.#bullet_accuracy + this.#bullet_accuracy) - this.#bullet_accuracy;
 
-        // Push the bullet into the bullets array
-        bullets.push(bullet);
+            // Create a new bullet object with the calculated angle
+            let bullet = new Bullet(10, this.#posX + 4, this.#posY + 2, angle+angle_offset);
+
+            // Push the bullet into the bullets array
+            bullets.push(bullet);
+
+        }
     }
 
     updatePos(player)
