@@ -63,7 +63,18 @@ export class EventHandler {
     
 
 
-    handleClick() {}
+    handleClick(event, game) {
+        console.log("click");
+        const rect = event.target.getBoundingClientRect();
+        const scaleX = event.target.width / rect.width;
+        const scaleY = event.target.height / rect.height;
+        const mouseX = (event.clientX - rect.left) * scaleX;
+        const mouseY = (event.clientY - rect.top) * scaleY;
+        console.log("Mouse X:", mouseX);
+        console.log("Mouse Y:", mouseY);
+    
+        game.player.shoot(game.bullets, mouseX, mouseY,game.getCamera());
+      }
     handleFrameClock() {}
 
 }

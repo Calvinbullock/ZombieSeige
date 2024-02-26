@@ -1,10 +1,11 @@
 import { Entity } from './entity.js';
+import { Pistol } from "./pistol.js";
 
 export class Player extends Entity{
 
     #gun1;
     #gun2;
-    #activegun;
+    activegun;
     movingLeft = false;
     movingUp = false;
     movingDown = false;
@@ -13,16 +14,17 @@ export class Player extends Entity{
 
     constructor(gun1_in, gun2_in, sprite_in, direction_in, health_in, max_health_in, speed_in){
         super(sprite_in, direction_in, health_in, max_health_in, speed_in, 300, 300);
-        this.#gun1 = gun1_in;
+        this.#gun1 = new Pistol();
         this.#gun2 = gun2_in;
+        this.activegun = this.#gun1
     }
 
     switchGun(){
 
     }
 
-    shoot(){
-
+    shoot(bullets,mousex,mousey,camera){
+        this.activegun.shoot(bullets,mousex,mousey,this,camera)
     }
     move() {
         // Calculate the movement vector

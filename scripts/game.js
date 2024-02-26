@@ -9,6 +9,7 @@ export class Game {
   #map;
   #direction;
   #camera;
+  bullets = [];
 
   constructor() {
     this.player = new Player("gun1", "gun2", "./assets/player_male.png", "direction_in", 100, 100, 100);
@@ -26,9 +27,18 @@ export class Game {
 
     this.#camera = new Camera(x, y);
   }
+  getCamera()
+  {
+    console.log("cam")
+    return this.#camera;
+  }
 
   gameLoop() {
     this.#moveEntities();
+    this.bullets.forEach((bullet) => {
+      bullet.move();
+    });
+    this.player.activegun.updatePos(this.player);
     this.#drawScreen();
   }
 
@@ -52,6 +62,15 @@ export class Game {
 
     //draw player
     this.player.Draw(this.#camera);
+
+    //draw gun
+    this.player.activegun.draw(this.player,this.#camera)
+
+    //draw bullets
+
+    this.bullets.forEach((bullet) => {
+      bullet.draw(this.#camera, this.player);
+    });
 
     //draw test zombie
     this.testZombie.Draw(this.#camera,this.player);

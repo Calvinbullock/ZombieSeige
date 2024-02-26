@@ -13,3 +13,7 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("keyup", (event) => {
   eventHandler.handleKeyUp(event, gameInstance.player);
 });
+
+document.querySelector('#myCanvas').addEventListener("mousedown", (event) => {
+  eventHandler.handleClick(event,gameInstance);
+});
