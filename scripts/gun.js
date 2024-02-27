@@ -80,27 +80,31 @@ export class Gun {
     shoot(bullets, mouseX, mouseY, player, camera) {
         // Calculate the angle between the shooter and the mouse position
    
-
-
-        let x = camera.getObjectScreenPositionX(player.getX(),this.#posX+4)
-        let y = camera.getObjectScreenPositionY(player.getY(),this.#posY+2)
-
-        let deltaX = mouseX - x;
-        let deltaY = mouseY - y;
-
-        let angle = Math.atan2(deltaY, deltaX);
-
-        for (let i = 0; i < this.#bullet_count; i++) 
+        if (this.#current_ammo > 0)
         {
-            let angle_offset = Math.random() * (this.#bullet_accuracy + this.#bullet_accuracy) - this.#bullet_accuracy;
+            this.#current_ammo -=1
+            let x = camera.getObjectScreenPositionX(player.getX(),this.#posX+4)
+            let y = camera.getObjectScreenPositionY(player.getY(),this.#posY+2)
 
-            // Create a new bullet object with the calculated angle
-            let bullet = new Bullet(10, this.#posX + 4, this.#posY + 2, angle+angle_offset);
+            let deltaX = mouseX - x;
+            let deltaY = mouseY - y;
 
-            // Push the bullet into the bullets array
-            bullets.push(bullet);
+            let angle = Math.atan2(deltaY, deltaX);
 
+            for (let i = 0; i < this.#bullet_count; i++) 
+            {
+                let angle_offset = Math.random() * (this.#bullet_accuracy + this.#bullet_accuracy) - this.#bullet_accuracy;
+
+                // Create a new bullet object with the calculated angle
+                let bullet = new Bullet(10, this.#posX + 4, this.#posY + 2, angle+angle_offset);
+
+                // Push the bullet into the bullets array
+                bullets.push(bullet);
+
+            }
         }
+
+
     }
 
     updatePos(player)
