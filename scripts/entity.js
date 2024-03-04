@@ -19,6 +19,14 @@ export class Entity {
         this.#sprite.src = sprite_in; // Set the source of the image
         this.#direction = direction_in;
     }
+    getHealth()
+    {
+        return this.#health;
+    }
+    getMaxHealth()
+    {
+        return this.#max_health;
+    }
 
     moveBy(x_movement, y_movement)
     {

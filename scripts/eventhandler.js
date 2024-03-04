@@ -4,6 +4,7 @@ export class EventHandler {
     downKey = 's';
     leftKey = 'a';
     rightKey = 'd';
+    reloadkey = 'r';
     mouseButton;
     interactKey;
     movementSpeed = 1;
@@ -32,6 +33,10 @@ export class EventHandler {
         if (key == this.downKey)
         {
             player.movingDown = true;
+        }
+        if (key == this.reloadkey)
+        {
+            player.reload()
         }
     }
     
@@ -64,14 +69,12 @@ export class EventHandler {
 
 
     handleClick(event, game) {
-        console.log("click");
         const rect = event.target.getBoundingClientRect();
         const scaleX = event.target.width / rect.width;
         const scaleY = event.target.height / rect.height;
         const mouseX = (event.clientX - rect.left) * scaleX;
         const mouseY = (event.clientY - rect.top) * scaleY;
-        console.log("Mouse X:", mouseX);
-        console.log("Mouse Y:", mouseY);
+
     
         game.player.shoot(game.bullets, mouseX, mouseY,game.getCamera());
       }

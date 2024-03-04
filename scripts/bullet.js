@@ -11,6 +11,14 @@ export class Bullet{
     this.posY = y;
     this.angle = angle;
   }
+  getTileX()
+  {
+    return Math.floor(this.posX/32);
+  }
+  getTileY()
+  {
+    return Math.floor(this.posY/32);
+  }
   move()
   {
     this.posX += Math.cos(this.angle) * this.speed;

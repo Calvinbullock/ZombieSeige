@@ -6,6 +6,8 @@ export class Gun {
 
 
     #current_ammo; // int
+    #loaded_ammo;
+    #max_loaded_ammo;
     #max_ammo; // int
     #name; // str
     #damage; // int
@@ -19,7 +21,7 @@ export class Gun {
     #posY;
 
     
-    constructor(max_ammo_in, name_in, damage_in, bullet_duration_in, bullet_count_in, fire_sfx_in, reload_sfx_in, img_in, accuracy_in) {
+    constructor(max_ammo_in, name_in, damage_in, bullet_duration_in, bullet_count_in, fire_sfx_in, reload_sfx_in, img_in, accuracy_in,loaded_ammo_in) {
         this.#current_ammo = max_ammo_in; 
         this.#max_ammo = max_ammo_in;
         this.#name = name_in;
@@ -31,6 +33,17 @@ export class Gun {
         this.#img = new Image();
         this.#img.src = img_in;
         this.#bullet_accuracy = accuracy_in;
+
+        this.#max_loaded_ammo = loaded_ammo_in;
+        this.#loaded_ammo = loaded_ammo_in;
+    }
+    getTileX()
+    {
+      return Math.floor(this.#posX/32);
+    }
+    getTileY()
+    {
+      return Math.floor(this.#posY/32);
     }
 
 
@@ -76,13 +89,18 @@ export class Gun {
     refillAmmo() {
         this.#current_ammo = this.#max_ammo;
     }
+    reload()
+    {
+        this.#loaded_ammo = this.#max_loaded_ammo
+        this.#current_ammo -= this.#loaded_ammo
+    }
 
     shoot(bullets, mouseX, mouseY, player, camera) {
         // Calculate the angle between the shooter and the mouse position
    
-        if (this.#current_ammo > 0)
+        if (this.#loaded_ammo > 0)
         {
-            this.#current_ammo -=1
+            this.#loaded_ammo -=1
             let x = camera.getObjectScreenPositionX(player.getX(),this.#posX+4)
             let y = camera.getObjectScreenPositionY(player.getY(),this.#posY+2)
 
@@ -99,7 +117,13 @@ export class Gun {
                 let bullet = new Bullet(10, this.#posX + 4, this.#posY + 2, angle+angle_offset);
 
                 // Push the bullet into the bullets array
-                bullets.push(bullet);
+                let xindex = this.getTileX();
+                let yindex = this.getTileY();
+
+                console.log(xindex);
+                console.log(yindex)
+
+                bullets[xindex][yindex].push(bullet);
 
             }
         }
@@ -123,8 +147,9 @@ export class Gun {
         ctx.drawImage(this.#img, x, y);
 
         ctx.font = "10px serif";
+        var ammoCount = this.#loaded_ammo.toString() + "  " + this.#current_ammo.toString()
         ctx.fillText(this.#name, 220, 110);
-        ctx.fillText(this.#current_ammo, 220, 120);
+        ctx.fillText(ammoCount, 220, 120);
 
     }
 }

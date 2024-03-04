@@ -33,10 +33,33 @@ export class Zombie extends Entity {
 
     let ctx = camera.getCanvas();
 
-    let mapPositionX = camera.getObjectScreenPositionX(player.getX(),this.getX());
-    let mapPositionY = camera.getObjectScreenPositionY(player.getY(),this.getY());
+    let mapPositionX = Math.floor(camera.getObjectScreenPositionX(player.getX(),this.getX()));
+    let mapPositionY = Math.floor(camera.getObjectScreenPositionY(player.getY(),this.getY()));
 
     ctx.drawImage(this.getSprite(), mapPositionX, mapPositionY);
+
+    ctx.beginPath();
+    ctx.lineWidth = "1";
+    ctx.strokeStyle = "black";
+    // Adjust the width and height to make the rectangle smaller
+    ctx.rect(mapPositionX+2, mapPositionY, 10, 0.5);
+    ctx.stroke();
+
+    let maxHealth = this.getMaxHealth();
+
+    let health = this.getHealth();
+
+    let healthPercent = health/maxHealth;
+    
+    let healthWidth = 10 * healthPercent;
+
+
+    ctx.beginPath();
+    ctx.lineWidth = "1";
+    ctx.strokeStyle = "blue";
+    // Adjust the width and height to make the rectangle smaller
+    ctx.rect(mapPositionX+2, mapPositionY, healthWidth, 0.5);
+    ctx.stroke();
 
   }
   move(goal_x, goal_y) {
@@ -48,15 +71,15 @@ export class Zombie extends Entity {
     let diff_x = this.getX() - goal_x;
 
 
-    if (diff_x > 0) {
+    if (diff_x > 1) {
       dx -= this.getSpeed();
-    } else if (diff_x < 0) {
+    } else if (diff_x < -1) {
       dx += this.getSpeed();
     }
 
-    if (diff_y > 0) {
+    if (diff_y > 1) {
       dy -= this.getSpeed();
-    } else if (diff_y < 0) {
+    } else if (diff_y < -1) {
       dy += this.getSpeed();
     }
 

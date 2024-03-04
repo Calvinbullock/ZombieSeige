@@ -72,6 +72,10 @@ export class Player extends Entity{
         ctx.drawImage(this.getSprite(), mapPositionX, mapPositionY);
 
     }
+    reload()
+    {
+        this.activegun.reload()
+    }
     
 
 }
