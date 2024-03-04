@@ -120,8 +120,6 @@ export class Gun {
                 let xindex = this.getTileX();
                 let yindex = this.getTileY();
 
-                console.log(xindex);
-                console.log(yindex)
 
                 bullets[xindex][yindex].push(bullet);
 

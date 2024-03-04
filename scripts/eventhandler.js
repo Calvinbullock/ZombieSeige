@@ -5,13 +5,14 @@ export class EventHandler {
     leftKey = 'a';
     rightKey = 'd';
     reloadkey = 'r';
+    spawnZombieKey = 'z';
     mouseButton;
     interactKey;
     movementSpeed = 1;
 
     movementInterval = null;
 
-    handleKeyDown(event, player) {
+    handleKeyDown(event, player, game) {
         let key = event.key;
         if (event.repeat) return; // If the key is being held down and repeating, ignore the event
 
@@ -38,6 +39,11 @@ export class EventHandler {
         {
             player.reload()
         }
+        if (key == this.spawnZombieKey)
+        {
+            game.spawnZombies();
+        }
+
     }
     
     handleKeyUp(event,player) {

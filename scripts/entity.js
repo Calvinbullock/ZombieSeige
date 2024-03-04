@@ -59,11 +59,11 @@ export class Entity {
       return this.#sprite;
     }
 
-    getTileIndexX()
+    getTileX()
     {
         return Math.floor(this.#pos_x/32);
     }
-    getTileIndexY()
+    getTileY()
     {
         return Math.floor(this.#pos_y/32);
     }
