@@ -89,11 +89,14 @@ export class Gun {
     refillAmmo() {
         this.#current_ammo = this.#max_ammo;
     }
-    reload()
-    {
-        this.#loaded_ammo = this.#max_loaded_ammo
-        this.#current_ammo -= this.#loaded_ammo
-    }
+    reload() {
+        if (this.#current_ammo > 0) {
+            this.#loaded_ammo = Math.min(this.#max_loaded_ammo, this.#current_ammo);
+            this.#current_ammo -= this.#loaded_ammo;
+        } else {
+            console.log("You have no bullets left to reload.");
+        }
+    }    
 
     shoot(bullets, mouseX, mouseY, player, camera) {
         // Calculate the angle between the shooter and the mouse position
