@@ -89,6 +89,7 @@ export class Gun {
     refillAmmo() {
         this.#current_ammo = this.#max_ammo;
     }
+    
     reload() {
         if (this.#current_ammo > 0) {
             this.#loaded_ammo = Math.min(this.#max_loaded_ammo, this.#current_ammo);
