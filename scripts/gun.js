@@ -122,5 +122,9 @@ export class Gun {
 
         ctx.drawImage(this.#img, x, y);
 
+        ctx.font = "10px serif";
+        ctx.fillText(this.#name, 220, 110);
+        ctx.fillText(this.#current_ammo, 220, 120);
+
     }
 }
