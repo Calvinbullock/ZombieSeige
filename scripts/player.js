@@ -18,7 +18,7 @@ export class Player extends Entity{
         this.#gun1 = new Pistol();
         this.#gun2 = new Shotgun();
         this.activegun = this.#gun1
-        // this.activegun = this.#gun2
+        this.activegun = this.#gun2
     }
 
     switchGun(){

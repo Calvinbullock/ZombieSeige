@@ -27,6 +27,15 @@ export class Entity {
     {
         return this.#max_health;
     }
+    damage(bullet_damage)
+    {
+        console.log("damage");
+        this.#health -= bullet_damage;
+        if (this.#health < 0)
+        {
+            this.#health = 0;
+        }
+    }
 
     moveBy(x_movement, y_movement)
     {

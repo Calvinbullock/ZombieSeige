@@ -53,7 +53,7 @@ export class Game {
     //   bullet.move();
     // });
 
-    
+    this.#checkColisions();
     this.bullets.forEach((arrayX, x) => 
     {
       arrayX.forEach((arrayY, y) => 
@@ -71,6 +71,10 @@ export class Game {
               }
                   
             }
+            if (bullet.getStatus() == false)
+            {
+              this.bullets[x][y].splice(z, 1);
+            }
           });
       });
     });
@@ -81,6 +85,13 @@ export class Game {
       {
           arrayY.forEach((zombie, z) => 
           {
+            if (zombie.getStatus() == false)
+            {
+              this.#zombies[x][y].splice(z, 1);
+              
+            }
+            else
+            {
             // Check conditions to remove bullet (for example, if it's out of bounds)
             if (zombie.getTileX() != x || zombie.getTileY() != y) 
             {
@@ -90,8 +101,12 @@ export class Game {
               {
                 this.#zombies[zombie.getTileX()][zombie.getTileY()].push(zombie);
               }
+              
                   
             }
+            }
+
+
           });
       });
     });
@@ -101,7 +116,61 @@ export class Game {
     this.#drawScreen();
   }
 
-  #checkColisions() {}
+  #checkColisions() 
+  {
+    this.#zombies.forEach((arrayX, x) => 
+    {
+      arrayX.forEach((arrayY, y) => 
+      {
+          arrayY.forEach((zombie, z) => 
+          {
+            for(let i = -1;i<2;i++)
+            {
+              for(let j = -1;j<2;j++)
+              {
+
+                let BulletXIndex = x + i;
+                let BulletYIndex = y + j;
+
+                if (BulletXIndex < 20 && BulletXIndex >= 0 && BulletYIndex < 20 && BulletYIndex >= 0)
+                {
+                  this.bullets[BulletXIndex][BulletYIndex].forEach((bullet,b) =>
+                  {
+
+                    let bulletX = bullet.getX();
+                    let bulletY = bullet.getY();
+                    let bulletR = bullet.getRadius();
+
+                    let zombieX = zombie.getX()+7;
+                    let zombieY = zombie.getY()+8;
+                    let zombieR = zombie.getRadius();
+
+                    let distance = Math.sqrt((bulletX-zombieX)*(bulletX-zombieX) + (bulletY-zombieY)*(bulletY-zombieY));
+
+                    
+
+                    if (distance < (bulletR+zombieR))
+                    {
+                      
+                      zombie.damage(bullet.getDamage());
+                      bullet.kill();
+                    }
+
+
+
+                  });
+                }
+
+                
+              }
+
+            }
+
+
+          });
+      });
+    });
+  }
 
   #moveEntities() {
     this.player.move();

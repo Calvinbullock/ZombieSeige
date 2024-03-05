@@ -120,7 +120,7 @@ export class Gun {
                 let angle_offset = Math.random() * (this.#bullet_accuracy + this.#bullet_accuracy) - this.#bullet_accuracy;
 
                 // Create a new bullet object with the calculated angle
-                let bullet = new Bullet(10, this.#posX + 4, this.#posY + 2, angle+angle_offset);
+                let bullet = new Bullet(10, this.#posX + 4, this.#posY + 2, angle+angle_offset,this.#damage);
 
                 // Push the bullet into the bullets array
                 let xindex = this.getTileX();

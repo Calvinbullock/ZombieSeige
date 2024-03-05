@@ -3,6 +3,8 @@ import { Entity } from "./entity.js";
 export class Zombie extends Entity {
   #damage;
   #SFX;
+  radius = 6;
+  alive = true;
 
   constructor(
     damage_in,
@@ -24,17 +26,30 @@ export class Zombie extends Entity {
 
     this.#damage = this.damage_in;
   }
+  getRadius()
+  {
+    return this.radius;
+  }
 
   getDamage() {
     return this.#damage;
   }
+  getStatus()
+  {
+    return (this.getHealth() > 0);
+  }
   Draw(camera,player)
   {
+    
+
 
     let ctx = camera.getCanvas();
 
     let mapPositionX = Math.floor(camera.getObjectScreenPositionX(player.getX(),this.getX()));
     let mapPositionY = Math.floor(camera.getObjectScreenPositionY(player.getY(),this.getY()));
+
+
+
 
     ctx.drawImage(this.getSprite(), mapPositionX, mapPositionY);
 

@@ -4,12 +4,37 @@ export class Bullet{
   posY;
   speed = 1;
   angle;
+  time = 0;
+  alive = true;
+  damage;
 
-  constructor(duration_in,x,y,angle) {
+  constructor(duration_in,x,y,angle,damage) {
     this.#duration = duration_in;
     this.posX = x;
     this.posY = y;
     this.angle = angle;
+    this.damage = damage;
+  }
+  getDamage()
+  {
+    if (this.alive)
+    {
+      return this.damage;
+    }
+    return 0;
+    
+  }
+  getRadius()
+  {
+    return 1;
+  }
+  getX()
+  {
+    return this.posX;
+  }
+  getY()
+  {
+    return this.posY;
   }
   getTileX()
   {
@@ -23,6 +48,19 @@ export class Bullet{
   {
     this.posX += Math.cos(this.angle) * this.speed;
     this.posY += Math.sin(this.angle) * this.speed;
+    this.time +=.15;
+    if (this.time > this.#duration)
+    {
+      this.alive = false;
+    }
+  }
+  getStatus()
+  {
+    return this.alive;
+  }
+  kill()
+  {
+    this.alive = false;
   }
   draw(camera,player)
   {
