@@ -1,5 +1,5 @@
 export class Map {
-  #path = "./assets/map.txt";
+  #path = "assets/map.txt";
   #mapArray = [];
   #width = 20;
   #height = 20;
@@ -10,8 +10,8 @@ export class Map {
 
   constructor() {
     this.#readMapFromFile();
-    this.#grass.src = "./assets/green_grass.png"; // Set the source of the image
-    this.#edge.src = "./assets/edge.png"; // Set the source of the image
+    this.#grass.src = "assets/green_grass.png"; // Set the source of the image
+    this.#edge.src = "assets/edge.png"; // Set the source of the image
   }
 
   #readMapFromFile() {
@@ -50,6 +50,10 @@ export class Map {
   }
 
   draw(player,camera) {
+
+    if (this.#mapArray.length == 0) {
+      return
+    }
 
     let ctx = camera.getCanvas();
 
