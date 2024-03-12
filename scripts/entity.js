@@ -6,6 +6,7 @@ export class Entity {
     #health;
     #max_health;
     #sprite;
+    radius = 6;
     #direction;
 
     // added a comma since there was an error ;)
@@ -26,6 +27,10 @@ export class Entity {
     getMaxHealth()
     {
         return this.#max_health;
+    }
+    getRadius()
+    {
+      return this.radius;
     }
     damage(bullet_damage)
     {

@@ -1,57 +1,92 @@
-class Round {
-  constructor(speed_m, count_m, damage_m) {
-    this.speed_m = speed_m;
-    this.count_m = count_m;
-    this.damage_m = damage_m;
-    this.current_round = 0;
-  }
+import { Zombie } from "./zombie.js";
 
-  newRound(Zombie) {
-    this.current_round++;
-    // Additional logic for starting a new round can be added here
 
-    // check if any entity has hit points remaining
-    const zombiesWithHP = Zombie.filter(Zombie => Zombie.hitPoints > 0);
-
-    if (zombiesWithHP.length === 0)
-    {
-      console.log("All Zombies Slaughtered, but the smell of blood brings in more!");
-      return true;
-    }
-
-    if (Zombie.length === 0)
-    {
-      console.log("All Zombies Slaughtered, but the smell of blood brings in more!");
-      return true;
-    }
-    // If neither conditon met, return false to indicate no new round yet.
-    return false;
-  }
-}
-
-class Zombie
+export class Round 
 {
-  constructor(hitPoints)
+  speedModifier = 1.1;
+  countModifier = 1.1;
+  damageModifier = 1.1;
+  healthModifier = 1.1;
+  
+  zombNumber = 10;
+  zombDamage = 1;
+  zombHealth = 50;
+  zombSpeed = .3;
+
+  currentRound = 1;
+ 
+  CurrentAliveZombies = 0;
+
+
+
+
+  constructor()
   {
-    this.hitPoints = hitPoints;
+
+
+    console.log("Round Constructed")
+
+
   }
+  endRound()
+  {
+    if (this.CurrentAliveZombies == 0)
+    {
+      this.currentRound++;
+    } 
+    return this.CurrentAliveZombies == 0;
+  }
+  spawnRound(zombies)
+  {
+    console.log("Spawning")
+    // this.#zombies[3][3].push(new Zombie(2, "./assets/zombie_fem.png", "direction_in", 100, 100, .3));
+
+    for (let count = 0; count < this.zombNumber * (this.countModifier ** (this.currentRound-1)); count++)
+    {
+      let zombieXpos = Math.floor(Math.random() * 641);
+      let zombieYpos = Math.floor(Math.random() * 641);
+
+      let zombieTileX = Math.floor(zombieXpos / 32);
+      let zombieTileY = Math.floor(zombieYpos / 32);
+
+      let img_path1 = "./assets/zombie_fem.png";
+      let img_path2 = "./assets/zombie_male.png";
+      var path = this.getRandomString(img_path1, img_path2);
+
+      zombies[zombieTileX][zombieTileY].push(new Zombie(this.zombDamage* (this.damageModifier ** (this.currentRound-1)),path,"direction_in",this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombHealth ** (this.healthModifier ** (this.currentRound-1)),this.zombSpeed * (this.speedModifier ** (this.currentRound-1)),zombieXpos,zombieYpos));
+      console.log("NEw Zombie")
+      this.CurrentAliveZombies ++;
+
+    }
+
+
+
+
+
+
+  }
+  killZombie()
+  {
+    this.CurrentAliveZombies--;
+  }
+  draw(camera)
+  {
+    console.log(this.CurrentAliveZombies)
+    let ctx = camera.getCanvas();
+    ctx.fillStyle = "black"; 
+    ctx.font = "20px serif";
+    ctx.fillText(this.currentRound, 5, 120);
+  }
+  getRandomString(string1, string2) {
+    var randomNumber = Math.random();
+    if (randomNumber < 0.5) {
+        return string1;
+    } else {
+        return string2;
+    }
+  }
+
+
+
 }
 
-const Zombies =
-
-[
-  new Zombies(50),
-  new Zombies(30),
-  new Zombies(10)
-];
-
-const round = new Round(100, Zombies.lenght, 20);
-let roundOver = round.newRound(Zombies);
-if (roundOver)
-{
-  newRound();
-}
-else
-{
-  return false;
-}

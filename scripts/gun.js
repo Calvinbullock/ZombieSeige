@@ -149,7 +149,7 @@ export class Gun {
         let ctx = camera.getCanvas();
 
         ctx.drawImage(this.#img, x, y);
-
+        ctx.fillStyle = "black"; 
         ctx.font = "10px serif";
         var ammoCount = this.#loaded_ammo.toString() + "  " + this.#current_ammo.toString()
         ctx.fillText(this.#name, 220, 110);

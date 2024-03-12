@@ -71,6 +71,22 @@ export class Player extends Entity{
 
         ctx.drawImage(this.getSprite(), mapPositionX, mapPositionY);
 
+
+
+        ctx.beginPath();
+        ctx.lineWidth = "1";
+        ctx.fillStyle = "black"; // Change to fillStyle
+        // Adjust the width and height to make the rectangle smaller
+        ctx.rect(5, 5, this.getMaxHealth()/3, 5); // Fixed typo: "3d" to "3"
+        ctx.fill(); // Change to fill()
+
+        ctx.beginPath();
+        ctx.lineWidth = "1";
+        ctx.fillStyle = "blue"; // Change to fillStyle
+        // Adjust the width and height to make the rectangle smaller
+        ctx.rect(5, 5, this.getHealth()/3, 5); // Fixed typo: "3d" to "3"
+        ctx.fill(); // Change to fill()
+
     }
     reload()
     {

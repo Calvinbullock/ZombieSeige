@@ -2,6 +2,7 @@ import { Player } from "./player.js";
 import { Zombie } from "./zombie.js";
 import { Map } from "./map.js";
 import { Camera } from "./camera.js";
+import { Round } from "./round.js";
 export class Game {
   player;
   #zombies = [];
@@ -10,6 +11,7 @@ export class Game {
   #direction;
   #camera;
   bullets = [];
+
 
   constructor() {
     this.player = new Player("gun1", "gun2", "./assets/player_male.png", "direction_in", 100, 100, 100);
@@ -37,7 +39,10 @@ export class Game {
     }
 
 
-    this.spawnZombies();
+
+    this.#round = new Round();
+    this.#round.spawnRound(this.#zombies);
+
 
   }
   getCamera()
@@ -47,6 +52,10 @@ export class Game {
   }
 
   gameLoop() {
+    if (this.#round.endRound())
+    {
+      this.#round.spawnRound(this.#zombies);
+    }
     this.#moveEntities();
 
     // this.bullets.forEach((bullet) => {
@@ -88,7 +97,7 @@ export class Game {
             if (zombie.getStatus() == false)
             {
               this.#zombies[x][y].splice(z, 1);
-              
+              this.#round.killZombie();
             }
             else
             {
@@ -101,6 +110,7 @@ export class Game {
               {
                 this.#zombies[zombie.getTileX()][zombie.getTileY()].push(zombie);
               }
+              
               
                   
             }
@@ -140,11 +150,14 @@ export class Game {
                     let bulletX = bullet.getX();
                     let bulletY = bullet.getY();
                     let bulletR = bullet.getRadius();
+                    
 
+                    // add 7 and 8 too offset the center of the hitbox
                     let zombieX = zombie.getX()+7;
                     let zombieY = zombie.getY()+8;
                     let zombieR = zombie.getRadius();
 
+                    
                     let distance = Math.sqrt((bulletX-zombieX)*(bulletX-zombieX) + (bulletY-zombieY)*(bulletY-zombieY));
 
                     
@@ -170,6 +183,49 @@ export class Game {
           });
       });
     });
+
+    let playerXIndex = this.player.getTileX();
+    let playerYIndex = this.player.getTileY();
+
+
+    for(let i = -1;i<2;i++)
+    {
+      for(let j = -1; j<2;j++)
+      {
+        let zombTileX = playerXIndex+i;
+        let zombTileY = playerYIndex + j;
+
+        if (0 <= zombTileX && zombTileX < 20 && 0 <= zombTileY && zombTileY < 20 )
+        {
+          this.#zombies[zombTileX][zombTileY].forEach((zombie) =>
+          {
+
+            let playerX = this.player.getX()+7;
+            let playerY = this.player.getY()+8;
+            let playerR = this.player.getRadius();
+            
+
+            // add 7 and 8 too offset the center of the hitbox
+            let zombieX = zombie.getX()+7;
+            let zombieY = zombie.getY()+8;
+            let zombieR = zombie.getRadius();
+
+            
+            let distance = Math.sqrt((playerX-zombieX)*(playerX-zombieX) + (playerY-zombieY)*(playerY-zombieY));
+
+            
+
+            if (distance < (playerR+zombieR))
+            {
+              
+              this.player.damage(zombie.getDamage())
+            }
+
+          })
+        }
+      }
+    }
+
   }
 
   #moveEntities() {
@@ -199,7 +255,7 @@ export class Game {
   }
 
   spawnZombies() {
-    this.#zombies[3][3].push(new Zombie(25, "./assets/zombie_fem.png", "direction_in", 100, 100, .3));
+    this.#zombies[3][3].push(new Zombie(2, "./assets/zombie_fem.png", "direction_in", 100, 100, .3));
   }
 
   #drawScreen() {
@@ -239,6 +295,9 @@ export class Game {
       });
     });
     // this.testZombie.Draw(this.#camera,this.player);
+
+  
+    this.#round.draw(this.#camera);
   }
 
   #damage() {}

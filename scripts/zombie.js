@@ -5,6 +5,8 @@ export class Zombie extends Entity {
   #SFX;
   radius = 6;
   alive = true;
+  cooldown = 10;
+  wait=0;
 
   constructor(
     damage_in,
@@ -12,7 +14,9 @@ export class Zombie extends Entity {
     direction_in,
     health_in,
     max_health_in,
-    speed_in
+    speed_in,
+    x,
+    y
   ) {
     super(
       sprite_in,
@@ -20,19 +24,32 @@ export class Zombie extends Entity {
       health_in,
       max_health_in,
       speed_in,
-      100,
-      100
+      x,
+      y
     );
 
-    this.#damage = this.damage_in;
-  }
-  getRadius()
-  {
-    return this.radius;
+    this.#damage = damage_in;
   }
 
+
   getDamage() {
-    return this.#damage;
+
+    if (this.wait == 0)
+    {
+      this.wait += 1;
+      return this.#damage;
+    }
+    this.wait += 1;
+    if (this.wait == this.cooldown)
+    {
+      this.wait = 0;
+    }
+
+    return 0;
+    
+      
+
+    
   }
   getStatus()
   {
