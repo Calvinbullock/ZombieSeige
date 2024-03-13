@@ -17,3 +17,4 @@ document.addEventListener("keyup", (event) => {
 document.querySelector('#myCanvas').addEventListener("mousedown", (event) => {
   eventHandler.handleClick(event,gameInstance);
 });
+

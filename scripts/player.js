@@ -1,6 +1,7 @@
 import { Entity } from './entity.js';
 import { Pistol } from "./pistol.js";
 import { Shotgun } from "./shotgun.js";
+import { Rifle } from './rifle.js';
 
 export class Player extends Entity{
 
@@ -12,11 +13,13 @@ export class Player extends Entity{
     movingDown = false;
     movingRight = false;
     #speed = .7;
+    points = 0;
 
     constructor(gun1_in, gun2_in, sprite_in, direction_in, health_in, max_health_in, speed_in){
         super(sprite_in, direction_in, health_in, max_health_in, speed_in, 300, 300);
         this.#gun1 = new Pistol();
         this.#gun2 = new Shotgun();
+        this.#gun2 = new Rifle();
         this.activegun = this.#gun1
         this.activegun = this.#gun2
     }
@@ -87,10 +90,19 @@ export class Player extends Entity{
         ctx.rect(5, 5, this.getHealth()/3, 5); // Fixed typo: "3d" to "3"
         ctx.fill(); // Change to fill()
 
+        ctx.fillStyle = "black"; 
+        ctx.font = "13px serif";
+        var pointsstr = this.points.toString() + "  points";
+        ctx.fillText(pointsstr, 5, 100);
+
     }
     reload()
     {
         this.activegun.reload()
+    }
+    addpoints(added)
+    {
+        this.points+=added;
     }
     
 

@@ -74,8 +74,9 @@ export class Round
     console.log(this.CurrentAliveZombies)
     let ctx = camera.getCanvas();
     ctx.fillStyle = "black"; 
-    ctx.font = "20px serif";
-    ctx.fillText(this.currentRound, 5, 120);
+    ctx.font = "13px serif";
+    let roundtxt = "Round: " + this.currentRound.toString();
+    ctx.fillText(roundtxt, 5, 120);
   }
   getRandomString(string1, string2) {
     var randomNumber = Math.random();

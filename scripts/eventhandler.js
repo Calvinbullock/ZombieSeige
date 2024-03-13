@@ -39,10 +39,6 @@ export class EventHandler {
         {
             player.reload()
         }
-        if (key == this.spawnZombieKey)
-        {
-            game.spawnZombies();
-        }
 
     }
     
@@ -85,5 +81,7 @@ export class EventHandler {
         game.player.shoot(game.bullets, mouseX, mouseY,game.getCamera());
       }
     handleFrameClock() {}
+
+    
 
 }

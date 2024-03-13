@@ -8,12 +8,13 @@ export class Bullet{
   alive = true;
   damage;
 
-  constructor(duration_in,x,y,angle,damage) {
+  constructor(duration_in,x,y,angle,damage,speed) {
     this.#duration = duration_in;
     this.posX = x;
     this.posY = y;
     this.angle = angle;
     this.damage = damage;
+    this.speed = speed;
   }
   getDamage()
   {

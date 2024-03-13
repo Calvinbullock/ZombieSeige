@@ -57,7 +57,7 @@ export class Game {
       this.#round.spawnRound(this.#zombies);
     }
     this.#moveEntities();
-
+    this.checkPlayerInteractions();
     // this.bullets.forEach((bullet) => {
     //   bullet.move();
     // });
@@ -98,6 +98,7 @@ export class Game {
             {
               this.#zombies[x][y].splice(z, 1);
               this.#round.killZombie();
+              this.player.addpoints(100);
             }
             else
             {
@@ -254,9 +255,6 @@ export class Game {
     });
   }
 
-  spawnZombies() {
-    this.#zombies[3][3].push(new Zombie(2, "./assets/zombie_fem.png", "direction_in", 100, 100, .3));
-  }
 
   #drawScreen() {
     //clear the screen
@@ -298,6 +296,10 @@ export class Game {
 
   
     this.#round.draw(this.#camera);
+  }
+  checkPlayerInteractions()
+  {
+
   }
 
   #damage() {}

@@ -19,9 +19,10 @@ export class Gun {
     #img; // filepath
     #posX;
     #posY;
+    #bulletSpeed;
 
     
-    constructor(max_ammo_in, name_in, damage_in, bullet_duration_in, bullet_count_in, fire_sfx_in, reload_sfx_in, img_in, accuracy_in,loaded_ammo_in) {
+    constructor(max_ammo_in, name_in, damage_in, bullet_duration_in, bullet_count_in, fire_sfx_in, reload_sfx_in, img_in, accuracy_in,loaded_ammo_in,speedin) {
         this.#current_ammo = max_ammo_in; 
         this.#max_ammo = max_ammo_in;
         this.#name = name_in;
@@ -36,6 +37,7 @@ export class Gun {
 
         this.#max_loaded_ammo = loaded_ammo_in;
         this.#loaded_ammo = loaded_ammo_in;
+        this.#bulletSpeed = speedin;
     }
     getTileX()
     {
@@ -120,7 +122,7 @@ export class Gun {
                 let angle_offset = Math.random() * (this.#bullet_accuracy + this.#bullet_accuracy) - this.#bullet_accuracy;
 
                 // Create a new bullet object with the calculated angle
-                let bullet = new Bullet(10, this.#posX + 4, this.#posY + 2, angle+angle_offset,this.#damage);
+                let bullet = new Bullet(10, this.#posX + 4, this.#posY + 2, angle+angle_offset,this.#damage,this.#bulletSpeed);
 
                 // Push the bullet into the bullets array
                 let xindex = this.getTileX();
