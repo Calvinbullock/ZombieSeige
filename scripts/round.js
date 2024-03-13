@@ -43,8 +43,8 @@ export class Round
 
     for (let count = 0; count < this.zombNumber * (this.countModifier ** (this.currentRound-1)); count++)
     {
-      let zombieXpos = Math.floor(Math.random() * 641);
-      let zombieYpos = Math.floor(Math.random() * 641);
+      let zombieXpos = Math.floor(Math.random() * 620);
+      let zombieYpos = Math.floor(Math.random() * 620);
 
       let zombieTileX = Math.floor(zombieXpos / 32);
       let zombieTileY = Math.floor(zombieYpos / 32);
@@ -54,7 +54,7 @@ export class Round
       var path = this.getRandomString(img_path1, img_path2);
 
       zombies[zombieTileX][zombieTileY].push(new Zombie(this.zombDamage* (this.damageModifier ** (this.currentRound-1)),path,"direction_in",this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombSpeed * (this.speedModifier ** (this.currentRound-1)),zombieXpos,zombieYpos));
-      console.log("NEw Zombie")
+      console.log("Nedw Zombie")
       this.CurrentAliveZombies ++;
 
     }
