@@ -82,9 +82,21 @@ export class EventHandler {
 
     
         game.player.shoot(game.bullets, mouseX, mouseY,game.getCamera());
-      }
-    handleFrameClock() {}
+    }
 
-    
+    handleFrameClock() {} // is this needed?
+
+    setMousePosition(event) {
+        // sets the canvas to rect
+        const rect = event.target.getBoundingClientRect();
+        // gets the height and width of canvas
+        const scaleX = event.target.width / rect.width;
+        const scaleY = event.target.height / rect.height;
+        // gets the mouse position by subtracting the canvas position from the mouse position
+        const mouseX = (event.clientX - rect.left) * scaleX;
+        const mouseY = (event.clientY - rect.top) * scaleY;
+
+        player.setMousePosition(mouseX, mouseY);
+    }
 
 }
