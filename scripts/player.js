@@ -4,10 +4,11 @@ import { Shotgun } from "./shotgun.js";
 import { Rifle } from './rifle.js';
 
 export class Player extends Entity{
-
+    #mouseY;
+    #mouseX;
     #gun1;
     #gun2;
-    activegun;
+    #activegun;
     movingLeft = false;
     movingUp = false;
     movingDown = false;
@@ -20,8 +21,13 @@ export class Player extends Entity{
         this.#gun1 = new Pistol();
         this.#gun2 = new Shotgun();
         this.#gun2 = new Rifle();
-        this.activegun = this.#gun1
-        this.activegun = this.#gun2
+        this.#activegun = this.#gun1
+        this.#activegun = this.#gun2
+    }
+
+    setMouse(x,y){
+        this.#mouseX = x
+        this.#mouseY = y
     }
 
     switchGun(){
@@ -31,6 +37,7 @@ export class Player extends Entity{
     shoot(bullets,mousex,mousey,camera){
         this.activegun.shoot(bullets,mousex,mousey,this,camera)
     }
+
     move() {
         // Calculate the movement vector
         let movementX = 0;
@@ -96,10 +103,17 @@ export class Player extends Entity{
         ctx.fillText(pointsstr, 5, 100);
 
     }
+
     reload()
     {
-        this.activegun.reload()
+        this.#activegun.reload()
     }
+    
+    addpoints(added)
+    {
+        this.points+=added;
+    }
+
     addpoints(added)
     {
         this.points+=added;
