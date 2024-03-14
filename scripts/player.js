@@ -8,7 +8,7 @@ export class Player extends Entity{
     #mouseX;
     #gun1;
     #gun2;
-    #activegun;
+    activegun;
     movingLeft = false;
     movingUp = false;
     movingDown = false;
@@ -21,8 +21,8 @@ export class Player extends Entity{
         this.#gun1 = new Pistol();
         this.#gun2 = new Shotgun();
         this.#gun2 = new Rifle();
-        this.#activegun = this.#gun1
-        this.#activegun = this.#gun2
+        this.activegun = this.#gun1
+        this.activegun = this.#gun2
     }
 
     setMouse(x,y){
@@ -106,7 +106,7 @@ export class Player extends Entity{
 
     reload()
     {
-        this.#activegun.reload()
+        this.activegun.reload()
     }
     
     addpoints(added)
