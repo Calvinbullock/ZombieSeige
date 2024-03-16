@@ -1,5 +1,5 @@
 export class Map {
-  #path = "assets/map.txt";
+  #path = "/static/assets/map.txt";
   #mapArray = [];
   #width = 20;
   #height = 20;

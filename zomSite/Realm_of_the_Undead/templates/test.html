@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Image</title>
+    <script type="module" src="{% static 'scripts/test.js' %}"> 
+        defer
+        data-img="{% static "assets/player_male.png" %}"></script>
+
+</head>
+<body>
+    <h1>Click the button to see the image!</h1>
+    <button id="showImageButton">Show Image</button>
+    <img id="hiddenImage" src="" alt="Hidden Image" style="display: none;">
+
+</body>
+</html>
+
+<--
+    web article that was kind of helpfull
+https://adamj.eu/tech/2022/10/06/how-to-safely-pass-data-to-javascript-in-a-django-template/
+    --/>
