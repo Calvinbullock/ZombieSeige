@@ -11,28 +11,32 @@ export class Game {
   #direction;
   #camera;
   bullets = [];
+  #mapWidth;
+  #mapHeight;
 
 
-  constructor() {
+  constructor(map) {
     this.player = new Player("gun1", "gun2", "./assets/player_male.png", "direction_in", 100, 100, 100);
     // makes test zombie
     
 
-    this.#map = new Map();
+    this.#map = map;
 
    
 
-    let x = this.#map.getWidth();
-    let y = this.#map.getHeight();
+    this.#mapWidth = this.#map.getWidth();
+    this.#mapHeight = this.#map.getHeight();
 
-    console.log(x + " " + y);
+    console.log(this.#mapWidth + " " + this.#mapHeight);
 
-    this.#camera = new Camera(x, y);
+    this.#camera = new Camera(this.#mapWidth, this.#mapHeight);
 
-    for (let x = 0; x < 20; x++) {
+    this.player = new Player("gun1", "gun2", "./assets/player_male.png", "direction_in", 100, 100, 100,this.#mapWidth, this.#mapHeight);
+
+    for (let x = 0; x < this.#mapWidth; x++) {
       this.bullets[x] = [];
       this.#zombies[x] = []
-      for (let y = 0; y < 20; y++) {
+      for (let y = 0; y < this.#mapHeight; y++) {
         this.bullets[x][y] = [];
         this.#zombies[x][y] = []
       }
@@ -41,20 +45,19 @@ export class Game {
 
 
     this.#round = new Round();
-    this.#round.spawnRound(this.#zombies);
+    this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight);
 
 
   }
   getCamera()
   {
-    console.log("cam")
     return this.#camera;
   }
 
   gameLoop() {
     if (this.#round.endRound())
     {
-      this.#round.spawnRound(this.#zombies);
+      this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight);
     }
     this.#moveEntities();
     this.checkPlayerInteractions();
@@ -74,7 +77,7 @@ export class Game {
             {
               // Remove the bullet from the array
               this.bullets[x][y].splice(z, 1);
-              if (bullet.getTileX() < 20 && bullet.getTileX() >= 0 && bullet.getTileY() < 20 && bullet.getTileY() >= 0)
+              if (bullet.getTileX() < this.#mapWidth && bullet.getTileX() >= 0 && bullet.getTileY() < this.#mapHeight && bullet.getTileY() >= 0)
               {
                 this.bullets[bullet.getTileX()][bullet.getTileY()].push(bullet);
               }
@@ -107,7 +110,7 @@ export class Game {
             {
               // Remove the bullet from the array
               this.#zombies[x][y].splice(z, 1);
-              if (zombie.getTileX() < 20 && zombie.getTileX() >= 0 && zombie.getTileY() < 20 && zombie.getTileY() >= 0)
+              if (zombie.getTileX() < this.#mapWidth && zombie.getTileX() >= 0 && zombie.getTileY() < this.#mapHeight && zombie.getTileY() >= 0)
               {
                 this.#zombies[zombie.getTileX()][zombie.getTileY()].push(zombie);
               }
@@ -143,7 +146,7 @@ export class Game {
                 let BulletXIndex = x + i;
                 let BulletYIndex = y + j;
 
-                if (BulletXIndex < 20 && BulletXIndex >= 0 && BulletYIndex < 20 && BulletYIndex >= 0)
+                if (BulletXIndex < this.#mapWidth && BulletXIndex >= 0 && BulletYIndex < this.#mapHeight && BulletYIndex >= 0)
                 {
                   this.bullets[BulletXIndex][BulletYIndex].forEach((bullet,b) =>
                   {
@@ -196,7 +199,7 @@ export class Game {
         let zombTileX = playerXIndex+i;
         let zombTileY = playerYIndex + j;
 
-        if (0 <= zombTileX && zombTileX < 20 && 0 <= zombTileY && zombTileY < 20 )
+        if (0 <= zombTileX && zombTileX < this.#mapWidth && 0 <= zombTileY && zombTileY < this.#mapHeight )
         {
           this.#zombies[zombTileX][zombTileY].forEach((zombie) =>
           {

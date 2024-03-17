@@ -1,40 +1,44 @@
 export class Map {
   #path = "./assets/map.txt";
   #mapArray = [];
-  #width = 20;
-  #height = 20;
+  #width;
+  #height;
   #pixelWidth;
   #pixelHeight;
   #grass = new Image();
   #edge = new Image();
 
   constructor() {
-    this.#readMapFromFile();
     this.#grass.src = "./assets/green_grass.png"; // Set the source of the image
     this.#edge.src = "./assets/edge.png"; // Set the source of the image
   }
 
-  #readMapFromFile() {
-    fetch(this.#path)
-      .then((response) => response.text())
-      .then((data) => {
-        const rows = data.trim().split("\n");
-        this.#mapArray = rows.map((row) => row.split(",").map(Number));
-        this.#height = this.#mapArray.length;
-        this.#width = this.#height > 0 ? this.#mapArray[0].length : 0;
-        console.log("Map Array:", this.#mapArray);
-        console.log("Width:", this.#width);
-        console.log("Height:", this.#height);
+  loadMap() {
+    return new Promise((resolve, reject) => {
+      fetch(this.#path)
+        .then((response) => response.text())
+        .then((data) => {
+          const rows = data.trim().split("\n");
+          this.#mapArray = rows.map((row) => row.split(",").map(Number));
+          this.#height = this.#mapArray.length;
+          this.#width = this.#height > 0 ? this.#mapArray[0].length : 0;
+          console.log("Map Array:", this.#mapArray);
+          console.log("Width:", this.#width);
+          console.log("Height:", this.#height);
 
-        this.#pixelWidth = this.#width * 32;
-        this.#pixelHeight = this.#height * 32;
+          this.#pixelWidth = this.#width * 32;
+          this.#pixelHeight = this.#height * 32;
 
-        console.log(this.#pixelWidth);
-        console.log(this.#pixelHeight);
-      })
-      .catch((error) => {
-        console.error("Error reading the map file:", error);
-      });
+          console.log(this.#pixelWidth);
+          console.log(this.#pixelHeight);
+
+          resolve(); // Resolve the promise once the map is loaded
+        })
+        .catch((error) => {
+          console.error("Error reading the map file:", error);
+          reject(error); // Reject the promise if there's an error
+        });
+    });
   }
 
   getMapArray() {
@@ -42,11 +46,11 @@ export class Map {
   }
 
   getWidth() {
-    return this.#width * 32;
+    return this.#width;
   }
 
   getHeight() {
-    return this.#height * 32;
+    return this.#height;
   }
 
   draw(player,camera) {

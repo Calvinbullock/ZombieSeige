@@ -1,7 +1,7 @@
 export class Camera 
 {
-  #pixelWidth = 640;
-  #pixelHeight = 640;
+  #pixelWidth;
+  #pixelHeight;
   #screenHeight = 128;
   #screenWidth = 256;
   #halfScreenWidth;
@@ -10,12 +10,18 @@ export class Camera
   #bottomSide;
   canvas;
 
+  #tileWidth;
+  #tileHeight;
+
   constructor(width, height) {
     // this.#pixelHeight = height;
     // this.#pixelWidth = width;
 
-    // this.#pixelWidth  = width * 32;
-    // this.#pixelHeight = height * 32;
+    this.#tileWidth = width;
+    this.#tileHeight = height;
+
+    this.#pixelWidth  = width * 32;
+    this.#pixelHeight = height * 32;
 
     console.log(this.#pixelHeight);
 
@@ -90,9 +96,9 @@ export class Camera
           return 0;
       }
       let x = Math.floor(playerX/32-4);
-      if (x > 12)
+      if (x > this.#tileWidth-8)
       {
-          x = 12;
+          x = this.#tileWidth-8;
       }
       return x;
       
@@ -104,10 +110,12 @@ export class Camera
       {
           return 0;
       }
+
       let y = Math.floor(playerY/32-2);
-      if (y > 16)
+      
+      if (y > this.#tileHeight-4)
       {
-          y = 16;
+        y = this.#tileHeight-4;
       }
       return y;
       

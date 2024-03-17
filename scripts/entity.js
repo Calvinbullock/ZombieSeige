@@ -8,9 +8,11 @@ export class Entity {
     #sprite;
     radius = 6;
     #direction;
+    xbound;
+    ybound;
 
     // added a comma since there was an error ;)
-    constructor(sprite_in, direction_in, health_in, max_health_in, speed_in, pos_x_in, pos_y_in) {
+    constructor(sprite_in, direction_in, health_in, max_health_in, speed_in, pos_x_in, pos_y_in,mapX,mapY) {
         this.#pos_x = pos_x_in;
         this.#pos_y = pos_y_in;
         this.#speed = speed_in;
@@ -19,6 +21,8 @@ export class Entity {
         this.#sprite = new Image();
         this.#sprite.src = sprite_in; // Set the source of the image
         this.#direction = direction_in;
+        this.xbound = mapX*32;
+        this.ybound = mapY*32;
     }
     getHealth()
     {
@@ -34,7 +38,6 @@ export class Entity {
     }
     damage(bullet_damage)
     {
-        console.log("damage");
         this.#health -= bullet_damage;
         if (this.#health < 0)
         {
@@ -47,13 +50,13 @@ export class Entity {
         if (this.#pos_x > 0 && x_movement < 0) {
             this.#pos_x += x_movement;
         }
-        if (this.#pos_x < 640 && x_movement > 0) {
+        if (this.#pos_x < this.xbound && x_movement > 0) {
             this.#pos_x += x_movement;
         }
         if (this.#pos_y > 0 && y_movement < 0) {
             this.#pos_y += y_movement;
         }
-        if (this.#pos_y < 640 && y_movement > 0) {
+        if (this.#pos_y < this.ybound && y_movement > 0) {
             this.#pos_y += y_movement;
         }
     }

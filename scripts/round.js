@@ -24,7 +24,7 @@ export class Round
   {
 
 
-    console.log("Round Constructed")
+    
 
 
   }
@@ -36,15 +36,15 @@ export class Round
     } 
     return this.CurrentAliveZombies == 0;
   }
-  spawnRound(zombies)
+  spawnRound(zombies,xbound,ybound)
   {
-    console.log("Spawning")
+    
     // this.#zombies[3][3].push(new Zombie(2, "./assets/zombie_fem.png", "direction_in", 100, 100, .3));
 
     for (let count = 0; count < this.zombNumber * (this.countModifier ** (this.currentRound-1)); count++)
     {
-      let zombieXpos = Math.floor(Math.random() * 620);
-      let zombieYpos = Math.floor(Math.random() * 620);
+      let zombieXpos = Math.floor(Math.random() * (xbound*32));
+      let zombieYpos = Math.floor(Math.random() * (ybound*32));
 
       let zombieTileX = Math.floor(zombieXpos / 32);
       let zombieTileY = Math.floor(zombieYpos / 32);
@@ -53,8 +53,8 @@ export class Round
       let img_path2 = "./assets/zombie_male.png";
       var path = this.getRandomString(img_path1, img_path2);
 
-      zombies[zombieTileX][zombieTileY].push(new Zombie(this.zombDamage* (this.damageModifier ** (this.currentRound-1)),path,"direction_in",this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombSpeed * (this.speedModifier ** (this.currentRound-1)),zombieXpos,zombieYpos));
-      console.log("Nedw Zombie")
+      zombies[zombieTileX][zombieTileY].push(new Zombie(this.zombDamage* (this.damageModifier ** (this.currentRound-1)),path,"direction_in",this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombSpeed * (this.speedModifier ** (this.currentRound-1)),zombieXpos,zombieYpos,xbound,ybound));
+     
       this.CurrentAliveZombies ++;
 
     }
@@ -71,7 +71,6 @@ export class Round
   }
   draw(camera)
   {
-    console.log(this.CurrentAliveZombies)
     let ctx = camera.getCanvas();
     ctx.fillStyle = "black"; 
     ctx.font = "13px serif";

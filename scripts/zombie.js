@@ -16,7 +16,9 @@ export class Zombie extends Entity {
     max_health_in,
     speed_in,
     x,
-    y
+    y,
+    xbound_in,
+    ybound_in
   ) {
     super(
       sprite_in,
@@ -25,7 +27,9 @@ export class Zombie extends Entity {
       max_health_in,
       speed_in,
       x,
-      y
+      y,
+      xbound_in,
+      ybound_in
     );
 
     this.#damage = damage_in;

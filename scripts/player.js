@@ -23,7 +23,9 @@ export class Player extends Entity {
     direction_in,
     health_in,
     max_health_in,
-    speed_in
+    speed_in,
+    xbound_in,
+    ybound_in
   ) {
     super(
       sprite_in,
@@ -32,7 +34,9 @@ export class Player extends Entity {
       max_health_in,
       speed_in,
       300,
-      300
+      300,
+      xbound_in,
+      ybound_in
     );
     this.#gun1 = new Pistol();
     this.#gun2 = new Shotgun();
