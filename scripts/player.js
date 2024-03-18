@@ -45,7 +45,7 @@ export class Player extends Entity {
     this.activegun = this.#gun2;
   }
 
-  setMouse(x, y) {
+  setMouseCoords(x, y) {
     this.#mouseX = x;
     this.#mouseY = y;
   }

@@ -42,7 +42,7 @@ export class EventHandler {
 
     }
     
-    handleKeyUp(event,player) {
+    handleKeyUp(event, player) {
         let key = event.key;
         if (event.repeat) return; // If the key is being held down and repeating, ignore the event
 
@@ -86,7 +86,7 @@ export class EventHandler {
 
     handleFrameClock() {} // is this needed?
 
-    setMousePosition(event) {
+    setMousePosition(event, player) {
         // sets the canvas to rect
         const rect = event.target.getBoundingClientRect();
         // gets the height and width of canvas
@@ -96,7 +96,9 @@ export class EventHandler {
         const mouseX = (event.clientX - rect.left) * scaleX;
         const mouseY = (event.clientY - rect.top) * scaleY;
 
-        player.setMousePosition(mouseX, mouseY);
+        player.setMouseCoords(mouseX, mouseY);
+
+        console.log(mouseX, mouseY);
     }
 
 }

@@ -25,3 +25,8 @@ map.loadMap().then(() => {
     eventHandler.handleClick(event, gameInstance);
   });
 });
+
+document.querySelector('#myCanvas').addEventListener("mousemove", (event) => {
+  eventHandler.setMousePosition(event, gameInstance.player);
+});
+
