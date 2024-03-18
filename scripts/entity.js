@@ -76,13 +76,13 @@ export class Entity {
       return this.#sprite;
     }
 
-    getTileX()
+    getTileX(x_offset = 0)
     {
-        return Math.floor(this.#pos_x/32);
+        return Math.floor((this.#pos_x + x_offset)/32);
     }
-    getTileY()
+    getTileY(y_offset = 0)
     {
-        return Math.floor(this.#pos_y/32);
+        return Math.floor((this.#pos_y+y_offset)/32);
     }
 
     update_health() { }

@@ -72,10 +72,11 @@ export class Player extends Entity {
     this.activegun.shoot(bullets, mousex, mousey, this, camera);
   }
 
-  move() {
+  move(map) {
     // Calculate the movement vector
     let movementX = 0;
     let movementY = 0;
+
 
     if (this.movingUp) {
       movementY -= this.#speed;
@@ -99,8 +100,48 @@ export class Player extends Entity {
       movementY *= diagonalFactor;
     }
 
-    // Apply the normalized movement
-    this.moveBy(movementX, movementY);
+    let x_offset = 4;
+    let Y_offset = 1;
+
+    if (movementX < 0)
+    {
+      x_offset-=1;
+    }
+
+    if (movementX > 0)
+    {
+      x_offset+=9;
+    }
+
+    if (movementY < 0)
+    {
+      Y_offset+=2;
+    }
+
+    if (movementY > 0)
+    {
+      Y_offset+=14;
+    }
+
+
+    let tilex = this.getTileX(x_offset);
+    let tiley = this.getTileY(Y_offset);
+
+ 
+
+    if (map.getWalkthrough(tilex,this.getTileY(5)))
+    {
+      this.moveBy(movementX, 0);
+    }
+
+    if (map.getWalkthrough(this.getTileX(4),tiley))
+    {
+      this.moveBy(0, movementY);
+    }
+
+
+    // // Apply the normalized movement
+    // this.moveBy(movementX, movementY);
   }
 
   Draw(camera) {

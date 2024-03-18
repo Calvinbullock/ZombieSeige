@@ -77,7 +77,7 @@ export class Game {
             {
               // Remove the bullet from the array
               this.bullets[x][y].splice(z, 1);
-              if (bullet.getTileX() < this.#mapWidth && bullet.getTileX() >= 0 && bullet.getTileY() < this.#mapHeight && bullet.getTileY() >= 0)
+              if (bullet.getTileX() < this.#mapWidth && bullet.getTileX() >= 0 && bullet.getTileY() < this.#mapHeight && bullet.getTileY() >= 0 && this.#map.getShootthrough(bullet.getTileX(),bullet.getTileY()))
               {
                 this.bullets[bullet.getTileX()][bullet.getTileY()].push(bullet);
               }
@@ -233,7 +233,7 @@ export class Game {
   }
 
   #moveEntities() {
-    this.player.move();
+    this.player.move(this.#map);
     // this.#zombies.forEach((zombie) => {
     //   zombie.move(this.player.getX(), this.player.getY());
     // });

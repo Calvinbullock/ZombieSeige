@@ -1,3 +1,6 @@
+import { Grass } from "./grass.js";
+import { Edge } from "./edge.js";
+
 export class Map {
   #path = "./assets/map.txt";
   #mapArray = [];
@@ -5,12 +8,10 @@ export class Map {
   #height;
   #pixelWidth;
   #pixelHeight;
-  #grass = new Image();
-  #edge = new Image();
+  #grass = new Grass();
+  #edge = new Edge();
 
   constructor() {
-    this.#grass.src = "./assets/green_grass.png"; // Set the source of the image
-    this.#edge.src = "./assets/edge.png"; // Set the source of the image
   }
 
   loadMap() {
@@ -53,6 +54,29 @@ export class Map {
     return this.#height;
   }
 
+  getWalkthrough(x,y)
+  {
+    let tile = this.#mapArray[y][x];
+    if (tile == 1) {
+      return this.#grass.canWalkThrough();
+    }
+    if (tile == 2) {
+      return this.#edge.canWalkThrough();
+    }
+
+  }
+  getShootthrough(x,y)
+  {
+    let tile = this.#mapArray[y][x];
+    if (tile == 1) {
+      return this.#grass.canShootThrough();
+    }
+    if (tile == 2) {
+      return this.#edge.canShootThrough();
+    }
+
+  }
+
   draw(player,camera) {
 
     let ctx = camera.getCanvas();
@@ -89,10 +113,10 @@ export class Map {
           let tile = this.#mapArray[y_index][x_index];
 
           if (tile == 1) {
-            ctx.drawImage(this.#grass, x_pos, y_pos);
+            ctx.drawImage(this.#grass.getSprite(), x_pos, y_pos);
           }
           if (tile == 2) {
-            ctx.drawImage(this.#edge, x_pos, y_pos);
+            ctx.drawImage(this.#edge.getSprite(), x_pos, y_pos);
           }
         }
       }
