@@ -24,9 +24,11 @@ map.loadMap().then(() => {
   document.querySelector("#myCanvas").addEventListener("mousedown", (event) => {
     eventHandler.handleClick(event, gameInstance);
   });
+  
+  document.querySelector('#myCanvas').addEventListener("mousemove", (event) => {
+    eventHandler.setMousePosition(event, gameInstance.player);
+  });
 });
 
-document.querySelector('#myCanvas').addEventListener("mousemove", (event) => {
-  eventHandler.setMousePosition(event, gameInstance.player);
-});
+
 
