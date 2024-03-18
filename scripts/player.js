@@ -72,6 +72,24 @@ export class Player extends Entity {
     this.activegun.shoot(bullets, mousex, mousey, this, camera);
   }
 
+  whereIsMouse(canPosX, canPosY) {
+    // locates the mouse in relation to the player
+  
+
+    if (this.#mouseX > canPosX){
+      console.log("right");
+    }
+    else if (this.#mouseX < canPosX){
+      console.log("left");
+    }
+    if (this.#mouseY < canPosY){
+      console.log("above");
+    }
+    else if (this.#mouseY > canPosY){
+      console.log("below");
+    }
+  }
+
   move(map) {
     // Calculate the movement vector
     let movementX = 0;

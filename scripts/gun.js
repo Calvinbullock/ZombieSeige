@@ -143,12 +143,15 @@ export class Gun {
         this.#posY = player.getY() + 4
 
     }
+
     draw(player,camera)
     {
         let x = camera.getObjectScreenPositionX(player.getX(),this.#posX)
         let y = camera.getObjectScreenPositionY(player.getY(),this.#posY)
 
         let ctx = camera.getCanvas();
+
+        player.whereIsMouse(x,y); 
 
         ctx.drawImage(this.#img, x, y);
         ctx.fillStyle = "black"; 

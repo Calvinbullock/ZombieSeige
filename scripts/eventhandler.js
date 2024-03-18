@@ -98,7 +98,7 @@ export class EventHandler {
 
         player.setMouseCoords(mouseX, mouseY);
 
-        console.log(mouseX, mouseY);
+        // console.log(mouseX, mouseY);
     }
 
 }
