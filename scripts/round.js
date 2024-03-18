@@ -36,12 +36,13 @@ export class Round
     } 
     return this.CurrentAliveZombies == 0;
   }
-  spawnRound(zombies,xbound,ybound)
+  spawnRound(zombies,xbound,ybound,map)
   {
     
     // this.#zombies[3][3].push(new Zombie(2, "./assets/zombie_fem.png", "direction_in", 100, 100, .3));
 
-    for (let count = 0; count < this.zombNumber * (this.countModifier ** (this.currentRound-1)); count++)
+    let count = 0;
+    while (count < this.zombNumber * (this.countModifier ** (this.currentRound-1)) )
     {
       let zombieXpos = Math.floor(Math.random() * ((xbound*32)-5));
       let zombieYpos = Math.floor(Math.random() * ((ybound*32)-5));
@@ -53,10 +54,14 @@ export class Round
       let img_path2 = "./assets/zombie_male.png";
       var path = this.getRandomString(img_path1, img_path2);
 
-      zombies[zombieTileX][zombieTileY].push(new Zombie(this.zombDamage* (this.damageModifier ** (this.currentRound-1)),path,"direction_in",this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombSpeed * (this.speedModifier ** (this.currentRound-1)),zombieXpos,zombieYpos,xbound,ybound));
+      if(map.getWalkthrough(zombieTileX,zombieTileY))
+      {
+        zombies[zombieTileX][zombieTileY].push(new Zombie(this.zombDamage* (this.damageModifier ** (this.currentRound-1)),path,"direction_in",this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombSpeed * (this.speedModifier ** (this.currentRound-1)),zombieXpos,zombieYpos,xbound,ybound));
      
-      this.CurrentAliveZombies ++;
-
+        this.CurrentAliveZombies ++;
+        count++;
+      }
+      
     }
 
 

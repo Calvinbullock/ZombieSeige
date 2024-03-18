@@ -45,7 +45,7 @@ export class Game {
 
 
     this.#round = new Round();
-    this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight);
+    this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight,this.#map);
 
 
   }
@@ -57,7 +57,7 @@ export class Game {
   gameLoop() {
     if (this.#round.endRound())
     {
-      this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight);
+      this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight, this.#map);
     }
     this.#moveEntities();
     this.checkPlayerInteractions();
