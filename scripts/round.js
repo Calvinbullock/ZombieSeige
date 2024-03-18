@@ -43,8 +43,8 @@ export class Round
 
     for (let count = 0; count < this.zombNumber * (this.countModifier ** (this.currentRound-1)); count++)
     {
-      let zombieXpos = Math.floor(Math.random() * (xbound*32));
-      let zombieYpos = Math.floor(Math.random() * (ybound*32));
+      let zombieXpos = Math.floor(Math.random() * ((xbound*32)-5));
+      let zombieYpos = Math.floor(Math.random() * ((ybound*32)-5));
 
       let zombieTileX = Math.floor(zombieXpos / 32);
       let zombieTileY = Math.floor(zombieYpos / 32);
