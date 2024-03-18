@@ -98,7 +98,7 @@ export class Zombie extends Entity {
     ctx.stroke();
 
   }
-  move(goal_x, goal_y) {
+  move(goal_x, goal_y,map) {
     // a simple form of movement as a placeholder
 
     let dx = 0;
@@ -126,8 +126,46 @@ export class Zombie extends Entity {
     }
    // Apply the normalized movement
    
+   let x_offset = 4;
+   let Y_offset = 1;
 
-    this.moveBy(dx, dy);
+   if (dx < 0)
+   {
+     x_offset-=1;
+   }
+
+   if (dx > 0)
+   {
+     x_offset+=9;
+   }
+
+   if (dy < 0)
+   {
+     Y_offset+=2;
+   }
+
+   if (dy > 0)
+   {
+     Y_offset+=14;
+   }
+
+
+   let tilex = this.getTileX(x_offset);
+   let tiley = this.getTileY(Y_offset);
+
+
+
+   if (map.getWalkthrough(tilex,this.getTileY(5)))
+   {
+     this.moveBy(dx, 0);
+   }
+
+   if (map.getWalkthrough(this.getTileX(4),tiley))
+   {
+     this.moveBy(0, dy);
+   }
+
+    // this.moveBy(dx, dy);
   }
 
   pathFinding() {}
