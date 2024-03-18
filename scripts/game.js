@@ -17,21 +17,26 @@ export class Game {
 
   constructor(map) {
     this.player = new Player("gun1", "gun2", "./assets/player_male.png", "direction_in", 100, 100, 100);
+
+
     // makes test zombie
     
 
     this.#map = map;
-
+    console.log("map loaded 2")
    
 
     this.#mapWidth = this.#map.getWidth();
     this.#mapHeight = this.#map.getHeight();
+    console.log("Get Map Dimension")
+
 
     console.log(this.#mapWidth + " " + this.#mapHeight);
 
     this.#camera = new Camera(this.#mapWidth, this.#mapHeight);
 
     this.player = new Player("gun1", "gun2", "./assets/player_male.png", "direction_in", 100, 100, 100,this.#mapWidth, this.#mapHeight);
+    console.log('player loaded 2')
 
     for (let x = 0; x < this.#mapWidth; x++) {
       this.bullets[x] = [];
@@ -42,11 +47,12 @@ export class Game {
       }
     }
 
-
+    console.log("bullets and zombz loaded")
 
     this.#round = new Round();
+    console.log("round initialized")
     this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight,this.#map);
-
+    console.log("round loaded")
 
   }
   getCamera()
@@ -55,6 +61,7 @@ export class Game {
   }
 
   gameLoop() {
+    console.log('loop')
     if (this.#round.endRound())
     {
       this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight, this.#map);

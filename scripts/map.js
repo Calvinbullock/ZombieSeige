@@ -33,6 +33,18 @@ export class Map {
           console.log(this.#pixelWidth);
           console.log(this.#pixelHeight);
 
+          // Iterate through the map array and replace values with instances of Grass or Edge
+          for (let y = 0; y < this.#height; y++) {
+            for (let x = 0; x < this.#width; x++) {
+              if (this.#mapArray[y][x] === 1) {
+                this.#mapArray[y][x] = this.#grass;
+              } else if (this.#mapArray[y][x] === 2) {
+                this.#mapArray[y][x] = this.#edge;
+              }
+            }
+          }
+
+          console.log("Map Array After Replacement:", this.#mapArray); // Check the map array after replacements
           resolve(); // Resolve the promise once the map is loaded
         })
         .catch((error) => {
@@ -56,24 +68,13 @@ export class Map {
 
   getWalkthrough(x,y)
   {
-    let tile = this.#mapArray[y][x];
-    if (tile == 1) {
-      return this.#grass.canWalkThrough();
-    }
-    if (tile == 2) {
-      return this.#edge.canWalkThrough();
-    }
+    return this.#mapArray[y][x].canWalkThrough();
 
   }
   getShootthrough(x,y)
   {
-    let tile = this.#mapArray[y][x];
-    if (tile == 1) {
-      return this.#grass.canShootThrough();
-    }
-    if (tile == 2) {
-      return this.#edge.canShootThrough();
-    }
+
+    return this.#mapArray[y][x].canShootThrough();
 
   }
 
@@ -111,13 +112,7 @@ export class Map {
 
         if (x_index < this.#width && y_index < this.#height) {
           let tile = this.#mapArray[y_index][x_index];
-
-          if (tile == 1) {
-            ctx.drawImage(this.#grass.getSprite(), x_pos, y_pos);
-          }
-          if (tile == 2) {
-            ctx.drawImage(this.#edge.getSprite(), x_pos, y_pos);
-          }
+          ctx.drawImage(tile.getSprite(), x_pos, y_pos);
         }
       }
     }

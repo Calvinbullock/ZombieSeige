@@ -8,9 +8,13 @@ let map = new Map();
 
 // Wait for the map to finish loading before starting the game loop
 map.loadMap().then(() => {
-  const gameInstance = new Game(map); // Create an instance of the Game class
-  const eventHandler = new EventHandler();
+  console.log("map loaded")
 
+  const gameInstance = new Game(map); // Create an instance of the Game class
+  console.log("Game loaded")
+
+  const eventHandler = new EventHandler();
+  console.log("Events loaded")
   setInterval(() => gameInstance.gameLoop(), 8.333);
 
   document.addEventListener("keydown", (event) => {
