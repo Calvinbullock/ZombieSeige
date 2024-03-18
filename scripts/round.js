@@ -50,13 +50,27 @@ export class Round
       let zombieTileX = Math.floor(zombieXpos / 32);
       let zombieTileY = Math.floor(zombieYpos / 32);
 
-      let img_path1 = "./assets/zombie_fem.png";
-      let img_path2 = "./assets/zombie_male.png";
-      var path = this.getRandomString(img_path1, img_path2);
+      // let img_path1_left = "./assets/zombie_fem_left.png";
+      // let img_path1_right = "./assets/zombie_fem_right.png";
+      // let img_path2_left = "./assets/zombie_male_left.png";
+      // let img_path2_right = "./assets/zombie_male_right.png";
+      var path = this.getRandomString("one", "two");
+
+      let img_path_left = "./assets/zombie_fem_left.png";
+      let img_path_right = "./assets/zombie_fem_right.png";
+
+      switch (path) {
+        case "one":
+          img_path_left = "./assets/zombie_fem_left.png";
+          img_path_right = "./assets/zombie_fem_right.png";
+        case "two":
+          img_path_left = "./assets/zombie_male_left.png";
+          img_path_right = "./assets/zombie_male_right.png";
+      }
 
       if(map.getWalkthrough(zombieTileX,zombieTileY))
       {
-        zombies[zombieTileX][zombieTileY].push(new Zombie(this.zombDamage* (this.damageModifier ** (this.currentRound-1)),path,"direction_in",this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombSpeed * (this.speedModifier ** (this.currentRound-1)),zombieXpos,zombieYpos,xbound,ybound));
+        zombies[zombieTileX][zombieTileY].push(new Zombie(this.zombDamage* (this.damageModifier ** (this.currentRound-1)),img_path_left, img_path_right,this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombSpeed * (this.speedModifier ** (this.currentRound-1)),zombieXpos,zombieYpos,xbound,ybound));
      
         this.CurrentAliveZombies ++;
         count++;

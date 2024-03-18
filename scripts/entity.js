@@ -5,22 +5,23 @@ export class Entity {
     #speed;
     #health;
     #max_health;
-    #sprite;
+    #sprite_left;
+    #sprite_right;
     radius = 6;
-    #direction;
     xbound;
     ybound;
 
     // added a comma since there was an error ;)
-    constructor(sprite_in, direction_in, health_in, max_health_in, speed_in, pos_x_in, pos_y_in,mapX,mapY) {
+    constructor(spriteLeft_in, spriteRight_in, health_in, max_health_in, speed_in, pos_x_in, pos_y_in,mapX,mapY) {
         this.#pos_x = pos_x_in;
         this.#pos_y = pos_y_in;
         this.#speed = speed_in;
         this.#health = health_in;
         this.#max_health = max_health_in;
-        this.#sprite = new Image();
-        this.#sprite.src = sprite_in; // Set the source of the image
-        this.#direction = direction_in;
+        this.#sprite_left = new Image();
+        this.#sprite_left.src = spriteLeft_in; // Set the source of the image
+        this.#sprite_right = new Image();
+        this.#sprite_right.src = spriteRight_in; // Set the source of the image
         this.xbound = mapX*32;
         this.ybound = mapY*32;
     }
@@ -64,6 +65,7 @@ export class Entity {
     {
         return this.#speed
     }
+
     getX() {
         return this.#pos_x;
     }
@@ -71,9 +73,14 @@ export class Entity {
     {
         return this.#pos_y;
     }
-    getSprite()
+
+    getSpriteLeft()
     {
-      return this.#sprite;
+      return this.#sprite_left;
+    }
+
+    getspriteRight(){
+      return this.#sprite_right;
     }
 
     getTileX(x_offset = 0)
@@ -90,13 +97,24 @@ export class Entity {
     reset_health() {
         this.#health = this.#max_health;
     }
-    Draw(ctx, x, y){
-        // Assuming sprite_in represents the player's image or sprite
-        // Assuming sprite_in is a pre-loaded image or sprite sheet
-        // Assuming this.x and this.y represent the player's position
-        ctx.drawImage(this.#sprite, x, y);
 
-        // Additional drawing for guns, health bar, etc. can be added here
+    draw(ctx, x, y,){
+
+        ctx.drawImage(this.#sprite_right, x, y);
+        //draws the player's sprite dependant on the direction fed in
+    //     switch (direction) {
+    //         case "left":
+    //           ctx.drawImage(this.#sprite_left, x, y);
+    //           break;
+
+    //         case "right":
+    //           ctx.drawImage(this.#sprite_right, x, y);
+    //           break;
+
+    //         default:
+    //             ctx.drawImage(this.#sprite_left, x, y);
+    //     }  
+
     }
 }
 

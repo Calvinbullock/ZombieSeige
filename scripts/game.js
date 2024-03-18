@@ -16,11 +16,7 @@ export class Game {
 
 
   constructor(map) {
-    this.player = new Player("gun1", "gun2", "./assets/player_male.png", "direction_in", 100, 100, 100);
-
-
-    // makes test zombie
-    
+    this.player = new Player("gun1", "gun2", "./assets/player_male_left.png","./assets/player_male_right.png", 100, 100, 100);
 
     this.#map = map;
     console.log("map loaded 2")
@@ -35,7 +31,7 @@ export class Game {
 
     this.#camera = new Camera(this.#mapWidth, this.#mapHeight);
 
-    this.player = new Player("gun1", "gun2", "./assets/player_male.png", "direction_in", 100, 100, 100,this.#mapWidth, this.#mapHeight);
+    this.player = new Player("gun1", "gun2", "./assets/player_male_left.png","./assets/player_male_right.png", 100, 100, 100,this.#mapWidth, this.#mapHeight);
     console.log('player loaded 2')
 
     for (let x = 0; x < this.#mapWidth; x++) {
@@ -274,7 +270,7 @@ export class Game {
     this.#map.draw(this.player,this.#camera);
 
     //draw player
-    this.player.Draw(this.#camera);
+    this.player.draw(this.#camera);
 
     //draw gun
     this.player.activegun.draw(this.player,this.#camera)
@@ -297,7 +293,7 @@ export class Game {
     this.#zombies.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
           arrayY.forEach((zombie, z) => {
-            zombie.Draw(this.#camera,this.player);
+            zombie.draw(this.#camera,this.player);
 
           });
       });

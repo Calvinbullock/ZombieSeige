@@ -72,16 +72,20 @@ export class Player extends Entity {
     this.activegun.shoot(bullets, mousex, mousey, this, camera);
   }
 
-  whereIsMouse(canPosX, canPosY) {
+  whereIsMouseX(canPosX) {
     // locates the mouse in relation to the player
   
-
     if (this.#mouseX > canPosX){
       console.log("right");
+      return "right";
     }
     else if (this.#mouseX < canPosX){
       console.log("left");
+      return "left";
     }
+  }
+
+  whereIsMouseY(canPosY){
     if (this.#mouseY < canPosY){
       console.log("above");
     }
@@ -162,7 +166,7 @@ export class Player extends Entity {
     // this.moveBy(movementX, movementY);
   }
 
-  Draw(camera) {
+  draw(camera) {
     let ctx = camera.getCanvas();
 
     let mapPositionX = camera.getPlayerScreenPositionX(
@@ -174,7 +178,21 @@ export class Player extends Entity {
       this.getY()
     );
 
-    ctx.drawImage(this.getSprite(), mapPositionX, mapPositionY);
+    let direction = this.whereIsMouseX();
+
+    switch (direction) {
+      case "left":
+        ctx.drawImage(this.getSpriteLeft(), mapPositionX, mapPositionY);
+
+      case "right":
+        ctx.drawImage(this.getSpriteRight(), mapPositionX, mapPositionY);
+
+      default:
+          ctx.drawImage(this.getSpriteLeft(), mapPositionX, mapPositionY);
+  }  
+  
+
+
 
     ctx.beginPath();
     ctx.lineWidth = "1";
@@ -185,7 +203,7 @@ export class Player extends Entity {
 
     ctx.beginPath();
     ctx.lineWidth = "1";
-    ctx.fillStyle = "blue"; // Change to fillStyle
+    ctx.fillStyle = "red"; // Change to fillStyle
     // Adjust the width and height to make the rectangle smaller
     ctx.rect(5, 5, this.getHealth() / 3, 5); // Fixed typo: "3d" to "3"
     ctx.fill(); // Change to fill()

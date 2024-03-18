@@ -59,7 +59,7 @@ export class Zombie extends Entity {
   {
     return (this.getHealth() > 0);
   }
-  Draw(camera,player)
+  draw(camera,player)
   {
     
 
@@ -72,7 +72,7 @@ export class Zombie extends Entity {
 
 
 
-    ctx.drawImage(this.getSprite(), mapPositionX, mapPositionY);
+    ctx.drawImage(this.getSpriteLeft(), mapPositionX, mapPositionY);
 
     ctx.beginPath();
     ctx.lineWidth = "1";

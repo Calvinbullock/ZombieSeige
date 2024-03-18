@@ -151,9 +151,11 @@ export class Gun {
 
         let ctx = camera.getCanvas();
 
-        player.whereIsMouse(x,y); 
+        player.whereIsMouseX(x); 
 
-        ctx.drawImage(this.#img, x, y);
+        // x-3,y for facing and aiming left
+        ctx.drawImage(this.#img, x- 3, y);
+
         ctx.fillStyle = "black"; 
         ctx.font = "10px serif";
         var ammoCount = this.#loaded_ammo.toString() + "  " + this.#current_ammo.toString()
