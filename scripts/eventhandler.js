@@ -43,11 +43,11 @@ export class EventHandler {
         }
         if (key == this.gun1Key)
         {
-            player.switchGun(1)
+            player.switchActiveGun(1)
         }
         if (key == this.gun2Key)
         {
-            player.switchGun(2)
+            player.switchActiveGun(2)
 
 
         }
