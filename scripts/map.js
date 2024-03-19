@@ -20,6 +20,8 @@ export class Map {
   #right_fence = new Wall("./assets/fence_right.png");
   #top_fence = new Wall("./assets/fence_top.png");
 
+  #pathfindingMap = [];
+
   constructor() {
   }
 
@@ -85,6 +87,21 @@ export class Map {
               }
             }
           }
+
+          for (let x = 0; x < this.#width; x++) {
+            this.#pathfindingMap[x] = []; // Initialize inner arrays
+            for (let y = 0; y < this.#height; y++) {
+              if (this.getWalkthrough(x, y)) {
+                this.#pathfindingMap[x].push(0); // Push 0 if walkable
+              } else {
+                this.#pathfindingMap[x].push(1); // Push 1 if not walkable
+              }
+            }
+          }
+          
+
+
+
   
           console.log("Map Array After Replacement:", this.#mapArray); // Check the map array after replacements
           resolve(); // Resolve the promise once the map is loaded
@@ -99,6 +116,13 @@ export class Map {
 
   getMapArray() {
     return this.#mapArray;
+  }
+
+
+  getPathFindingMap()
+  {
+    // 0 zombie can walk through, 1 it cannot
+    return this.#pathfindingMap;
   }
 
   getWidth() {

@@ -155,19 +155,16 @@ export class Gun {
     // updates the gun position
     updatePos(player,camera)
     {
-        console.log("update")
         let directionX = player.whereIsMouseX(camera.getPlayerScreenPositionX(player.getX()));
 
         switch(directionX){
 
         case "left":
-            console.log("Left Left")
             this.#posX = player.getX() - 6
             this.#posY = player.getY() + 4
             break;
         
         case "right":
-            console.log("Right Right")
             this.#posX = player.getX() + 18
             this.#posY = player.getY() + 4
             break;
