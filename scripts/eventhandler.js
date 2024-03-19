@@ -19,40 +19,40 @@ export class EventHandler {
         let key = event.key;
         if (event.repeat) return; // If the key is being held down and repeating, ignore the event
 
-        if (key == this.upKey)
-        {
-            player.movingUp = true;
-        }
-
-        if (key == this.leftKey)
-        {
-            player.movingLeft = true;
-        }
-
-        if (key == this.rightKey)
-        {
-            player.movingRight = true;
-        }
-
-        if (key == this.downKey)
-        {
-            player.movingDown = true;
-        }
-        if (key == this.reloadkey)
-        {
-            player.reload()
-        }
-        if (key == this.gun1Key)
-        {
-            player.switchActiveGun(1)
-        }
-        if (key == this.gun2Key)
-        {
-            player.switchActiveGun(2)
-
-
-        }
-
+        switch (key) {
+            case this.upKey:
+              player.movingUp = true;
+              break;
+          
+            case this.leftKey:
+              player.movingLeft = true;
+              break;
+          
+            case this.rightKey:
+              player.movingRight = true;
+              break;
+          
+            case this.downKey:
+              player.movingDown = true;
+              break;
+          
+            case this.reloadkey:
+              player.reload();
+              break;
+          
+            case this.gun1Key:
+              player.switchActiveGun(1);
+              break;
+          
+            case this.gun2Key:
+              player.switchActiveGun(2);
+              break;
+          
+            default: // Handle unexpected keys
+              console.log(`Unrecognized key pressed: ${key}`); // Optional logging
+              break;
+          }
+          
     }
     
     // Handles when keys are released
