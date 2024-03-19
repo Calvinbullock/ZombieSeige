@@ -8,7 +8,7 @@ export class Round
   damageModifier = 1.1;
   healthModifier = 1.1;
   
-  zombNumber = 10;
+  zombNumber = 10000;
   zombDamage = 1;
   zombHealth = 50;
   zombSpeed = .3;
@@ -44,11 +44,15 @@ export class Round
     let count = 0;
     while (count < this.zombNumber * (this.countModifier ** (this.currentRound-1)) )
     {
+
       let zombieXpos = Math.floor(Math.random() * ((xbound*32)-5));
       let zombieYpos = Math.floor(Math.random() * ((ybound*32)-5));
 
       let zombieTileX = Math.floor(zombieXpos / 32);
       let zombieTileY = Math.floor(zombieYpos / 32);
+
+      zombieXpos = (zombieTileX * 32)+2 + Math.floor(Math.random() * 25);
+      zombieYpos = (zombieTileY * 32)+2 + Math.floor(Math.random() * 25);
 
       // let img_path1_left = "./assets/zombie_fem_left.png";
       // let img_path1_right = "./assets/zombie_fem_right.png";
