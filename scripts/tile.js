@@ -2,9 +2,10 @@ export class Tile {
     canwalk;
     canShoot;
     sprite;
+    storel
 
 
-    constructor(canWalk = true, canShootThrough = true,sprite) {
+    constructor(canWalk = true, canShootThrough = true,sprite,store = false) {
         this.canWalk = canWalk;
         this.canShoot= canShootThrough;
         this.sprite = new Image();

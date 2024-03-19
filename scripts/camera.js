@@ -34,30 +34,30 @@ export class Camera
     this.canvas = document.querySelector("#myCanvas").getContext("2d");
   }
 
-  // gets the y screen position of the player
+  // gets the x screen position of the player
   getPlayerScreenPositionX(x) {
     if (x < this.#halfScreenWidth) {
-      return x;
+      return Math.floor(x);
     }
     if (x > this.#rightSide) {
       let xpos = this.#halfScreenWidth + (x - this.#rightSide);
-      return xpos;
+      return Math.floor(xpos);
     }
 
-    return this.#halfScreenWidth;
+    return Math.floor(this.#halfScreenWidth);
   }
 
-  // Gets the x screen position of the player
+  // Gets the y screen position of the player
   getPlayerScreenPositionY(y) {
     if (y < this.#halfScreenHeight) {
-      return y;
+      return Math.floor(y);
     }
     if (y > this.#bottomSide) {
       let ypos = this.#halfScreenHeight + (y - this.#bottomSide);
-      return ypos;
+      return Math.floor(ypos);
     }
 
-    return this.#halfScreenHeight;
+    return Math.floor(this.#halfScreenHeight);
   }
 
   // gets the X position that the left column of tiles start drawing on.
