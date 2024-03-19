@@ -153,22 +153,22 @@ export class Gun {
     }
 
     // updates the gun position
-    updatePos(player)
+    updatePos(player,camera)
     {
         console.log("update")
-        let directionX = player.whereIsMouseX(player.getX());
+        let directionX = player.whereIsMouseX(camera.getPlayerScreenPositionX(player.getX()));
 
         switch(directionX){
 
         case "left":
-        
+            console.log("Left Left")
             this.#posX = player.getX() - 6
             this.#posY = player.getY() + 4
             break;
         
         case "right":
-            console.log("jdnlcjkhbflnjd;ownq")
-            this.#posX = player.getX() + 240
+            console.log("Right Right")
+            this.#posX = player.getX() + 18
             this.#posY = player.getY() + 4
             break;
         }
@@ -183,10 +183,12 @@ export class Gun {
         let x = camera.getObjectScreenPositionX(player.getX(),this.#posX)
         let y = camera.getObjectScreenPositionY(player.getY(),this.#posY)
 
+        let playerx = camera.getPlayerScreenPositionX(player.getX());
+
         let ctx = camera.getCanvas();
 
         // gets the mouses' x position relitive to the player
-        let direction = player.whereIsMouseX(x); 
+        let direction = player.whereIsMouseX(playerx); 
 
         // x-3,y for facing and aiming left
         // x+18,y for facing and aiming right
@@ -197,7 +199,7 @@ export class Gun {
               break;
       
             case "right":
-              ctx.drawImage(this.#sprite_right, x+ 18, y);
+              ctx.drawImage(this.#sprite_right, x-6, y);
               break;
       
             default:

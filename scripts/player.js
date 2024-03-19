@@ -188,11 +188,9 @@ export class Player extends Entity {
     let ctx = camera.getCanvas();
 
     let mapPositionX = camera.getPlayerScreenPositionX(
-      this.getX(),
       this.getX()
     );
     let mapPositionY = camera.getPlayerScreenPositionY(
-      this.getY(),
       this.getY()
     );
 

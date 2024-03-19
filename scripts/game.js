@@ -153,7 +153,7 @@ export class Game {
     });
 
     // Updates the gun position of the player
-    this.player.activegun.updatePos(this.player);
+    this.player.activegun.updatePos(this.player,this.#camera);
 
     // Draws everything onto the screen
     this.#drawScreen();

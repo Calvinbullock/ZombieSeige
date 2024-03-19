@@ -30,7 +30,7 @@ export class Entity {
     getHealth()
     {
         return this.#health;
-    }
+    }a
 
     // Returns the entities max health
     getMaxHealth()
