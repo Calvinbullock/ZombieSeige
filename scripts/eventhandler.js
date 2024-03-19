@@ -15,7 +15,7 @@ export class EventHandler {
     movementInterval = null;
 
     // Handles when Keys are pressed
-    handleKeyDown(event, player, game) {
+    handleKeyDown(event, player) {
         let key = event.key;
         if (event.repeat) return; // If the key is being held down and repeating, ignore the event
 
