@@ -57,7 +57,7 @@ export class Player extends Entity {
   getmouseX() {
     return this.#mouseX;
   }
-  
+
   getmouseY() {
     return this.#mouseY;
   }
@@ -74,22 +74,28 @@ export class Player extends Entity {
 
   whereIsMouseX(canPosX) {
     // locates the mouse in relation to the player
-  
-    if (this.#mouseX > canPosX){
+
+    if (this.#mouseX > canPosX) {
       // console.log("right");
       return "right";
-    }
-    else if (this.#mouseX < canPosX){
+
+    } else if (this.#mouseX < canPosX) {
       // console.log("left");
       return "left";
     }
+    else
+    {
+      console.log(this.#mouseX, canPosX)
+      return "right";
+
+    }
   }
 
-  whereIsMouseY(canPosY){
-    if (this.#mouseY < canPosY){
+  whereIsMouseY(canPosY) {
+    if (this.#mouseY < canPosY) {
       console.log("above");
-    }
-    else if (this.#mouseY > canPosY){
+
+    } else if (this.#mouseY > canPosY) {
       console.log("below");
     }
   }
@@ -98,7 +104,6 @@ export class Player extends Entity {
     // Calculate the movement vector
     let movementX = 0;
     let movementY = 0;
-
 
     if (this.movingUp) {
       movementY -= this.#speed;
@@ -125,42 +130,32 @@ export class Player extends Entity {
     let x_offset = 4;
     let Y_offset = 1;
 
-    if (movementX < 0)
-    {
-      x_offset-=1;
+    if (movementX < 0) {
+      x_offset -= 1;
     }
 
-    if (movementX > 0)
-    {
-      x_offset+=9;
+    if (movementX > 0) {
+      x_offset += 9;
     }
 
-    if (movementY < 0)
-    {
-      Y_offset+=2;
+    if (movementY < 0) {
+      Y_offset += 2;
     }
 
-    if (movementY > 0)
-    {
-      Y_offset+=14;
+    if (movementY > 0) {
+      Y_offset += 14;
     }
-
 
     let tilex = this.getTileX(x_offset);
     let tiley = this.getTileY(Y_offset);
 
- 
-
-    if (map.getWalkthrough(tilex,this.getTileY(5)))
-    {
+    if (map.getWalkthrough(tilex, this.getTileY(5))) {
       this.moveBy(movementX, 0);
     }
 
-    if (map.getWalkthrough(this.getTileX(4),tiley))
-    {
+    if (map.getWalkthrough(this.getTileX(4), tiley)) {
       this.moveBy(0, movementY);
     }
-
 
     // // Apply the normalized movement
     // this.moveBy(movementX, movementY);
@@ -178,21 +173,23 @@ export class Player extends Entity {
       this.getY()
     );
 
-    let direction = this.whereIsMouseX();
+    let direction = this.whereIsMouseX(mapPositionX);
+
+    console.log(direction);
 
     switch (direction) {
       case "left":
         ctx.drawImage(this.getSpriteLeft(), mapPositionX, mapPositionY);
+        break;
 
       case "right":
         ctx.drawImage(this.getSpriteRight(), mapPositionX, mapPositionY);
+        break;
 
       default:
-          ctx.drawImage(this.getSpriteLeft(), mapPositionX, mapPositionY);
-  }  
-  
-
-
+        ctx.drawImage(this.getSpriteLeft(), mapPositionX, mapPositionY);
+        break;
+    }
 
     ctx.beginPath();
     ctx.lineWidth = "1";

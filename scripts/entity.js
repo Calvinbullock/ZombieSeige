@@ -79,7 +79,7 @@ export class Entity {
       return this.#sprite_left;
     }
 
-    getspriteRight(){
+    getSpriteRight(){
       return this.#sprite_right;
     }
 
@@ -113,6 +113,7 @@ export class Entity {
 
     //         default:
     //             ctx.drawImage(this.#sprite_left, x, y);
+    //             break;   
     //     }  
 
     }
