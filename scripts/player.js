@@ -66,7 +66,20 @@ export class Player extends Entity {
     this.activegun.reload();
   }
 
-  switchGun() {}
+  switchGun(value) {
+    switch(value)
+    {
+      case 1:
+        this.activegun = this.#gun1
+        // console.log("gun1")
+        break;
+
+      case 2:
+        this.activegun = this.#gun2
+        // console.log("gun2")
+        break;
+      }
+  }
 
   shoot(bullets, mousex, mousey, camera) {
     this.activegun.shoot(bullets, mousex, mousey, this, camera);

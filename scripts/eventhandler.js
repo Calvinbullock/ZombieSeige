@@ -5,6 +5,8 @@ export class EventHandler {
     leftKey = 'a';
     rightKey = 'd';
     reloadkey = 'r';
+    gun1Key = '1';
+    gun2Key = '2';
     spawnZombieKey = 'z';
     mouseButton;
     interactKey;
@@ -38,6 +40,16 @@ export class EventHandler {
         if (key == this.reloadkey)
         {
             player.reload()
+        }
+        if (key == this.gun1Key)
+        {
+            player.switchGun(1)
+        }
+        if (key == this.gun2Key)
+        {
+            player.switchGun(2)
+
+
         }
 
     }

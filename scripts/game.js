@@ -70,6 +70,7 @@ export class Game {
     console.log("round loaded")
 
   }
+  
   getCamera()
   {
     return this.#camera;
