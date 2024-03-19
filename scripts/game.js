@@ -16,7 +16,26 @@ export class Game {
 
 
   constructor(map) {
-    this.player = new Player("gun1", "gun2", "./assets/player_male_left.png","./assets/player_male_right.png", 100, 100, 100);
+
+    let gender = "f";
+
+    let img_path_left = "./assets/player_fem_left.png";
+    let img_path_right = "./assets/player_fem_right.png";
+
+
+    switch (gender) {
+      case "f":
+        img_path_left = "./assets/player_fem_left.png";
+        img_path_right = "./assets/player_fem_right.png";
+        break;
+        
+      case "m":
+        img_path_left = "./assets/player_male_left.png";
+        img_path_right = "./assets/player_male_right.png";
+        break;
+    }
+
+    this.player = new Player("gun1", "gun2", img_path_left, img_path_right, 100, 100, 100);
 
     this.#map = map;
     console.log("map loaded 2")
@@ -31,7 +50,7 @@ export class Game {
 
     this.#camera = new Camera(this.#mapWidth, this.#mapHeight);
 
-    this.player = new Player("gun1", "gun2", "./assets/player_male_left.png","./assets/player_male_right.png", 100, 100, 100,this.#mapWidth, this.#mapHeight);
+    this.player = new Player("gun1", "gun2", img_path_left, img_path_right, 100, 100, 100,this.#mapWidth, this.#mapHeight);
     console.log('player loaded 2')
 
     for (let x = 0; x < this.#mapWidth; x++) {

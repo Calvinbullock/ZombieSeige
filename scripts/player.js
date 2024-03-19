@@ -175,7 +175,6 @@ export class Player extends Entity {
 
     let direction = this.whereIsMouseX(mapPositionX);
 
-    console.log(direction);
 
     switch (direction) {
       case "left":

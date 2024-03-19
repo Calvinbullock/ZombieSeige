@@ -54,10 +54,6 @@ export class Round
       zombieXpos = (zombieTileX * 32)+2 + Math.floor(Math.random() * 25);
       zombieYpos = (zombieTileY * 32)+2 + Math.floor(Math.random() * 25);
 
-      // let img_path1_left = "./assets/zombie_fem_left.png";
-      // let img_path1_right = "./assets/zombie_fem_right.png";
-      // let img_path2_left = "./assets/zombie_male_left.png";
-      // let img_path2_right = "./assets/zombie_male_right.png";
       var path = this.getRandomString("one", "two");
 
       let img_path_left = "./assets/zombie_fem_left.png";
@@ -68,6 +64,7 @@ export class Round
           img_path_left = "./assets/zombie_fem_left.png";
           img_path_right = "./assets/zombie_fem_right.png";
           break;
+          
         case "two":
           img_path_left = "./assets/zombie_male_left.png";
           img_path_right = "./assets/zombie_male_right.png";
@@ -102,6 +99,7 @@ export class Round
     let roundtxt = "Round: " + this.currentRound.toString();
     ctx.fillText(roundtxt, 5, 120);
   }
+
   getRandomString(string1, string2) {
     var randomNumber = Math.random();
     if (randomNumber < 0.5) {
