@@ -96,6 +96,10 @@ export class Gun {
     getAmmo() {
         return this.#current_ammo;
     }
+    getMaxAmmo()
+    {
+        return this.#max_ammo;
+    }
 
     // --setters--
     removeAmmo(casing) {

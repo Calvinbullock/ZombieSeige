@@ -19,7 +19,7 @@ map.loadMap().then(() => {
   setInterval(() => gameInstance.gameLoop(), 8.333);
 
   document.addEventListener("keydown", (event) => {
-    eventHandler.handleKeyDown(event, gameInstance.player, gameInstance);
+    eventHandler.handleKeyDown(event, gameInstance.player, map);
   });
 
   document.addEventListener("keyup", (event) => {

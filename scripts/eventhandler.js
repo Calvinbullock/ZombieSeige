@@ -9,13 +9,13 @@ export class EventHandler {
     gun2Key = '2';
     spawnZombieKey = 'z';
     mouseButton;
-    interactKey;
+    interactKey = 'f';
     movementSpeed = 1;
 
     movementInterval = null;
 
     // Handles when Keys are pressed
-    handleKeyDown(event, player) {
+    handleKeyDown(event, player, map) {
         let key = event.key;
         if (event.repeat) return; // If the key is being held down and repeating, ignore the event
 
@@ -47,6 +47,10 @@ export class EventHandler {
             case this.gun2Key:
               player.switchActiveGun(2);
               break;
+
+            case this.interactKey:
+                player.interact(map);
+                break;
           
             default: // Handle unexpected keys
               console.log(`Unrecognized key pressed: ${key}`); // Optional logging

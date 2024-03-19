@@ -54,6 +54,11 @@ export class Player extends Entity {
     this.points += added;
   }
 
+  getActiveGun()
+  {
+    return this.activegun;
+  }
+
   getmouseX() {
     return this.#mouseX;
   }
@@ -64,6 +69,26 @@ export class Player extends Entity {
 
   reload() {
     this.activegun.reload();
+  }
+
+  interact(map)
+  {
+    let tile = map.getMapArray()[this.getTileY()][this.getTileX()];
+
+    if (tile.isStore)
+    {
+      tile.purchase(this)
+    }
+
+  }
+
+  getPoints()
+  {
+    return this.points;
+  }
+  usePoints(points)
+  {
+    this.points -= points;
   }
 
   switchActiveGun(value) {
