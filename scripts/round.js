@@ -97,6 +97,14 @@ export class Round
     ctx.fillText(roundtxt, 5, 120);
   }
 
+  drawGameOver(camera) {
+    let ctx = camera.getCanvas();
+    ctx.fillStyle = "Red"; 
+    ctx.font = "25px serif";
+    let roundtxt = "Game Over"
+    ctx.fillText(roundtxt, 5, 120);
+  }
+
   // Picks a random string so we can randomize the zombie image
   getRandomString(string1, string2) {
     var randomNumber = Math.random();

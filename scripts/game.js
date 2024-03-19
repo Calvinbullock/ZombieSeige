@@ -76,6 +76,15 @@ export class Game {
   {
     return this.#camera;
   }
+  
+  checkIfPlayerDead() 
+  {
+    let hp = this.player.getHealth();
+    if (hp <= 0) {
+      this.#round.drawGameOver(this.#camera) // BUG currently can't see this as it pops up right as page changes...
+      window.location.href = "index.html";
+    }
+  }
 
   // Gameloop, is called 120 times per second
   gameLoop() {
@@ -91,7 +100,11 @@ export class Game {
 
     // Check all collisions between player, zombies and bullets
     this.#checkColisions();
-
+    
+    // Check if player dead
+    //  BUG takes a sec after player is dead to change screens. 
+    this.checkIfPlayerDead();
+    
     // Manages the 3d bullet array, moves bullets that have moved tiles into new spot in the grid and removes the bullets that are destroyed
     this.bullets.forEach((arrayX, x) => 
     {
