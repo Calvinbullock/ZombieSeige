@@ -76,16 +76,13 @@ export class Player extends Entity {
     // locates the mouse in relation to the player
 
     if (this.#mouseX > canPosX) {
-      // console.log("right");
       return "right";
 
     } else if (this.#mouseX < canPosX) {
-      // console.log("left");
       return "left";
     }
     else
     {
-      console.log(this.#mouseX, canPosX)
       return "right";
 
     }
@@ -94,9 +91,11 @@ export class Player extends Entity {
   whereIsMouseY(canPosY) {
     if (this.#mouseY < canPosY) {
       console.log("above");
+      return "above";
 
     } else if (this.#mouseY > canPosY) {
       console.log("below");
+      return "below";
     }
   }
 
@@ -174,7 +173,6 @@ export class Player extends Entity {
     );
 
     let direction = this.whereIsMouseX(mapPositionX);
-
 
     switch (direction) {
       case "left":
