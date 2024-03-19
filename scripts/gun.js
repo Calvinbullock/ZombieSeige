@@ -161,10 +161,12 @@ export class Gun {
 
         let ctx = camera.getCanvas();
 
+        // gets the mouses' x position relitive to the player
         let direction = player.whereIsMouseX(x); 
 
         // x-3,y for facing and aiming left
-        
+        // x+18,y for facing and aiming right
+        //changes the gun sprite and position based on the direction given by whereIsMouseX
         switch (direction) {
             case "left":
               ctx.drawImage(this.#sprite_left, x- 3, y);
