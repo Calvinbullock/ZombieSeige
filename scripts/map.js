@@ -1,6 +1,7 @@
 import { Grass } from "./grass.js";
 import { Edge } from "./edge.js";
 import { Wall } from "./wall.js";
+import { AmmoCrate } from "./ammocrate.js";
 
 export class Map {
   #path = "./assets/map.txt";
@@ -19,6 +20,7 @@ export class Map {
   #left_fence = new Wall("./assets/fence_left.png");
   #right_fence = new Wall("./assets/fence_right.png");
   #top_fence = new Wall("./assets/fence_top.png");
+  #ammo_crate = new AmmoCrate();
 
   #pathfindingMap = [];
 
@@ -81,6 +83,9 @@ export class Map {
                 case 'a':
                   this.#mapArray[y][x] = this.#top_fence;
                   break;
+                case 'c':
+                  this.#mapArray[y][x] = this.#ammo_crate;
+                  break;
                 default:
                   // Handle other cases or unknown values
                   break;
@@ -118,9 +123,51 @@ export class Map {
     return this.#mapArray;
   }
 
-  drawTileUI(x,y)
+  getIsShop(x,y)
   {
+    return this.#mapArray[y][x].isStore();
+  }
+  drawTileUI(camera,player)
+  {
+    let tileX = player.getTileX();
+    let tileY = player.getTileY();
 
+    if (this.getIsShop(tileX,tileY))
+    {
+      let tile = this.#mapArray[tileY][tileX];
+
+      let cost = tile.getCost();
+
+      // console.log(cost)
+
+      let ctx = camera.getCanvas();
+      // Set the fill style to semi-transparent green
+      ctx.fillStyle = 'rgba(1, 1, 200, 0.5)'; // 0.5 alpha value for transparency
+
+      // Draw a rectangle starting at (x, y) with width and height
+      var x = 160;
+      var y = 5;
+      var width = 90;
+      var height = 50;
+      ctx.fillRect(x, y, width, height);
+
+      let name = tile.getName();
+
+      ctx.fillStyle = "black"; 
+      ctx.font = "13px serif";
+      let nametxt = "Buy: " +name;
+      ctx.fillText(nametxt, 161, 20);
+
+      ctx.fillStyle = "black"; 
+      ctx.font = "13px serif";
+      let costtxt = "Cost: " + cost.toString();
+      ctx.fillText(costtxt, 161, 35);
+
+      ctx.fillStyle = "black"; 
+      ctx.font = "13px serif";
+      let tip = "Press F to buy";
+      ctx.fillText(tip, 161, 50);
+    }
   }
 
   getPathFindingMap()

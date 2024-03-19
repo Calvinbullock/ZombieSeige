@@ -336,6 +336,9 @@ export class Game {
       });
     });
 
+    // Draws Tile UI
+    this.#map.drawTileUI(this.#camera,this.player);
+
     // Draws the current round
     this.#round.draw(this.#camera);
   }
