@@ -171,7 +171,7 @@ export class Gun {
               break;
       
             case "right":
-              ctx.drawImage(this.#sprite_right, x+ 3, y);
+              ctx.drawImage(this.#sprite_right, x+ 18, y);
               break;
       
             default:
