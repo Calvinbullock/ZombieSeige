@@ -66,7 +66,7 @@ export class Player extends Entity {
     this.activegun.reload();
   }
 
-  switchGun(value) {
+  switchActiveGun(value) {
     switch(value)
     {
       case 1:
