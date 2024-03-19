@@ -16,13 +16,15 @@ export class Gun {
     #bullet_accuracy; // the lower this is the more accurate
     #fire_sfx; // filepath
     #reload_sfx; // filepath
-    #img; // filepath
+    #sprite_left
+    #sprite_right; // filepath
     #posX;
     #posY;
     #bulletSpeed;
 
     
-    constructor(max_ammo_in, name_in, damage_in, bullet_duration_in, bullet_count_in, fire_sfx_in, reload_sfx_in, img_in, accuracy_in,loaded_ammo_in,speedin) {
+    constructor(max_ammo_in, name_in, damage_in, bullet_duration_in, bullet_count_in, fire_sfx_in, reload_sfx_in, sprite_left_in,
+        sprite_right_in, accuracy_in,loaded_ammo_in,speedin) {
         this.#current_ammo = max_ammo_in; 
         this.#max_ammo = max_ammo_in;
         this.#name = name_in;
@@ -31,8 +33,13 @@ export class Gun {
         this.#bullet_count = bullet_count_in;
         this.#fire_sfx = fire_sfx_in;
         this.#reload_sfx = reload_sfx_in;
-        this.#img = new Image();
-        this.#img.src = img_in;
+
+        this.#sprite_left = new Image();
+        this.#sprite_right = new Image();
+
+        this.#sprite_left.src = sprite_left_in
+        this.#sprite_right.src = sprite_right_in
+
         this.#bullet_accuracy = accuracy_in;
 
         this.#max_loaded_ammo = loaded_ammo_in;
@@ -75,8 +82,11 @@ export class Gun {
         return this.#reload_sfx;
     }
 
-    getImg() {
-        return this.#img;
+    getSpriteLeft() {
+        return this.#sprite_left
+    }
+    getSpriteRight() {
+        return this.#sprite_right;
     }
 
     getAmmo() {
@@ -144,17 +154,30 @@ export class Gun {
 
     }
 
-    draw(player,camera)
+    draw(player, camera)
     {
         let x = camera.getObjectScreenPositionX(player.getX(),this.#posX)
         let y = camera.getObjectScreenPositionY(player.getY(),this.#posY)
 
         let ctx = camera.getCanvas();
 
-        player.whereIsMouseX(x); 
+        let direction = player.whereIsMouseX(x); 
 
         // x-3,y for facing and aiming left
-        ctx.drawImage(this.#img, x- 3, y);
+        
+        switch (direction) {
+            case "left":
+              ctx.drawImage(this.#sprite_left, x- 3, y);
+              break;
+      
+            case "right":
+              ctx.drawImage(this.#sprite_right, x+ 3, y);
+              break;
+      
+            default:
+                ctx.drawImage(this.#sprite_left, x- 3, y);
+              break;
+          }
 
         ctx.fillStyle = "black"; 
         ctx.font = "10px serif";
