@@ -60,6 +60,7 @@ export class Zombie extends Entity {
     return (this.getHealth() > 0);
   }
   
+  // Draws the zombie
   draw(camera, player) {
     // get the canvas to draw on
     let ctx = camera.getCanvas();

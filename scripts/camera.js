@@ -120,6 +120,7 @@ export class Camera
       return y;
       
   }
+
   // Gets the screen X position for an item should work for both bullets and zombies.
   getObjectScreenPositionX(playerX,objectX)
   {
@@ -144,10 +145,14 @@ export class Camera
     return entityScreenY;
 
   }
+
+  // returns the canvas so it can be drawn on
   getCanvas()
   {
     return this.canvas;
   }
+
+  // clears the screen for the next frame
   clearScreen()
   {
     this.canvas.clearRect(0, 0, 256, 128);

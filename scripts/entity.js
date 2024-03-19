@@ -25,18 +25,26 @@ export class Entity {
         this.xbound = mapX*32;
         this.ybound = mapY*32;
     }
+
+    // Returns the entities current health
     getHealth()
     {
         return this.#health;
     }
+
+    // Returns the entities max health
     getMaxHealth()
     {
         return this.#max_health;
     }
+
+    // Returns the entities collision radius
     getRadius()
     {
       return this.radius;
     }
+
+    // Damage the entity
     damage(bullet_damage)
     {
         this.#health -= bullet_damage;
@@ -46,6 +54,7 @@ export class Entity {
         }
     }
 
+    // move the entity
     moveBy(x_movement, y_movement)
     {
         if (this.#pos_x > 0 && x_movement < 0) {
@@ -61,32 +70,42 @@ export class Entity {
             this.#pos_y += y_movement;
         }
     }
+
+    // Return entity speed
     getSpeed()
     {
         return this.#speed
     }
 
+    // return entity x position
     getX() {
         return this.#pos_x;
     }
+
+    // return entity y position
     getY()
     {
         return this.#pos_y;
     }
 
+    // return entity left sprite
     getSpriteLeft()
     {
       return this.#sprite_left;
     }
 
+    // return entity right sprite
     getSpriteRight(){
       return this.#sprite_right;
     }
 
+    // return entity x tile
     getTileX(x_offset = 0)
     {
         return Math.floor((this.#pos_x + x_offset)/32);
     }
+
+    // return entity y tile
     getTileY(y_offset = 0)
     {
         return Math.floor((this.#pos_y+y_offset)/32);
@@ -94,10 +113,12 @@ export class Entity {
 
     update_health() { }
 
+    // reset entity health to max
     reset_health() {
         this.#health = this.#max_health;
     }
 
+    // Draw the entity
     draw(ctx, x, y,){
 
         ctx.drawImage(this.#sprite_right, x, y);

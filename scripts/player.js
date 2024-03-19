@@ -173,6 +173,7 @@ export class Player extends Entity {
     // this.moveBy(movementX, movementY);
   }
 
+  // draws the player
   draw(camera) {
     let ctx = camera.getCanvas();
 

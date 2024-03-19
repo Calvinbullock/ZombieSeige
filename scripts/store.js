@@ -12,5 +12,9 @@ export class Store extends Tile {
     {
         return this.cost;
     }
+    drawUI(camera)
+    {
+
+    }
   }
   

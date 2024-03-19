@@ -23,6 +23,7 @@ export class Map {
   constructor() {
   }
 
+  // Loads the map from a text file
   loadMap() {
     return new Promise((resolve, reject) => {
       fetch(this.#path)
@@ -108,11 +109,14 @@ export class Map {
     return this.#height;
   }
 
+  // Returns true if you can walk through the tile
   getWalkthrough(x,y)
   {
     return this.#mapArray[y][x].canWalkThrough();
 
   }
+
+  // Returns true if you can shoot through the tile
   getShootthrough(x,y)
   {
 
@@ -120,6 +124,7 @@ export class Map {
 
   }
 
+  // Draws the visible section of the map
   draw(player,camera) {
 
     let ctx = camera.getCanvas();

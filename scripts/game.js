@@ -71,23 +71,28 @@ export class Game {
 
   }
   
+  // Return the camera
   getCamera()
   {
     return this.#camera;
   }
 
+  // Gameloop, is called 120 times per second
   gameLoop() {
+
+    // When round is ended spawn new round
     if (this.#round.endRound())
     {
       this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight, this.#map);
     }
-    this.#moveEntities();
-    this.checkPlayerInteractions();
-    // this.bullets.forEach((bullet) => {
-    //   bullet.move();
-    // });
 
+    // Move all the entities (zombies and bullets)
+    this.#moveEntities();
+
+    // Check all collisions between player, zombies and bullets
     this.#checkColisions();
+
+    // Manages the 3d bullet array, moves bullets that have moved tiles into new spot in the grid and removes the bullets that are destroyed
     this.bullets.forEach((arrayX, x) => 
     {
       arrayX.forEach((arrayY, y) => 
@@ -112,7 +117,7 @@ export class Game {
           });
       });
     });
-
+    // Manages the 3d zombie array, moves zombies that have moved tiles into new spot in the grid and removes the zombies that are destroyed
     this.#zombies.forEach((arrayX, x) => 
     {
       arrayX.forEach((arrayY, y) => 
@@ -147,13 +152,17 @@ export class Game {
       });
     });
 
-
+    // Updates the gun position of the player
     this.player.activegun.updatePos(this.player);
+
+    // Draws everything onto the screen
     this.#drawScreen();
   }
 
+  // Handles the collision detection
   #checkColisions() 
   {
+    // Check for zombie and bullet collisions
     this.#zombies.forEach((arrayX, x) => 
     {
       arrayX.forEach((arrayY, y) => 
@@ -213,7 +222,7 @@ export class Game {
     let playerXIndex = this.player.getTileX();
     let playerYIndex = this.player.getTileY();
 
-
+    // Check for zombie and player collisions
     for(let i = -1;i<2;i++)
     {
       for(let j = -1; j<2;j++)
@@ -254,12 +263,12 @@ export class Game {
 
   }
 
+  // Move the player, zombies and bullets
   #moveEntities() {
+    // Moves the player
     this.player.move(this.#map);
-    // this.#zombies.forEach((zombie) => {
-    //   zombie.move(this.player.getX(), this.player.getY());
-    // });
 
+    // Moves the zombies
     this.#zombies.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
           arrayY.forEach((zombie, z) => {
@@ -269,7 +278,7 @@ export class Game {
       });
     });
 
-
+    // Moves the bullets
     this.bullets.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
           arrayY.forEach((bullet, z) => {
@@ -280,7 +289,7 @@ export class Game {
     });
   }
 
-
+  // Draw everything onto the screen.
   #drawScreen() {
     //clear the screen
     this.#camera.clearScreen();
@@ -314,17 +323,10 @@ export class Game {
       });
     });
 
-    // (this.#camera.getCanvas()).stroke();
-
-    // this.testZombie.Draw(this.#camera,this.player);
-
-  
+    // Draws the current round
     this.#round.draw(this.#camera);
   }
-  checkPlayerInteractions()
-  {
 
-  }
 
   #damage() {}
 }

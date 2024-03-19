@@ -2,6 +2,7 @@ import { Game } from "./game.js";
 import { EventHandler } from "./eventhandler.js";
 import { Map } from "./map.js";
 
+// Initialize map
 let map = new Map();
 
 

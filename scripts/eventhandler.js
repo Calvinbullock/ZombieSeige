@@ -14,6 +14,7 @@ export class EventHandler {
 
     movementInterval = null;
 
+    // Handles when Keys are pressed
     handleKeyDown(event, player, game) {
         let key = event.key;
         if (event.repeat) return; // If the key is being held down and repeating, ignore the event
@@ -54,6 +55,7 @@ export class EventHandler {
 
     }
     
+    // Handles when keys are released
     handleKeyUp(event, player) {
         let key = event.key;
         if (event.repeat) return; // If the key is being held down and repeating, ignore the event
@@ -81,7 +83,7 @@ export class EventHandler {
     }
     
 
-    // collects the mouse position
+    // Handles When mouse is clicked
     handleClick(event, game) {
         // sets the canvas to rect
         const rect = event.target.getBoundingClientRect();
@@ -96,8 +98,7 @@ export class EventHandler {
         game.player.shoot(game.bullets, mouseX, mouseY,game.getCamera());
     }
 
-    handleFrameClock() {} // is this needed?
-
+    // Sets the mouse position when it is moved
     setMousePosition(event, player) {
         // sets the canvas to rect
         const rect = event.target.getBoundingClientRect();

@@ -22,12 +22,9 @@ export class Round
 
   constructor()
   {
-
-
-    
-
-
   }
+
+  // Return true if the round is over, and increments the round number
   endRound()
   {
     if (this.CurrentAliveZombies == 0)
@@ -36,6 +33,8 @@ export class Round
     } 
     return this.CurrentAliveZombies == 0;
   }
+
+  // Spawn the next round
   spawnRound(zombies,xbound,ybound,map)
   {
     
@@ -80,17 +79,15 @@ export class Round
       }
       
     }
-
-
-
-
-
-
   }
+
+  // When called remove 1 from current zombie count
   killZombie()
   {
     this.CurrentAliveZombies--;
   }
+
+  // Draw the round number
   draw(camera)
   {
     let ctx = camera.getCanvas();
@@ -100,6 +97,7 @@ export class Round
     ctx.fillText(roundtxt, 5, 120);
   }
 
+  // Picks a random string so we can randomize the zombie image
   getRandomString(string1, string2) {
     var randomNumber = Math.random();
     if (randomNumber < 0.5) {

@@ -16,6 +16,8 @@ export class Bullet{
     this.damage = damage;
     this.speed = speed;
   }
+
+  // Returns the bullet damage
   getDamage()
   {
     if (this.alive)
@@ -23,28 +25,39 @@ export class Bullet{
       return this.damage;
     }
     return 0;
-    
   }
+
+  // returns the bullet radius
   getRadius()
   {
     return 1;
   }
+
+  // Returns bullet x position
   getX()
   {
     return this.posX;
   }
+
+  // Returns bullet y position
   getY()
   {
     return this.posY;
   }
+
+  // returns bullet X tile
   getTileX()
   {
     return Math.floor(this.posX/32);
   }
+
+  // returns bullet Y tile
   getTileY()
   {
     return Math.floor(this.posY/32);
   }
+
+  // moves the bullet
   move()
   {
     this.posX += Math.cos(this.angle) * this.speed;
@@ -55,14 +68,20 @@ export class Bullet{
       this.alive = false;
     }
   }
+
+  // Returns true until the bullet duration is up or it hits a zombie
   getStatus()
   {
     return this.alive;
   }
+
+  // Destroy the bullet
   kill()
   {
     this.alive = false;
   }
+
+  // Draws the bullet
   draw(camera,player)
   {
     let ctx = camera.getCanvas();

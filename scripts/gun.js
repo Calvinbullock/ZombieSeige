@@ -46,10 +46,14 @@ export class Gun {
         this.#loaded_ammo = loaded_ammo_in;
         this.#bulletSpeed = speedin;
     }
+
+    // Return the Gun X tile
     getTileX()
     {
       return Math.floor(this.#posX/32);
     }
+
+     // Return the Gun Y tile
     getTileY()
     {
       return Math.floor(this.#posY/32);
@@ -113,6 +117,7 @@ export class Gun {
         }
     }
 
+    // Shoots the gun
     shoot(bullets, mouseX, mouseY, player, camera) {
         // Calculate the angle between the shooter and the mouse position
    
@@ -147,6 +152,7 @@ export class Gun {
 
     }
 
+    // updates the gun position
     updatePos(player)
     {
         this.#posX = player.getX() - 6
@@ -154,6 +160,7 @@ export class Gun {
 
     }
 
+    // Draws the gun and displays how much ammo it has
     draw(player, camera)
     {
         let x = camera.getObjectScreenPositionX(player.getX(),this.#posX)
