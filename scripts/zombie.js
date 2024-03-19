@@ -59,45 +59,47 @@ export class Zombie extends Entity {
   {
     return (this.getHealth() > 0);
   }
-  draw(camera,player)
-  {
-    
-
-
+  
+  draw(camera, player) {
+    // get the canvas to draw on
     let ctx = camera.getCanvas();
 
-    let mapPositionX = Math.floor(camera.getObjectScreenPositionX(player.getX(),this.getX()));
-    let mapPositionY = Math.floor(camera.getObjectScreenPositionY(player.getY(),this.getY()));
+    // get the map positions of player and zombie, this is separate from the screen position
+    let playerX = player.getX();
+    let playerY = player.getY();
+    let zombX = this.getX();
+    let zombY = this.getY();
+
+    // find the screen position to draw the zombie on
+    let screenPositionX = Math.floor(camera.getObjectScreenPositionX(playerX, zombX));
+    let screenPositionY = Math.floor(camera.getObjectScreenPositionY(playerY, zombY));
+
+    // Only draw if the zombie is visible on the canvas
+    if (screenPositionX <= 256 && screenPositionY <= 128 && screenPositionX >= -16 && screenPositionY >= -16) {
+        ctx.drawImage(this.getSpriteLeft(), screenPositionX, screenPositionY);
+
+        // draw the black backround for the health bar
+        ctx.beginPath();
+        ctx.lineWidth = "1";
+        ctx.strokeStyle = "black";
+        ctx.rect(screenPositionX + 2, screenPositionY, 10, 0.5);
+        ctx.stroke();
+
+        // find the blue healthbar width
+        let maxHealth = this.getMaxHealth();
+        let health = this.getHealth();
+        let healthPercent = health / maxHealth;
+        let healthWidth = 10 * healthPercent;
+
+        // draw blue health bar
+        ctx.beginPath();
+        ctx.strokeStyle = "blue";
+        ctx.rect(screenPositionX + 2, screenPositionY, healthWidth, 0.5);
+        ctx.stroke();
+    }
+}
 
 
-
-
-    ctx.drawImage(this.getSpriteLeft(), mapPositionX, mapPositionY);
-
-    ctx.beginPath();
-    ctx.lineWidth = "1";
-    ctx.strokeStyle = "black";
-    // Adjust the width and height to make the rectangle smaller
-    ctx.rect(mapPositionX+2, mapPositionY, 10, 0.5);
-    ctx.stroke();
-
-    let maxHealth = this.getMaxHealth();
-
-    let health = this.getHealth();
-
-    let healthPercent = health/maxHealth;
-    
-    let healthWidth = 10 * healthPercent;
-
-
-    ctx.beginPath();
-    ctx.lineWidth = "1";
-    ctx.strokeStyle = "blue";
-    // Adjust the width and height to make the rectangle smaller
-    ctx.rect(mapPositionX+2, mapPositionY, healthWidth, 0.5);
-    ctx.stroke();
-
-  }
   move(goal_x, goal_y,map) {
     // a simple form of movement as a placeholder
 

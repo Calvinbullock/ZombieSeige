@@ -76,11 +76,11 @@ export class Player extends Entity {
     // locates the mouse in relation to the player
   
     if (this.#mouseX > canPosX){
-      console.log("right");
+      // console.log("right");
       return "right";
     }
     else if (this.#mouseX < canPosX){
-      console.log("left");
+      // console.log("left");
       return "left";
     }
   }

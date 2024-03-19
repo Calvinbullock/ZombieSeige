@@ -275,10 +275,6 @@ export class Game {
     this.player.activegun.draw(this.player,this.#camera)
 
     //draw bullets
-
-    // this.bullets.forEach((bullet) => {
-    //   bullet.draw(this.#camera, this.player);
-    // });
     this.bullets.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
           arrayY.forEach((bullet, z) => {
@@ -288,7 +284,7 @@ export class Game {
       });
     });
 
-    //draw test zombie
+    //draw all zombies by looping through each one in the 3d array.
     this.#zombies.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
           arrayY.forEach((zombie, z) => {
