@@ -298,6 +298,7 @@ export class Game {
           });
       });
     });
+    this.#map.getCamera().stroke();
     // this.testZombie.Draw(this.#camera,this.player);
 
   
