@@ -10,8 +10,8 @@ export class Zombie extends Entity {
 
   constructor(
     damage_in,
-    sprite_in,
-    direction_in,
+    sprite_left_in,
+    sprite_right_in,
     health_in,
     max_health_in,
     speed_in,
@@ -21,8 +21,8 @@ export class Zombie extends Entity {
     ybound_in
   ) {
     super(
-      sprite_in,
-      direction_in,
+      sprite_left_in,
+      sprite_right_in,
       health_in,
       max_health_in,
       speed_in,
@@ -79,7 +79,7 @@ export class Zombie extends Entity {
     ctx.strokeStyle = "black";
     // Adjust the width and height to make the rectangle smaller
     ctx.rect(mapPositionX+2, mapPositionY, 10, 0.5);
-
+    ctx.stroke();
 
     let maxHealth = this.getMaxHealth();
 
@@ -95,7 +95,7 @@ export class Zombie extends Entity {
     ctx.strokeStyle = "blue";
     // Adjust the width and height to make the rectangle smaller
     ctx.rect(mapPositionX+2, mapPositionY, healthWidth, 0.5);
-
+    ctx.stroke();
 
   }
   move(goal_x, goal_y,map) {

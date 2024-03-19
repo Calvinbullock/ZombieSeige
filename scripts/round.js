@@ -8,7 +8,7 @@ export class Round
   damageModifier = 1.1;
   healthModifier = 1.1;
   
-  zombNumber = 10000;
+  zombNumber = 10;
   zombDamage = 1;
   zombHealth = 50;
   zombSpeed = .3;
@@ -63,9 +63,11 @@ export class Round
         case "one":
           img_path_left = "./assets/zombie_fem_left.png";
           img_path_right = "./assets/zombie_fem_right.png";
+          break;
         case "two":
           img_path_left = "./assets/zombie_male_left.png";
           img_path_right = "./assets/zombie_male_right.png";
+          break;
       }
 
       if(map.getWalkthrough(zombieTileX,zombieTileY))

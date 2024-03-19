@@ -57,7 +57,6 @@ export class Game {
   }
 
   gameLoop() {
-    console.log('loop')
     if (this.#round.endRound())
     {
       this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight, this.#map);
@@ -298,7 +297,9 @@ export class Game {
           });
       });
     });
-    this.#map.getCamera().stroke();
+
+    // (this.#camera.getCanvas()).stroke();
+
     // this.testZombie.Draw(this.#camera,this.player);
 
   
