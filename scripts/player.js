@@ -39,10 +39,10 @@ export class Player extends Entity {
       ybound_in
     );
     this.#gun1 = new Pistol();
-    this.#gun2 = new Shotgun();
     this.#gun2 = new Rifle();
+ 
     this.activegun = this.#gun1;
-    this.activegun = this.#gun2;
+    // this.activegun = this.#gun2;
   }
 
   setMouseCoords(x, y) {
@@ -70,12 +70,19 @@ export class Player extends Entity {
     switch(value)
     {
       case 1:
-        this.activegun = this.#gun1
+        if (this.#gun1 != null)
+        {
+          this.activegun = this.#gun1
+        }
+        
         // console.log("gun1")
         break;
 
       case 2:
-        this.activegun = this.#gun2
+        if (this.#gun2 != null)
+        {
+          this.activegun = this.#gun2
+        }
         // console.log("gun2")
         break;
       }
