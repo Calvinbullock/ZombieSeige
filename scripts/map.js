@@ -118,6 +118,10 @@ export class Map {
     return this.#mapArray;
   }
 
+  drawTileUI(x,y)
+  {
+
+  }
 
   getPathFindingMap()
   {
