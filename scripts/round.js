@@ -91,9 +91,16 @@ export class Round
   draw(camera)
   {
     let ctx = camera.getCanvas();
-    ctx.fillStyle = "black"; 
     ctx.font = "13px serif";
     let roundtxt = "Round: " + this.currentRound.toString();
+    
+    // Draw black border
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 3; // Adjust the border thickness as needed
+    ctx.strokeText(roundtxt, 5, 120);
+    
+    // Draw white fill
+    ctx.fillStyle = "white";
     ctx.fillText(roundtxt, 5, 120);
   }
 

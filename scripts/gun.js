@@ -208,11 +208,26 @@ export class Gun {
               break;
           }
 
-        ctx.fillStyle = "black"; 
-        ctx.font = "10px serif";
-        var ammoCount = this.#loaded_ammo.toString() + "  " + this.#current_ammo.toString()
-        ctx.fillText(this.#name, 220, 110);
-        ctx.fillText(ammoCount, 220, 120);
+          ctx.font = "10px serif";
+          let ammoCount = this.#loaded_ammo.toString() + "  " + this.#current_ammo.toString();
+          
+          // Draw black border for name text
+          ctx.strokeStyle = "black";
+          ctx.lineWidth = 2; // Adjust the border thickness as needed
+          ctx.strokeText(this.#name, 220, 110);
+          
+          // Draw white fill for name text
+          ctx.fillStyle = "white";
+          ctx.fillText(this.#name, 220, 110);
+          
+          // Draw black border for ammo count text
+          ctx.strokeStyle = "black";
+          ctx.lineWidth = 2; // Adjust the border thickness as needed
+          ctx.strokeText(ammoCount, 220, 120);
+          
+          // Draw white fill for ammo count text
+          ctx.fillStyle = "white";
+          ctx.fillText(ammoCount, 220, 120);
 
     }
 }

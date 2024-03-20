@@ -244,9 +244,16 @@ export class Player extends Entity {
     ctx.rect(5, 5, this.getHealth() / 3, 5); // Fixed typo: "3d" to "3"
     ctx.fill(); // Change to fill()
 
-    ctx.fillStyle = "black";
     ctx.font = "13px serif";
-    var pointsstr = this.points.toString() + "  points";
+    let pointsstr = this.points.toString() + " points";
+    
+    // Draw black border
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 3; // Adjust the border thickness as needed
+    ctx.strokeText(pointsstr, 5, 100);
+    
+    // Draw white fill
+    ctx.fillStyle = "white";
     ctx.fillText(pointsstr, 5, 100);
   }
 }
