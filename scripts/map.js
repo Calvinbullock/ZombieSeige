@@ -2,6 +2,7 @@ import { Grass } from "./grass.js";
 import { Edge } from "./edge.js";
 import { Wall } from "./wall.js";
 import { AmmoCrate } from "./ammocrate.js";
+import { HealthCrate } from "./healthcrate.js";
 
 export class Map {
   #path = "./assets/map.txt";
@@ -21,6 +22,7 @@ export class Map {
   #right_fence = new Wall("./assets/fence_right.png");
   #top_fence = new Wall("./assets/fence_top.png");
   #ammo_crate = new AmmoCrate();
+  #health_crate = new HealthCrate();
 
   #pathfindingMap = [];
 
@@ -85,6 +87,9 @@ export class Map {
                   break;
                 case 'c':
                   this.#mapArray[y][x] = this.#ammo_crate;
+                  break;
+                case 'h':
+                  this.#mapArray[y][x] = this.#health_crate;
                   break;
                 default:
                   // Handle other cases or unknown values
