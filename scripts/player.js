@@ -162,7 +162,7 @@ export class Player extends Entity {
 
     // Normalize the movement vector
 
-    const diagonalFactor = 0.6; // Adjust this value as needed, lower values result in slower diagonal movement
+    const diagonalFactor = 0.7; // Adjust this value as needed, lower values result in slower diagonal movement
 
     if (movementX !== 0 && movementY !== 0) {
       movementX *= diagonalFactor;

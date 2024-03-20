@@ -128,7 +128,7 @@ export class Zombie extends Entity {
       dy += this.getSpeed();
     }
 
-    const diagonalFactor = 0.6;
+    const diagonalFactor = 0.7;
     if (dx !== 0 && dy !== 0) {
       dx *=  diagonalFactor;
       dy *=  diagonalFactor;
