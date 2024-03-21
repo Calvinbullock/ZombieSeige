@@ -310,11 +310,6 @@ export class Game {
     //draw map
     this.#map.draw(this.player,this.#camera);
 
-    //draw player
-    this.player.draw(this.#camera);
-
-    //draw gun
-    this.player.activegun.draw(this.player,this.#camera)
 
     //draw bullets
     this.bullets.forEach((arrayX, x) => {
@@ -335,6 +330,12 @@ export class Game {
           });
       });
     });
+
+    //draw player
+    this.player.draw(this.#camera);
+
+    //draw gun
+    this.player.activegun.draw(this.player,this.#camera)
 
     // Draws Tile UI
     this.#map.drawTileUI(this.#camera,this.player);
