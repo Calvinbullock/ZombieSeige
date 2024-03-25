@@ -55,18 +55,18 @@ export class Round
 
       var path = this.getRandomString("one", "two");
 
-      let img_path_left = "./assets/zombie_fem_left.png";
-      let img_path_right = "./assets/zombie_fem_right.png";
+      let img_path_left = "./assets/zombie/zombie_fem_left.png";
+      let img_path_right = "./assets/zombie/zombie_fem_right.png";
 
       switch (path) {
         case "one":
-          img_path_left = "./assets/zombie_fem_left.png";
-          img_path_right = "./assets/zombie_fem_right.png";
+          img_path_left = "./assets/zombie/zombie_fem_left.png";
+          img_path_right = "./assets/zombie/zombie_fem_right.png";
           break;
           
         case "two":
-          img_path_left = "./assets/zombie_male_left.png";
-          img_path_right = "./assets/zombie_male_right.png";
+          img_path_left = "./assets/zombie/zombie_male_left.png";
+          img_path_right = "./assets/zombie/zombie_male_right.png";
           break;
       }
 

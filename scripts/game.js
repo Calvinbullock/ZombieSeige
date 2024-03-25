@@ -20,19 +20,19 @@ export class Game {
 
     let gender = "f";
 
-    let img_path_left = "./assets/player_fem_left.png";
-    let img_path_right = "./assets/player_fem_right.png";
+    let img_path_left = "./assets/player/player_fem_left.png";
+    let img_path_right = "./assets/player/player_fem_right.png";
 
 
     switch (gender) {
       case "f":
-        img_path_left = "./assets/player_fem_left.png";
-        img_path_right = "./assets/player_fem_right.png";
+        img_path_left = "./assets/player/player_fem_left.png";
+        img_path_right = "./assets/player/player_fem_right.png";
         break;
         
       case "m":
-        img_path_left = "./assets/player_male_left.png";
-        img_path_right = "./assets/player_male_right.png";
+        img_path_left = "./assets/player/player_male_left.png";
+        img_path_right = "./assets/player/player_male_right.png";
         break;
     }
 
