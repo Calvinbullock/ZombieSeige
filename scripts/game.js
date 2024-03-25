@@ -83,7 +83,7 @@ export class Game {
     let hp = this.player.getHealth();
     if (hp <= 0) {
       this.#round.drawGameOver(this.#camera) // BUG currently can't see this as it pops up right as page changes...
-      window.location.href = "index.html";
+      window.location.href = "gameover.html";
     }
   }
 
