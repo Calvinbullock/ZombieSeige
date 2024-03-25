@@ -3,6 +3,7 @@ import { Edge } from "./edge.js";
 import { Wall } from "./wall.js";
 import { AmmoCrate } from "./ammocrate.js";
 import { HealthCrate } from "./healthcrate.js";
+import { MysteryBox } from "./mysterybox.js";
 
 export class Map {
   #path = "./assets/map.txt";
@@ -23,6 +24,7 @@ export class Map {
   #top_fence = new Wall("./assets/fence_top.png");
   #ammo_crate = new AmmoCrate();
   #health_crate = new HealthCrate();
+  #mystery_crate = new MysteryBox();
 
   #pathfindingMap = [];
 
@@ -91,6 +93,9 @@ export class Map {
                 case 'h':
                   this.#mapArray[y][x] = this.#health_crate;
                   break;
+                case 'm':
+                  this.#mapArray[y][x] = this.#mystery_crate;
+                  break;
                 default:
                   // Handle other cases or unknown values
                   break;
@@ -150,9 +155,9 @@ export class Map {
       ctx.fillStyle = 'rgba(1, 1, 200, 0.5)'; // 0.5 alpha value for transparency
 
       // Draw a rectangle starting at (x, y) with width and height
-      var x = 160;
+      var x = 140;
       var y = 5;
-      var width = 90;
+      var width = 110;
       var height = 50;
       ctx.fillRect(x, y, width, height);
 
@@ -161,17 +166,17 @@ export class Map {
       ctx.fillStyle = "black"; 
       ctx.font = "13px serif";
       let nametxt = "Buy: " +name;
-      ctx.fillText(nametxt, 161, 20);
+      ctx.fillText(nametxt, 141, 20);
 
       ctx.fillStyle = "black"; 
       ctx.font = "13px serif";
       let costtxt = "Cost: " + cost.toString();
-      ctx.fillText(costtxt, 161, 35);
+      ctx.fillText(costtxt, 141, 35);
 
       ctx.fillStyle = "black"; 
       ctx.font = "13px serif";
       let tip = "Press F to buy";
-      ctx.fillText(tip, 161, 50);
+      ctx.fillText(tip, 141, 50);
     }
   }
 
