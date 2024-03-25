@@ -9,10 +9,6 @@ export class Player extends Entity {
   #gun1;
   #gun2;
   activegun;
-  movingLeft = false;
-  movingUp = false;
-  movingDown = false;
-  movingRight = false;
   #speed = 0.7;
   points = 0;
 
@@ -176,16 +172,16 @@ export class Player extends Entity {
     let movementX = 0;
     let movementY = 0;
 
-    if (this.movingUp) {
+    if (this.isMovingUp()) {
       movementY -= this.#speed;
     }
-    if (this.movingDown) {
+    if (this.isMovingDown()) {
       movementY += this.#speed;
     }
-    if (this.movingLeft) {
+    if (this.isMovingLeft()) {
       movementX -= this.#speed;
     }
-    if (this.movingRight) {
+    if (this.isMovingRight()) {
       movementX += this.#speed;
     }
   

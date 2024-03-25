@@ -13,6 +13,7 @@ export class Game {
   bullets = [];
   #mapWidth;
   #mapHeight;
+  #counter = 0;
 
 
   constructor(map) {
@@ -94,6 +95,18 @@ export class Game {
     {
       this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight, this.#map);
     }
+    // let zombies find their path, counter so it doesnt update path ever frame for performance reasons
+    // counter dcounts to 10 so every 10 frames it updates path, which is 12 times a second
+    if (this.#counter == 0)
+    {
+      this.#zombiePathFinding()
+    }
+    this.#counter++;
+    if (this.#counter == 10)
+    {
+      this.#counter = 0;
+    }
+  
 
     // Move all the entities (zombies and bullets)
     this.#moveEntities();
@@ -290,7 +303,7 @@ export class Game {
     this.#zombies.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
           arrayY.forEach((zombie, z) => {
-            zombie.move(this.player,this.#map);
+            zombie.move(this.#map);
 
           });
       });
@@ -351,4 +364,19 @@ export class Game {
 
 
   #damage() {}
+
+  // Zombie pathfinding
+  #zombiePathFinding()
+  {
+    // Moves the zombies
+    this.#zombies.forEach((arrayX, x) => {
+      arrayX.forEach((arrayY, y) => {
+          arrayY.forEach((zombie, z) => {
+            zombie.pathfind(this.player,this.#map);
+          });
+      });
+    });
+  }
 }
+
+

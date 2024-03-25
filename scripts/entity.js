@@ -10,6 +10,10 @@ export class Entity {
     radius = 6;
     xbound;
     ybound;
+    #movingLeft = false;
+    #movingUp = false;
+    #movingDown = false;
+    #movingRight = false;
 
     // added a comma since there was an error ;)
     constructor(spriteLeft_in, spriteRight_in, health_in, max_health_in, speed_in, pos_x_in, pos_y_in,mapX,mapY) {
@@ -25,6 +29,63 @@ export class Entity {
         this.xbound = mapX*32;
         this.ybound = mapY*32;
     }
+
+    setMoveUpTrue()
+    {
+        this.#movingUp = true;
+    }
+    setMoveUpFalse()
+    {
+        this.#movingUp = false;
+    }
+
+    setMoveRightFalse()
+    {
+        this.#movingRight = false;
+    }
+    setMoveRightTrue()
+    {
+        this.#movingRight = true;
+    }
+
+    setMoveLeftFalse()
+    {
+        this.#movingLeft = false;
+    }
+    setMoveLeftTrue()
+    {
+        this.#movingLeft = true;
+    }
+
+    setMoveDownTrue()
+    {
+        this.#movingDown = true;
+    }
+    setMoveDownFalse()
+    {
+        this.#movingDown = false;
+    }
+
+    isMovingUp()
+    {
+        return this.#movingUp;
+    }
+
+    isMovingLeft()
+    {
+        return this.#movingLeft;
+    }
+
+    isMovingRight()
+    {
+        return this.#movingRight;
+    }
+
+    isMovingDown()
+    {
+        return this.#movingDown;
+    }
+
 
     // Returns the entities current health
     getHealth()
@@ -55,6 +116,28 @@ export class Entity {
             this.#health = 0;
         }
     }
+
+    move(map) {
+        // Calculate the movement vector
+        let movementX = 0;
+        let movementY = 0;
+    
+        if (this.isMovingUp()) {
+          movementY -= this.#speed;
+        }
+        if (this.isMovingDown()) {
+          movementY += this.#speed;
+        }
+        if (this.isMovingLeft()) {
+          movementX -= this.#speed;
+        }
+        if (this.isMovingRight()) {
+          movementX += this.#speed;
+        }
+      
+        // Give the movement values to moveby to calculate player new position
+        this.moveBy(movementX,movementY,map);
+      }
 
     // move the entity
     moveBy(movementX, movementY,map)

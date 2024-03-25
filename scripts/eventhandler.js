@@ -21,19 +21,19 @@ export class EventHandler {
 
         switch (key) {
             case this.upKey:
-              player.movingUp = true;
+              player.setMoveUpTrue();
               break;
           
             case this.leftKey:
-              player.movingLeft = true;
+              player.setMoveLeftTrue();
               break;
           
             case this.rightKey:
-              player.movingRight = true;
+              player.setMoveRightTrue();
               break;
           
             case this.downKey:
-              player.movingDown = true;
+              player.setMoveDownTrue();
               break;
           
             case this.reloadkey:
@@ -66,22 +66,22 @@ export class EventHandler {
 
         if (key == this.upKey)
         {
-            player.movingUp = false;
+            player.setMoveUpFalse();
         }
 
         if (key == this.leftKey)
         {
-            player.movingLeft = false;
+            player.setMoveLeftFalse();
         }
 
         if (key == this.rightKey)
         {
-            player.movingRight = false;
+            player.setMoveRightFalse();
         }
 
         if (key == this.downKey)
         {
-            player.movingDown = false;
+            player.setMoveDownFalse();
         }
 
     }
