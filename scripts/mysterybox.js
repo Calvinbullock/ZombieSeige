@@ -2,6 +2,7 @@ import { Store } from "./store.js";
 import { Pistol } from "./pistol.js";
 import { Shotgun } from "./shotgun.js";
 import { Rifle } from "./rifle.js";
+import { Sniper } from "./sniper.js";
 
 
 export class MysteryBox extends Store {    
@@ -22,7 +23,7 @@ export class MysteryBox extends Store {
         {
             player.usePoints(costPoints)
 
-            let randomnum = Math.floor(Math.random() * 3) + 1;
+            let randomnum = Math.floor(Math.random() * 4) + 1;
 
             switch(randomnum)
             {
@@ -36,6 +37,9 @@ export class MysteryBox extends Store {
 
                 case 3:
                     player.equipWeapon(new Rifle)
+                    break;
+                case 4:
+                    player.equipWeapon(new Sniper)
                     break;
 
             }

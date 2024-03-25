@@ -2,7 +2,8 @@ export class Tile {
     canwalk;
     canShoot;
     sprite;
-    store
+    store;
+    invetory;
 
     constructor(canWalk = true, canShootThrough = true,sprite,store = false) {
         this.canWalk = canWalk;
@@ -34,5 +35,9 @@ export class Tile {
     isStore()
     {
         return this.store;
+    }
+    draw(x,y)
+    {
+
     }
 }
