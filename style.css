@@ -5,10 +5,20 @@
   --accent3: #08472d;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--background);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 main {
   text-align: center;
-  background: var(--accent2);
-  color: var(--accent2);
+  color: var(acce);
 }
 
 #home {
@@ -16,17 +26,6 @@ main {
   background-image: url("assets/poster.png");
   background-size: contain;
   background-position: center;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: var(--background-color);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
 #bounds {
@@ -37,6 +36,10 @@ body {
 h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
+}
+
+#game-over {
+  color: var(--accent1);
 }
 
 p {
