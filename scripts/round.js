@@ -3,7 +3,7 @@ import { Zombie } from "./zombie.js";
 
 export class Round 
 {
-  speedModifier = 1.1;
+  speedModifier = 1.05;
   countModifier = 1.1;
   damageModifier = 1.1;
   healthModifier = 1.1;
