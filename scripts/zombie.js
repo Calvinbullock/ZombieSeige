@@ -1,4 +1,5 @@
 import { Entity } from "./entity.js";
+import { astar, Node } from "./astar.js";
 
 export class Zombie extends Entity {
   #damage;
@@ -107,28 +108,80 @@ export class Zombie extends Entity {
 }
 
 
-  move(goal_x, goal_y,map) {
+  move(player,map) {
     // a simple form of movement as a placeholder
+
+    let graph = map.getPathFindingMap();
+
+    let zombTileX = this.getTileX(4);
+    let zombTileY = this.getTileY(5);
+
+    console.log( "zombie tiles " + zombTileX + " " + zombTileY)
+
+    let playerTileX = player.getTileX(4);
+    let playerTileY = player.getTileY(5);
+
+
+    const path = astar(zombTileX, zombTileY, playerTileX, playerTileY, graph);
+
+    console.log( "zombie tiles " + zombTileX + " " + zombTileY)
+    console.log(path)
+    console.log( "player tiles " + playerTileX + " " + playerTileY)
 
     let dx = 0;
     let dy = 0;
-    let diff_y = this.getY() - goal_y;
-    let diff_x = this.getX() - goal_x;
+
+    if (path && path.length > 1) {
+      const nextStep = path[1];
+
+      if ( nextStep.x > zombTileX)
+      {
+        dx = this.getSpeed()
+      } else if ( nextStep.x < zombTileX)
+      {
+        dx -= this.getSpeed()
+      }
+
+      if ( nextStep.y > zombTileY)
+      {
+        dy = this.getSpeed()
+      } else if ( nextStep.y < zombTileY)
+      {
+        dy -= this.getSpeed()
+      }
 
 
-    if (diff_x > 1) {
-      dx -= this.getSpeed();
-    } else if (diff_x < -1) {
-      dx += this.getSpeed();
+
+
     }
 
-    if (diff_y > 1) {
-      dy -= this.getSpeed();
-    } else if (diff_y < -1) {
-      dy += this.getSpeed();
+    else
+    {
+      dx = 0;
+      dy = 0;
+      let diff_y = this.getY() - player.getY();
+      let diff_x = this.getX() - player.getX();
+  
+  
+      if (diff_x > 1) {
+        dx -= this.getSpeed();
+      } else if (diff_x < -1) {
+        dx += this.getSpeed();
+      }
+  
+      if (diff_y > 1) {
+        dy -= this.getSpeed();
+      } else if (diff_y < -1) {
+        dy += this.getSpeed();
+      }
     }
 
+    console.log( "zombie position " + this.getX() + " " + this.getY())
+    console.log( "zombie tiles " + zombTileX + " " + zombTileY)
+    console.log( "move")
+    console.log("dxdy" + dx + " " + dy)
     this.moveBy(dx,dy,map);
+    console.log( "zombie tiles " + zombTileX + " " + zombTileY)
   }
 
   pathFinding() {}

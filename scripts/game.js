@@ -154,6 +154,11 @@ export class Game {
               {
                 this.#zombies[zombie.getTileX()][zombie.getTileY()].push(zombie);
               }
+              else
+              {
+                console.log("zombie gone")
+                console.log(zombie.getX() + " " + zombie.getY())
+              }
               
               
                   
@@ -285,7 +290,7 @@ export class Game {
     this.#zombies.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
           arrayY.forEach((zombie, z) => {
-            zombie.move(this.player.getX(), this.player.getY(),this.#map);
+            zombie.move(this.player,this.#map);
 
           });
       });
