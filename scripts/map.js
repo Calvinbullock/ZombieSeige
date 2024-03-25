@@ -139,8 +139,8 @@ export class Map {
   }
   drawTileUI(camera,player)
   {
-    let tileX = player.getTileX();
-    let tileY = player.getTileY();
+    let tileX = player.getTileX(5);
+    let tileY = player.getTileY(5);
 
     if (this.getIsShop(tileX,tileY))
     {

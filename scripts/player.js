@@ -102,7 +102,7 @@ export class Player extends Entity {
 
   interact(map)
   {
-    let tile = map.getMapArray()[this.getTileY()][this.getTileX()];
+    let tile = map.getMapArray()[this.getTileY(5)][this.getTileX(5)];
 
     if (tile.isStore)
     {
