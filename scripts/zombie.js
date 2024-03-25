@@ -128,53 +128,7 @@ export class Zombie extends Entity {
       dy += this.getSpeed();
     }
 
-    const diagonalFactor = 0.7;
-    if (dx !== 0 && dy !== 0) {
-      dx *=  diagonalFactor;
-      dy *=  diagonalFactor;
-    }
-   // Apply the normalized movement
-   
-   let x_offset = 4;
-   let Y_offset = 1;
-
-   if (dx < 0)
-   {
-     x_offset-=1;
-   }
-
-   if (dx > 0)
-   {
-     x_offset+=9;
-   }
-
-   if (dy < 0)
-   {
-     Y_offset+=2;
-   }
-
-   if (dy > 0)
-   {
-     Y_offset+=14;
-   }
-
-
-   let tilex = this.getTileX(x_offset);
-   let tiley = this.getTileY(Y_offset);
-
-
-
-   if (map.getWalkthrough(tilex,this.getTileY(5)))
-   {
-     this.moveBy(dx, 0);
-   }
-
-   if (map.getWalkthrough(this.getTileX(4),tiley))
-   {
-     this.moveBy(0, dy);
-   }
-
-    // this.moveBy(dx, dy);
+    this.moveBy(dx,dy,map);
   }
 
   pathFinding() {}

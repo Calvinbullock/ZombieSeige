@@ -57,20 +57,49 @@ export class Entity {
     }
 
     // move the entity
-    moveBy(x_movement, y_movement)
+    moveBy(movementX, movementY,map)
     {
-        if (this.#pos_x > 0 && x_movement < 0) {
-            this.#pos_x += x_movement;
+
+        
+        // Normalize the movement vector
+        const diagonalFactor = 0.7;
+        if (movementX !== 0 && movementY !== 0) 
+        {
+            movementX *= diagonalFactor;
+            movementY *= diagonalFactor;
         }
-        if (this.#pos_x < this.xbound && x_movement > 0) {
-            this.#pos_x += x_movement;
+        // determine offsets so entity collision is more accurate
+        let x_offset = 4;
+        let Y_offset = 1;
+
+        if (movementX < 0) {
+             x_offset -= 1;
         }
-        if (this.#pos_y > 0 && y_movement < 0) {
-            this.#pos_y += y_movement;
+
+        if (movementX > 0) {
+            x_offset += 9;
         }
-        if (this.#pos_y < this.ybound && y_movement > 0) {
-            this.#pos_y += y_movement;
+
+        if (movementY < 0) {
+            Y_offset += 2;
         }
+
+        if (movementY > 0) {
+            Y_offset += 14;
+        }
+
+        // find the tile to check if enity can move through it
+        let tilex = this.getTileX(x_offset);
+        let tiley = this.getTileY(Y_offset);
+
+        if (map.getWalkthrough(tilex, this.getTileY(5))) {
+            this.#pos_x += movementX;
+        }
+
+        if (map.getWalkthrough(this.getTileX(4), tiley)) {
+            this.#pos_y += movementY;
+        }
+
     }
 
     // Return entity speed

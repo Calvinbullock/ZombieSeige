@@ -188,48 +188,9 @@ export class Player extends Entity {
     if (this.movingRight) {
       movementX += this.#speed;
     }
-
-    // Normalize the movement vector
-
-    const diagonalFactor = 0.7; // Adjust this value as needed, lower values result in slower diagonal movement
-
-    if (movementX !== 0 && movementY !== 0) {
-      movementX *= diagonalFactor;
-      movementY *= diagonalFactor;
-    }
-
-    let x_offset = 4;
-    let Y_offset = 1;
-
-    if (movementX < 0) {
-      x_offset -= 1;
-    }
-
-    if (movementX > 0) {
-      x_offset += 9;
-    }
-
-    if (movementY < 0) {
-      Y_offset += 2;
-    }
-
-    if (movementY > 0) {
-      Y_offset += 14;
-    }
-
-    let tilex = this.getTileX(x_offset);
-    let tiley = this.getTileY(Y_offset);
-
-    if (map.getWalkthrough(tilex, this.getTileY(5))) {
-      this.moveBy(movementX, 0);
-    }
-
-    if (map.getWalkthrough(this.getTileX(4), tiley)) {
-      this.moveBy(0, movementY);
-    }
-
-    // // Apply the normalized movement
-    // this.moveBy(movementX, movementY);
+  
+    // Give the movement values to moveby to calculate player new position
+    this.moveBy(movementX,movementY,map);
   }
 
   // draws the player
