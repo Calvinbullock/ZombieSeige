@@ -48,8 +48,6 @@ export function astar(start_x, start_y, goal_x, goal_y, map) {
             return path;
         }
 
-        // Generate neighbors
-        // Generate neighbors including diagonals
         // Generate neighbors including diagonals
         const neighbors = [];
         for (let dx = -1; dx <= 1; dx++) {

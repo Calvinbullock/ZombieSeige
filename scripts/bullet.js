@@ -86,6 +86,8 @@ export class Bullet{
   {
     let ctx = camera.getCanvas();
     ctx.fillStyle = "#000000";
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.lineWidth = .3;
     ctx.beginPath();
 
     let x = camera.getObjectScreenPositionX(player.getX(),this.posX)
@@ -94,6 +96,7 @@ export class Bullet{
 
     ctx.arc(x,y, 1, 0, 2 * Math.PI);
     ctx.fill();
+    ctx.stroke(); // Draw the border
 
 
 

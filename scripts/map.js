@@ -1,5 +1,5 @@
 import { Grass } from "./grass.js";
-import { Edge } from "./edge.js";
+import { Pit } from "./pit.js";
 import { Wall } from "./wall.js";
 import { AmmoCrate } from "./ammocrate.js";
 import { HealthCrate } from "./healthcrate.js";
@@ -13,7 +13,7 @@ export class Map {
   #pixelWidth;
   #pixelHeight;
   #grass = new Grass();
-  #edge = new Edge();
+  #pit = new Pit();
   #bottom_fence = new Wall("./assets/fence_bottom.png");
   #bottom_left_fence = new Wall("./assets/fence_corner_bottom_left.png");
   #bottom_right_fence = new Wall("./assets/fence_corner_bottom_right.png");
@@ -61,7 +61,7 @@ export class Map {
                   this.#mapArray[y][x] = this.#grass;
                   break;
                 case '2':
-                  this.#mapArray[y][x] = this.#edge;
+                  this.#mapArray[y][x] = this.#pit;
                   break;
                 case '3':
                   this.#mapArray[y][x] = this.#bottom_fence;

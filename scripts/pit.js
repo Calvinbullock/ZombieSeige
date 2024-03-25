@@ -1,10 +1,10 @@
 import { Tile } from "./tile.js";
 
-export class Edge extends Tile {
+export class Pit extends Tile {
     #duration;
     
     constructor() {
-      super(false,false,"./assets/edge.png")
+      super(false,true,"./assets/edge.png")
 
     }
   }
