@@ -8,6 +8,7 @@ export class Zombie extends Entity {
   alive = true;
   cooldown = 10;
   wait=0;
+  #activeSprite;
 
   constructor(
     damage_in,
@@ -32,7 +33,7 @@ export class Zombie extends Entity {
       xbound_in,
       ybound_in
     );
-
+    this.#activeSprite = this.getSpriteLeft();
     this.#damage = damage_in;
   }
 
@@ -78,7 +79,12 @@ export class Zombie extends Entity {
 
     // Only draw if the zombie is visible on the canvas
     if (screenPositionX <= 256 && screenPositionY <= 128 && screenPositionX >= -16 && screenPositionY >= -16) {
-        ctx.drawImage(this.getSpriteLeft(), screenPositionX, screenPositionY);
+
+
+
+
+
+        ctx.drawImage(this.#activeSprite, screenPositionX, screenPositionY);
 
         // get zombie health
         let maxHealth = this.getMaxHealth();
@@ -133,10 +139,12 @@ export class Zombie extends Entity {
 
       if ( nextStep.x > zombTileX)
       {
+        this.#activeSprite = this.getSpriteRight();
         this.setMoveLeftFalse();
         this.setMoveRightTrue();
       } else if ( nextStep.x < zombTileX)
       {
+        this.#activeSprite = this.getSpriteLeft();
         this.setMoveRightFalse();
         this.setMoveLeftTrue();
       }
@@ -173,9 +181,11 @@ export class Zombie extends Entity {
   
   
       if (diff_x > 1) {
+        this.#activeSprite = this.getSpriteRight();
         this.setMoveLeftTrue();
         this.setMoveRightFalse();
       } else if (diff_x < -1) {
+        this.#activeSprite = this.getSpriteLeft();
         this.setMoveRightTrue();
         this.setMoveLeftFalse();
       }
