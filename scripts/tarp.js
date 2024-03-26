@@ -1,18 +1,17 @@
 import { Tile } from "./tile.js";
 
-export class Store extends Tile {    
+export class Tarp extends Tile {    
     cost;
     name;
+    inventory;
 
-
-    constructor(path,cost,name) 
+    constructor(path) 
     {
         
 
         super(true,true,path,true);
         // console.log(cost)
-        this.cost = cost;
-        this.name = name;
+        this.name = "tarp";
         // console.log(this.cost)
         
     }
@@ -29,7 +28,6 @@ export class Store extends Tile {
     {
         let ctx = camera.getCanvas();
         // Set the fill style to semi-transparent green
-        let cost = this.getCost();
         ctx.fillStyle = 'rgba(1, 1, 200, 0.5)'; // 0.5 alpha value for transparency
   
         // Draw a rectangle starting at (x, y) with width and height
@@ -38,23 +36,53 @@ export class Store extends Tile {
         var width = 110;
         var height = 50;
         ctx.fillRect(x, y, width, height);
-  
-        let name = this.getName();
-  
-        ctx.fillStyle = "black"; 
-        ctx.font = "13px serif";
-        let nametxt = "Buy: " +name;
-        ctx.fillText(nametxt, 141, 20);
-  
-        ctx.fillStyle = "black"; 
-        ctx.font = "13px serif";
-        let costtxt = "Cost: " + cost.toString();
-        ctx.fillText(costtxt, 141, 35);
+        let use;
+        if (this.inventory == null)
+        {
+            use = "drop";
+        }
+        else
+        {
+            use = "pickup";
+        }
+
   
         ctx.fillStyle = "black"; 
         ctx.font = "13px serif";
-        let tip = "Press F to buy";
+        use += " gun";
+        ctx.fillText(use, 141, 20);
+  
+        ctx.fillStyle = "black"; 
+        ctx.font = "13px serif";
+        let tip = "Press F to " + use;
         ctx.fillText(tip, 141, 50);
+    }
+
+    draw(x,y,camera)
+    {
+        let ctx = camera.getCanvas();
+        ctx.drawImage(this.sprite, x, y);
+
+        if (this.inventory != null)
+        {
+            this.inventory.drawImage
+            ctx.drawImage(this.inventory.getSpriteRight(), x+13,y+12)
+        }
+    }
+
+    purchase(player)
+    {
+      if (this.inventory == null)
+      {
+        this.inventory = player.activegun;
+        player.dropGun();
+
+      }else
+      {
+        player.equipWeapon(this.inventory);
+        this.inventory = null;
+      }
+
     }
   }
   

@@ -2,15 +2,14 @@ export class Tile {
     canwalk;
     canShoot;
     sprite;
-    store;
-    invetory;
+    interactable;
 
-    constructor(canWalk = true, canShootThrough = true,sprite,store = false) {
+    constructor(canWalk = true, canShootThrough = true,sprite,interactable = false) {
         this.canWalk = canWalk;
         this.canShoot= canShootThrough;
         this.sprite = new Image();
         this.sprite.src = sprite;
-        this.store = store;
+        this.interactable = interactable;
     }
 
     // Returns the image of the tile
@@ -32,12 +31,13 @@ export class Tile {
     }
 
     // Returns true if the tile is a store tile
-    isStore()
+    isInteractable()
     {
-        return this.store;
+        return this.interactable;
     }
-    draw(x,y)
+    draw(x,y,camera)
     {
-
+        let ctx = camera.getCanvas();
+        ctx.drawImage(this.sprite, x, y);
     }
 }

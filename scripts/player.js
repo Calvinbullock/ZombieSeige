@@ -67,6 +67,23 @@ export class Player extends Entity {
     this.activegun.reload();
   }
 
+  dropGun()
+  {
+    if (this.activegun == this.#gun1)
+    {
+      this.#gun1 = null;
+      this.activegun = this.#gun2;
+
+    } else if (this.activegun == this.#gun2)
+    {
+
+      this.#gun2 = null;
+      this.activegun = this.#gun1;
+    }
+
+
+  }
+
   // equips the given gun
   equipWeapon(gun)
   {
@@ -100,7 +117,7 @@ export class Player extends Entity {
   {
     let tile = map.getMapArray()[this.getTileY(5)][this.getTileX(5)];
 
-    if (tile.isStore)
+    if (tile.isInteractable())
     {
       tile.purchase(this)
     }

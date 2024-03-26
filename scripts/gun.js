@@ -72,6 +72,7 @@ export class Gun {
     return Math.floor(this.#posY / 32);
   }
 
+
   // --- methods ---
 
   // --getters--

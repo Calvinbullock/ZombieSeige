@@ -4,6 +4,7 @@ import { Wall } from "./wall.js";
 import { AmmoCrate } from "./ammocrate.js";
 import { HealthCrate } from "./healthcrate.js";
 import { MysteryBox } from "./mysterybox.js";
+import { Tarp } from "./tarp.js";
 
 export class Map {
   #path = "./assets/map.txt";
@@ -25,6 +26,7 @@ export class Map {
   #ammo_crate = new AmmoCrate();
   #health_crate = new HealthCrate();
   #mystery_crate = new MysteryBox();
+  #bottom_left_tarp = new Tarp("./assets/tarp/tarp_bottom_left.png");
 
   #pathfindingMap = [];
 
@@ -96,6 +98,9 @@ export class Map {
                 case 'm':
                   this.#mapArray[y][x] = this.#mystery_crate;
                   break;
+                case 't':
+                  this.#mapArray[y][x] = this.#bottom_left_tarp;
+                  break;
                 default:
                   // Handle other cases or unknown values
                   break;
@@ -141,42 +146,16 @@ export class Map {
   {
     let tileX = player.getTileX(5);
     let tileY = player.getTileY(5);
+    let tile = this.#mapArray[tileY][tileX];
 
-    if (this.getIsShop(tileX,tileY))
+    if (tile.isInteractable(tileX,tileY))
     {
-      let tile = this.#mapArray[tileY][tileX];
+      
+      tile.drawUI(camera)
 
       let cost = tile.getCost();
 
       // console.log(cost)
-
-      let ctx = camera.getCanvas();
-      // Set the fill style to semi-transparent green
-      ctx.fillStyle = 'rgba(1, 1, 200, 0.5)'; // 0.5 alpha value for transparency
-
-      // Draw a rectangle starting at (x, y) with width and height
-      var x = 140;
-      var y = 5;
-      var width = 110;
-      var height = 50;
-      ctx.fillRect(x, y, width, height);
-
-      let name = tile.getName();
-
-      ctx.fillStyle = "black"; 
-      ctx.font = "13px serif";
-      let nametxt = "Buy: " +name;
-      ctx.fillText(nametxt, 141, 20);
-
-      ctx.fillStyle = "black"; 
-      ctx.font = "13px serif";
-      let costtxt = "Cost: " + cost.toString();
-      ctx.fillText(costtxt, 141, 35);
-
-      ctx.fillStyle = "black"; 
-      ctx.font = "13px serif";
-      let tip = "Press F to buy";
-      ctx.fillText(tip, 141, 50);
     }
   }
 
@@ -242,7 +221,7 @@ export class Map {
 
         if (x_index < this.#width && y_index < this.#height) {
           let tile = this.#mapArray[y_index][x_index];
-          ctx.drawImage(tile.getSprite(), x_pos, y_pos);
+          tile.draw(x_pos,y_pos,camera);
         }
       }
     }
