@@ -4,14 +4,12 @@ export class Water extends Tile {
 
 
 
-    constructor(path) 
+    constructor() 
     {
         
 
-        super(true,true,path,true);
+        super(true,true,"./assets/water.png");
         // console.log(cost)
-        this.cost = cost;
-        this.name = name;
         // console.log(this.cost)
         
     }

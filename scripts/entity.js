@@ -155,7 +155,7 @@ export class Entity {
         let tileX = this.getTileX();
         let tileY = this.getTileY();
         
-        if (map.getIsWater(x,y))
+        if (map.getIsWater(tileX,tileY))
         {
             let marray = map.getMapArray();
             let waterfactor = marray[tileY][tileX].getSpeedModifier();

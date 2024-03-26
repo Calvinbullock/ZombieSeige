@@ -29,6 +29,8 @@ export class Map {
   #mystery_crate = new MysteryBox();
   #bottom_left_tarp = new Tarp("./assets/tarp/tarp_bottom_left.png");
 
+  #water = new Water();
+
   #pathfindingMap = [];
 
   constructor() {
@@ -101,6 +103,9 @@ export class Map {
                   break;
                 case 't':
                   this.#mapArray[y][x] = this.#bottom_left_tarp;
+                  break;
+                case 'w':
+                  this.#mapArray[y][x] = this.#water;
                   break;
                 default:
                   // Handle other cases or unknown values
