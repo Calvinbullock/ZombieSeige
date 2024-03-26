@@ -151,6 +151,19 @@ export class Entity {
             movementX *= diagonalFactor;
             movementY *= diagonalFactor;
         }
+
+        let tileX = this.getTileX();
+        let tileY = this.getTileY();
+        
+        if (map.getIsWater(x,y))
+        {
+            let marray = map.getMapArray();
+            let waterfactor = marray[tileY][tileX].getSpeedModifier();
+            movementX *= waterfactor;
+            movementY *= waterfactor;
+        }
+
+
         // determine offsets so entity collision is more accurate
         let x_offset = 4;
         let Y_offset = 1;

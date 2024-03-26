@@ -5,6 +5,7 @@ import { AmmoCrate } from "./ammocrate.js";
 import { HealthCrate } from "./healthcrate.js";
 import { MysteryBox } from "./mysterybox.js";
 import { Tarp } from "./tarp.js";
+import { Water } from "./water.js";
 
 export class Map {
   #path = "./assets/map.txt";
@@ -157,6 +158,11 @@ export class Map {
 
       // console.log(cost)
     }
+  }
+
+  getIsWater(x,y)
+  {
+    return this.#mapArray[y][x].isWater();
   }
 
   getPathFindingMap()

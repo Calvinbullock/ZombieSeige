@@ -40,4 +40,8 @@ export class Tile {
         let ctx = camera.getCanvas();
         ctx.drawImage(this.sprite, x, y);
     }
+    isWater()
+    {
+        return false;
+    }
 }
