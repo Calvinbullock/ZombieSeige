@@ -8,7 +8,7 @@ import { Tarp } from "./tarp.js";
 import { Water } from "./water.js";
 
 export class Map {
-  #path = "./assets/map.txt";
+  #path = "./assets/newmap.txt";
   #mapArray = [];
   #width;
   #height;
@@ -27,7 +27,11 @@ export class Map {
   #ammo_crate = new AmmoCrate();
   #health_crate = new HealthCrate();
   #mystery_crate = new MysteryBox();
+
   #bottom_left_tarp = new Tarp("./assets/tarp/tarp_bottom_left.png");
+  #bottom_right_tarp = new Tarp("./assets/tarp/tarp_bottom_right.png");
+  #top_left_tarp = new Tarp("./assets/tarp/tarp_top_left.png");
+  #top_right_tarp = new Tarp("./assets/tarp/tarp_top_right.png");
 
   #water = new Water();
 
@@ -103,6 +107,15 @@ export class Map {
                   break;
                 case 't':
                   this.#mapArray[y][x] = this.#bottom_left_tarp;
+                  break;
+                case 'y':
+                  this.#mapArray[y][x] = this.#bottom_right_tarp;
+                  break;
+                case 'g':
+                  this.#mapArray[y][x] = this.#top_left_tarp;
+                  break;
+                case 'l':
+                  this.#mapArray[y][x] = this.#top_right_tarp;
                   break;
                 case 'w':
                   this.#mapArray[y][x] = this.#water;
