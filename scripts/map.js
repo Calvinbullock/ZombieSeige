@@ -9,7 +9,7 @@ import { Water } from "./water.js";
 import { UpgradeBench } from "./upgradebench.js";
 
 export class Map {
-  #path = "./assets/newmap.txt";
+  #path = "./assets/testmap.txt";
   #mapArray = [];
   #width;
   #height;
@@ -36,6 +36,8 @@ export class Map {
 
   #water = new Water();
   #upgradeBench = new UpgradeBench();
+
+  #tempwall = new Wall("./assets/Wall.png");
 
   #pathfindingMap = [];
 
@@ -71,7 +73,7 @@ export class Map {
                 case '1':
                   this.#mapArray[y][x] = this.#grass;
                   break;
-                case '2':
+                case 'p':
                   this.#mapArray[y][x] = this.#pit;
                   break;
                 case '3':
@@ -124,6 +126,9 @@ export class Map {
                   break;
                 case 'u':
                   this.#mapArray[y][x] = this.#upgradeBench;
+                  break;
+                case '$':
+                  this.#mapArray[y][x] = this.#tempwall;
                   break;
                 default:
                   // Handle other cases or unknown values
