@@ -1,0 +1,47 @@
+:root {
+  --background: #1f1f1f;
+  --accent1: #ff4d4d;
+  --accent2: #ffffff;
+  --accent3: #08472d;
+}
+
+body {
+    background-color: var(--background); 
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    display:flex;
+    justify-content: center;
+}
+
+#control-table {
+    text-align: center;
+    display:flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    /* Add a light grey border around cells */
+    padding: 10px;
+    /* Add some padding within cells */
+}
+
+button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background-color: var(--accent1);
+  border: none;
+  color: var(--accent2);
+  cursor: pointer;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--accent3);
+  color: var(--background);
+}
+
