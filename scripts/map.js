@@ -9,7 +9,7 @@ import { Water } from "./water.js";
 import { UpgradeBench } from "./upgradebench.js";
 
 export class Map {
-  #path = "./assets/testmap.txt";
+  #path = "./assets/newmap.txt";
   #mapArray = [];
   #width;
   #height;
