@@ -21,6 +21,8 @@ export class Gun {
   #muzzle_dist_left;
   #muzzle_dist_right;
   #bullet_speed;
+  #cost = 5000
+  #upgrade = 0
 
   constructor(
     max_ammo_in,
@@ -70,6 +72,15 @@ export class Gun {
   // Return the Gun Y tile
   getTileY() {
     return Math.floor(this.#posY / 32);
+  }
+  getCost()
+  {
+    return this.#cost;
+  }
+  upgrade()
+  {
+    this.#max_ammo *=2;
+    this.#damage *=2;
   }
 
 

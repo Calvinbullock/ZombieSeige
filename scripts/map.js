@@ -6,6 +6,7 @@ import { HealthCrate } from "./healthcrate.js";
 import { MysteryBox } from "./mysterybox.js";
 import { Tarp } from "./tarp.js";
 import { Water } from "./water.js";
+import { UpgradeBench } from "./upgradebench.js";
 
 export class Map {
   #path = "./assets/newmap.txt";
@@ -34,6 +35,7 @@ export class Map {
   #top_right_tarp = new Tarp("./assets/tarp/tarp_top_right.png");
 
   #water = new Water();
+  #upgradeBench = new UpgradeBench();
 
   #pathfindingMap = [];
 
@@ -119,6 +121,9 @@ export class Map {
                   break;
                 case 'w':
                   this.#mapArray[y][x] = this.#water;
+                  break;
+                case 'u':
+                  this.#mapArray[y][x] = this.#upgradeBench;
                   break;
                 default:
                   // Handle other cases or unknown values
