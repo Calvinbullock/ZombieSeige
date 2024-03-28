@@ -3,7 +3,7 @@ import { Store } from "./store.js";
 export class UpgradeBench extends Store {    
 
     constructor() {
-      super("./assets/workbench.png",5000,"Upgrade ")
+      super("./assets/floors/workbench.png",5000,"Upgrade ")
 
     }
     purchase(player)

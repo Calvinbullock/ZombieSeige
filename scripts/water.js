@@ -8,7 +8,7 @@ export class Water extends Tile {
     {
         
 
-        super(true,true,"./assets/water.png");
+        super(true,true,"./assets/floors/water.png");
         // console.log(cost)
         // console.log(this.cost)
         

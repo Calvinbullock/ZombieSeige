@@ -3,7 +3,7 @@ import { Store } from "./store.js";
 export class HealthCrate extends Store {    
 
     constructor() {
-      super("./assets/healthcrate.png",500,"Healthcrate")
+      super("./assets/floors/healthcrate.png",500,"Healthcrate")
 
     }
     purchase(player)

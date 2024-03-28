@@ -8,7 +8,7 @@ import { Sniper } from "./sniper.js";
 export class MysteryBox extends Store {    
 
     constructor() {
-      super("./assets/mystery_crate.png",1000,"Mystery Gun")
+      super("./assets/floors/mystery_crate.png",1000,"Mystery Gun")
 
     }
     purchase(player)
