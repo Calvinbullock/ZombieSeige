@@ -8,12 +8,15 @@
     <script src="scripts/mapeditor.js" type="module" defer></script>
 </head>
 <body>
-    
+    <h1>Move around with arrow keys</h1>
     <canvas id="canvas" width="1000px" height="500px"></canvas>
     
    
     <button id="saveMapBtn">Save Map</button>
    
+    <div class="container">
+    
+    <div class="table-container">
     <h2>Walls</h2>
     <table border="1">
         <tr>
@@ -173,7 +176,8 @@
         </tr>
 
     </table>
-
+    </div>
+    <div class="table-container">
     <h2>Floors</h2>
     <table border="1">
         <tr>
@@ -192,7 +196,8 @@
             <td><img src="./assets/floors/woodfloor.png" alt="Image 2"></td>
         </tr>
     </table>
-    
+    </div>
+    <div class="table-container">
     <h2>Special Tiles</h2>
     <table border="1">
         <tr>
@@ -246,7 +251,7 @@
             <td><img src="./assets/tarp/tarp_bottom_right.png" alt="Image 2"></td>
         </tr>
         <tr>
-            <th>Top Left Tarp</th>
+            <th>Bottom Left Tarp</th>
             <th>2</th>
             <td><img src="./assets/tarp/tarp_bottom_left.png" alt="Image 2"></td>
         </tr>
@@ -267,6 +272,8 @@
         </tr>
         
     </table>
+    </div>
+    </div>
     
 
 </body>

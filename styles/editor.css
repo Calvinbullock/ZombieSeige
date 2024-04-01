@@ -17,3 +17,15 @@ img {
     width: 100%;
     height: auto;
 }
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.table-container {
+    flex: 1;
+    max-width: calc(33% - 20px); /* Adjust the percentage based on your layout */
+}
