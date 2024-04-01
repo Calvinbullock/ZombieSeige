@@ -33,6 +33,12 @@ map.loadMap().then(() => {
   document.querySelector('#myCanvas').addEventListener("mousemove", (event) => {
     eventHandler.setMousePosition(event, gameInstance.player);
   });
+
+  document.querySelector("#myCanvas").addEventListener('contextmenu', function (event) {
+    // Prevent the default right-click menu from appearing
+    event.preventDefault();
+
+});
 });
 
 
