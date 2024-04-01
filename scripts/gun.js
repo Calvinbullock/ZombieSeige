@@ -74,11 +74,11 @@ export class Gun {
     return Math.floor(this.#posY / 32);
   }
   getCost()
-  {
+{
     return this.#cost;
   }
   upgrade()
-  {
+{
     this.#max_ammo *=2;
     this.#damage *=2;
   }
@@ -117,13 +117,13 @@ export class Gun {
     return this.#sprite_right;
   }
 
-    getAmmo() {
-        return this.#current_ammo;
-    }
-    getMaxAmmo()
-    {
-        return this.#max_ammo;
-    }
+  getAmmo() {
+    return this.#current_ammo;
+  }
+  getMaxAmmo()
+{
+    return this.#max_ammo;
+  }
 
   // --setters--
   removeAmmo(casing) {
@@ -162,7 +162,7 @@ export class Gun {
       for (let i = 0; i < this.#bullet_count; i++) {
         let angle_offset =
           Math.random() * (this.#bullet_accuracy + this.#bullet_accuracy) -
-          this.#bullet_accuracy;
+            this.#bullet_accuracy;
 
         let bullet;
         let directionX = player.whereIsMouseX(
@@ -191,7 +191,7 @@ export class Gun {
               this.#bullet_speed
             );
             break;
- 
+
           default:
             // bullet = new Bullet(10, this.#posX + 4, this.#posY + 5, angle+angle_offset,this.#damage,this.#bulletSpeed);
             console.log("gun jammed");
@@ -258,26 +258,26 @@ export class Gun {
         break;
     }
 
-          ctx.font = "10px serif";
-          let ammoCount = this.#loaded_ammo.toString() + "  " + this.#current_ammo.toString();
-          
-          // Draw black border for name text
-          ctx.strokeStyle = "black";
-          ctx.lineWidth = 2; // Adjust the border thickness as needed
-          ctx.strokeText(this.#name, 220, 110);
-          
-          // Draw white fill for name text
-          ctx.fillStyle = "white";
-          ctx.fillText(this.#name, 220, 110);
-          
-          // Draw black border for ammo count text
-          ctx.strokeStyle = "black";
-          ctx.lineWidth = 2; // Adjust the border thickness as needed
-          ctx.strokeText(ammoCount, 220, 120);
-          
-          // Draw white fill for ammo count text
-          ctx.fillStyle = "white";
-          ctx.fillText(ammoCount, 220, 120);
+    ctx.font = "10px serif";
+    let ammoCount = this.#loaded_ammo.toString() + "  " + this.#current_ammo.toString();
 
-    }
+    // Draw black border for name text
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2; // Adjust the border thickness as needed
+    ctx.strokeText(this.#name, 220, 110);
+
+    // Draw white fill for name text
+    ctx.fillStyle = "white";
+    ctx.fillText(this.#name, 220, 110);
+
+    // Draw black border for ammo count text
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2; // Adjust the border thickness as needed
+    ctx.strokeText(ammoCount, 220, 120);
+
+    // Draw white fill for ammo count text
+    ctx.fillStyle = "white";
+    ctx.fillText(ammoCount, 220, 120);
+
+  }
 }

@@ -57,16 +57,16 @@ export function astar(start_x, start_y, goal_x, goal_y, map) {
                 const ny = current.y + dy;
                 if (
                     dx !== 0 && dy !== 0 && // Check if it's a diagonal move
-                    (map[nx][current.y] !== 0 || map[current.x][ny] !== 0) // Check if there are obstacles at the adjacent cardinal positions
+                        (map[nx][current.y] !== 0 || map[current.x][ny] !== 0) // Check if there are obstacles at the adjacent cardinal positions
                 ) {
                     continue; // Skip diagonal moves through corners
                 }
                 if (
                     nx >= 0 &&
-                    nx < map.length &&
-                    ny >= 0 &&
-                    ny < map[0].length &&
-                    map[nx][ny] === 0 // Passable terrain
+                        nx < map.length &&
+                        ny >= 0 &&
+                        ny < map[0].length &&
+                        map[nx][ny] === 0 // Passable terrain
                 ) {
                     neighbors.push(new Node(nx, ny, false)); // Passable node
                 }

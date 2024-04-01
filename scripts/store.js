@@ -4,17 +4,13 @@ export class Store extends Tile {
     cost;
     name;
 
-
     constructor(path,cost,name) 
     {
-        
-
         super(true,true,path,true);
         // console.log(cost)
         this.cost = cost;
         this.name = name;
         // console.log(this.cost)
-        
     }
     getCost()
     {
@@ -56,5 +52,5 @@ export class Store extends Tile {
         let tip = "Press F to buy";
         ctx.fillText(tip, 141, 50);
     }
-  }
+}
   

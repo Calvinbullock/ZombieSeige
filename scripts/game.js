@@ -29,7 +29,7 @@ export class Game {
         img_path_left = "./assets/player/player_fem_left.png";
         img_path_right = "./assets/player/player_fem_right.png";
         break;
-        
+
       case "m":
         img_path_left = "./assets/player/player_male_left.png";
         img_path_right = "./assets/player/player_male_right.png";
@@ -40,7 +40,7 @@ export class Game {
 
     this.#map = map;
     console.log("map loaded 2")
-   
+
 
     this.#mapWidth = this.#map.getWidth();
     this.#mapHeight = this.#map.getHeight();
@@ -71,15 +71,15 @@ export class Game {
     console.log("round loaded")
 
   }
-  
+
   // Return the camera
   getCamera()
-  {
+{
     return this.#camera;
   }
-  
+
   checkIfPlayerDead() 
-  {
+{
     let hp = this.player.getHealth();
     if (hp <= 0) {
       this.#round.drawGameOver(this.#camera) // BUG currently can't see this as it pops up right as page changes...
@@ -92,100 +92,100 @@ export class Game {
 
     // When round is ended spawn new round
     if (this.#round.endRound())
-    {
+  {
       this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight, this.#map);
     }
     // let zombies find their path, counter so it doesnt update path ever frame for performance reasons
     // counter dcounts to 10 so every 10 frames it updates path, which is 12 times a second
     if (this.#counter == 0)
-    {
+  {
       this.#zombiePathFinding()
     }
     this.#counter++;
     if (this.#counter == 10)
-    {
+  {
       this.#counter = 0;
     }
-  
+
 
     // Move all the entities (zombies and bullets)
     this.#moveEntities();
 
     // Check all collisions between player, zombies and bullets
     this.#checkColisions();
-    
+
     // Check if player dead
     //  BUG takes a sec after player is dead to change screens. 
     this.checkIfPlayerDead();
-    
+
     // Manages the 3d bullet array, moves bullets that have moved tiles into new spot in the grid and removes the bullets that are destroyed
     this.bullets.forEach((arrayX, x) => 
     {
-      arrayX.forEach((arrayY, y) => 
-      {
-          arrayY.forEach((bullet, z) => 
-          {
-            // Check conditions to remove bullet (for example, if it's out of bounds)
-            if (bullet.getTileX() != x || bullet.getTileY() != y) 
+        arrayX.forEach((arrayY, y) => 
+        {
+            arrayY.forEach((bullet, z) => 
             {
-              // Remove the bullet from the array
-              this.bullets[x][y].splice(z, 1);
-              if (bullet.getTileX() < this.#mapWidth && bullet.getTileX() >= 0 && bullet.getTileY() < this.#mapHeight && bullet.getTileY() >= 0 && this.#map.getShootthrough(bullet.getTileX(),bullet.getTileY()))
+                // Check conditions to remove bullet (for example, if it's out of bounds)
+                if (bullet.getTileX() != x || bullet.getTileY() != y) 
               {
-                this.bullets[bullet.getTileX()][bullet.getTileY()].push(bullet);
-              }
-                  
-            }
-            if (bullet.getStatus() == false)
-            {
-              this.bullets[x][y].splice(z, 1);
-            }
+                  // Remove the bullet from the array
+                  this.bullets[x][y].splice(z, 1);
+                  if (bullet.getTileX() < this.#mapWidth && bullet.getTileX() >= 0 && bullet.getTileY() < this.#mapHeight && bullet.getTileY() >= 0 && this.#map.getShootthrough(bullet.getTileX(),bullet.getTileY()))
+                {
+                    this.bullets[bullet.getTileX()][bullet.getTileY()].push(bullet);
+                  }
+
+                }
+                if (bullet.getStatus() == false)
+              {
+                  this.bullets[x][y].splice(z, 1);
+                }
+              });
           });
       });
-    });
     // Manages the 3d zombie array, moves zombies that have moved tiles into new spot in the grid and removes the zombies that are destroyed
     this.#zombies.forEach((arrayX, x) => 
     {
-      arrayX.forEach((arrayY, y) => 
-      {
-          arrayY.forEach((zombie, z) => 
-          {
-            if (zombie.getStatus() == false)
+        arrayX.forEach((arrayY, y) => 
+        {
+            arrayY.forEach((zombie, z) => 
             {
-              this.#zombies[x][y].splice(z, 1);
-              this.#round.killZombie();
-              this.player.addpoints(100);
-            }
-            else
-            {
-            // Check conditions to remove bullet (for example, if it's out of bounds)
-            if (zombie.getTileX() != x || zombie.getTileY() != y) 
-            {
-              // Remove the bullet from the array
-              this.#zombies[x][y].splice(z, 1);
-              if (zombie.getTileX() < this.#mapWidth && zombie.getTileX() >= 0 && zombie.getTileY() < this.#mapHeight && zombie.getTileY() >= 0)
+                if (zombie.getStatus() == false)
               {
-                this.#zombies[zombie.getTileX()][zombie.getTileY()].push(zombie);
-              }
-              else
+                  this.#zombies[x][y].splice(z, 1);
+                  this.#round.killZombie();
+                  this.player.addpoints(100);
+                }
+                else
               {
-                console.log("zombie gone")
-                console.log(zombie.getX() + " " + zombie.getY())
-              }
-              
-              
-                  
-            }
-            }
+                  // Check conditions to remove bullet (for example, if it's out of bounds)
+                  if (zombie.getTileX() != x || zombie.getTileY() != y) 
+                {
+                    // Remove the bullet from the array
+                    this.#zombies[x][y].splice(z, 1);
+                    if (zombie.getTileX() < this.#mapWidth && zombie.getTileX() >= 0 && zombie.getTileY() < this.#mapHeight && zombie.getTileY() >= 0)
+                  {
+                      this.#zombies[zombie.getTileX()][zombie.getTileY()].push(zombie);
+                    }
+                    else
+                  {
+                      console.log("zombie gone")
+                      console.log(zombie.getX() + " " + zombie.getY())
+                    }
 
 
+
+                  }
+                }
+
+
+              });
           });
       });
-    });
 
     // Updates the gun position of the player
     if (this.player.activegun != null)
-    {
+  {
       this.player.activegun.updatePos(this.player,this.#camera);
     }
 
@@ -195,102 +195,102 @@ export class Game {
 
   // Handles the collision detection
   #checkColisions() 
-  {
+{
     // Check for zombie and bullet collisions
     this.#zombies.forEach((arrayX, x) => 
     {
-      arrayX.forEach((arrayY, y) => 
-      {
-          arrayY.forEach((zombie, z) => 
-          {
-            for(let i = -1;i<2;i++)
+        arrayX.forEach((arrayY, y) => 
+        {
+            arrayY.forEach((zombie, z) => 
             {
-              for(let j = -1;j<2;j++)
+                for(let i = -1;i<2;i++)
               {
-
-                let BulletXIndex = x + i;
-                let BulletYIndex = y + j;
-
-                if (BulletXIndex < this.#mapWidth && BulletXIndex >= 0 && BulletYIndex < this.#mapHeight && BulletYIndex >= 0)
+                  for(let j = -1;j<2;j++)
                 {
-                  this.bullets[BulletXIndex][BulletYIndex].forEach((bullet,b) =>
+
+                    let BulletXIndex = x + i;
+                    let BulletYIndex = y + j;
+
+                    if (BulletXIndex < this.#mapWidth && BulletXIndex >= 0 && BulletYIndex < this.#mapHeight && BulletYIndex >= 0)
                   {
+                      this.bullets[BulletXIndex][BulletYIndex].forEach((bullet,b) =>
+                      {
 
-                    let bulletX = bullet.getX();
-                    let bulletY = bullet.getY();
-                    let bulletR = bullet.getRadius();
-                    
+                          let bulletX = bullet.getX();
+                          let bulletY = bullet.getY();
+                          let bulletR = bullet.getRadius();
 
-                    // add 7 and 8 too offset the center of the hitbox
-                    let zombieX = zombie.getX()+7;
-                    let zombieY = zombie.getY()+8;
-                    let zombieR = zombie.getRadius();
 
-                    
-                    let distance = Math.sqrt((bulletX-zombieX)*(bulletX-zombieX) + (bulletY-zombieY)*(bulletY-zombieY));
+                          // add 7 and 8 too offset the center of the hitbox
+                          let zombieX = zombie.getX()+7;
+                          let zombieY = zombie.getY()+8;
+                          let zombieR = zombie.getRadius();
 
-                    
 
-                    if (distance < (bulletR+zombieR))
-                    {
-                      
-                      zombie.damage(bullet.getDamage());
-                      bullet.kill();
+                          let distance = Math.sqrt((bulletX-zombieX)*(bulletX-zombieX) + (bulletY-zombieY)*(bulletY-zombieY));
+
+
+
+                          if (distance < (bulletR+zombieR))
+                        {
+
+                            zombie.damage(bullet.getDamage());
+                            bullet.kill();
+                          }
+
+
+
+                        });
                     }
 
 
+                  }
 
-                  });
                 }
 
-                
-              }
 
-            }
-
-
+              });
           });
       });
-    });
 
     let playerXIndex = this.player.getTileX();
     let playerYIndex = this.player.getTileY();
 
     // Check for zombie and player collisions
     for(let i = -1;i<2;i++)
-    {
+  {
       for(let j = -1; j<2;j++)
-      {
+    {
         let zombTileX = playerXIndex+i;
         let zombTileY = playerYIndex + j;
 
         if (0 <= zombTileX && zombTileX < this.#mapWidth && 0 <= zombTileY && zombTileY < this.#mapHeight )
-        {
+      {
           this.#zombies[zombTileX][zombTileY].forEach((zombie) =>
           {
 
-            let playerX = this.player.getX()+7;
-            let playerY = this.player.getY()+8;
-            let playerR = this.player.getRadius();
-            
+              let playerX = this.player.getX()+7;
+              let playerY = this.player.getY()+8;
+              let playerR = this.player.getRadius();
 
-            // add 7 and 8 too offset the center of the hitbox
-            let zombieX = zombie.getX()+7;
-            let zombieY = zombie.getY()+8;
-            let zombieR = zombie.getRadius();
 
-            
-            let distance = Math.sqrt((playerX-zombieX)*(playerX-zombieX) + (playerY-zombieY)*(playerY-zombieY));
+              // add 7 and 8 too offset the center of the hitbox
+              let zombieX = zombie.getX()+7;
+              let zombieY = zombie.getY()+8;
+              let zombieR = zombie.getRadius();
 
-            
 
-            if (distance < (playerR+zombieR))
+              let distance = Math.sqrt((playerX-zombieX)*(playerX-zombieX) + (playerY-zombieY)*(playerY-zombieY));
+
+
+
+              if (distance < (playerR+zombieR))
             {
-              
-              this.player.damage(zombie.getDamage())
-            }
 
-          })
+                this.player.damage(zombie.getDamage())
+              }
+
+            })
         }
       }
     }
@@ -305,20 +305,20 @@ export class Game {
     // Moves the zombies
     this.#zombies.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
-          arrayY.forEach((zombie, z) => {
-            zombie.move(this.#map);
+        arrayY.forEach((zombie, z) => {
+          zombie.move(this.#map);
 
-          });
+        });
       });
     });
 
     // Moves the bullets
     this.bullets.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
-          arrayY.forEach((bullet, z) => {
-            bullet.move();
+        arrayY.forEach((bullet, z) => {
+          bullet.move();
 
-          });
+        });
       });
     });
   }
@@ -335,20 +335,20 @@ export class Game {
     //draw bullets
     this.bullets.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
-          arrayY.forEach((bullet, z) => {
-            bullet.draw(this.#camera, this.player);
+        arrayY.forEach((bullet, z) => {
+          bullet.draw(this.#camera, this.player);
 
-          });
+        });
       });
     });
 
     //draw all zombies by looping through each one in the 3d array.
     this.#zombies.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
-          arrayY.forEach((zombie, z) => {
-            zombie.draw(this.#camera,this.player);
+        arrayY.forEach((zombie, z) => {
+          zombie.draw(this.#camera,this.player);
 
-          });
+        });
       });
     });
 
@@ -357,7 +357,7 @@ export class Game {
 
     //draw gun
     if (this.player.activegun != null)
-    {
+  {
       this.player.activegun.draw(this.player,this.#camera)
     }
 
@@ -373,13 +373,13 @@ export class Game {
 
   // Zombie pathfinding
   #zombiePathFinding()
-  {
+{
     // Moves the zombies
     this.#zombies.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
-          arrayY.forEach((zombie, z) => {
-            zombie.pathfind(this.player,this.#map);
-          });
+        arrayY.forEach((zombie, z) => {
+          zombie.pathfind(this.player,this.#map);
+        });
       });
     });
   }

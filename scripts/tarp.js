@@ -7,13 +7,10 @@ export class Tarp extends Tile {
 
     constructor(path) 
     {
-        
-
         super(true,true,path,true);
         // console.log(cost)
         this.name = "tarp";
         // console.log(this.cost)
-        
     }
     getCost()
     {
@@ -46,7 +43,6 @@ export class Tarp extends Tile {
             use = "pickup";
         }
 
-  
         ctx.fillStyle = "black"; 
         ctx.font = "13px serif";
         use += " gun";
@@ -84,5 +80,5 @@ export class Tarp extends Tile {
       }
 
     }
-  }
+}
   

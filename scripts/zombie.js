@@ -53,9 +53,6 @@ export class Zombie extends Entity {
 
     return 0;
     
-      
-
-    
   }
   getStatus()
   {
@@ -79,10 +76,6 @@ export class Zombie extends Entity {
 
     // Only draw if the zombie is visible on the canvas
     if (screenPositionX <= 256 && screenPositionY <= 128 && screenPositionX >= -16 && screenPositionY >= -16) {
-
-
-
-
 
         ctx.drawImage(this.#activeSprite, screenPositionX, screenPositionY);
 
@@ -113,7 +106,6 @@ export class Zombie extends Entity {
     }
 }
 
-
   pathfind(player,map) {
     // a simple form of movement as a placeholder
 
@@ -126,7 +118,6 @@ export class Zombie extends Entity {
 
     let playerTileX = player.getTileX(4);
     let playerTileY = player.getTileY(5);
-
 
     const path = astar(zombTileX, zombTileY, playerTileX, playerTileY, graph);
 
@@ -164,10 +155,6 @@ export class Zombie extends Entity {
         this.setMoveUpFalse();
         this.setMoveDownFalse();
       }
-
-
-
-
     }
 
     else

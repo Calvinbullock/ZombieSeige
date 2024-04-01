@@ -62,68 +62,68 @@ export class Camera
 
   // gets the X position that the left column of tiles start drawing on.
   getMapScreenPositionX(playerX)
+{
+    if (playerX < this.#halfScreenWidth)
   {
-        if (playerX < this.#halfScreenWidth)
-        {
-            return 0.0;
-        }
-        if (playerX > this.#rightSide)
-        {
-            return 0.0;
-        }
-        return -1.0 * (playerX % 32.0);
+      return 0.0;
+    }
+    if (playerX > this.#rightSide)
+  {
+      return 0.0;
+    }
+    return -1.0 * (playerX % 32.0);
   }
-  
+
   // gets the Y position that the top row of tiles start drawing on.
   getMapScreenPositionY(playerY)
-  {
+{
     if (playerY < this.#halfScreenHeight)
-    {
-        return 0.0;
+  {
+      return 0.0;
     }
     if (playerY > this.#bottomSide)
-    {
-        return 0.0;
+  {
+      return 0.0;
     }
     return -1.0 * (playerY % 32.0);
   }
 
   // Returns the left X index for drawing the map
   getMapXIndex(playerX)
+{
+    if (playerX < this.#halfScreenWidth)
   {
-      if (playerX < this.#halfScreenWidth)
-      {
-          return 0;
-      }
-      let x = Math.floor(playerX/32-4);
-      if (x > this.#tileWidth-8)
-      {
-          x = this.#tileWidth-8;
-      }
-      return x;
-      
+      return 0;
+    }
+    let x = Math.floor(playerX/32-4);
+    if (x > this.#tileWidth-8)
+  {
+      x = this.#tileWidth-8;
+    }
+    return x;
+
   }
   // Returns the top Y index for drawing the map
   getMapYIndex(playerY)
+{
+    if (playerY < this.#halfScreenHeight)
   {
-      if (playerY < this.#halfScreenHeight)
-      {
-          return 0;
-      }
+      return 0;
+    }
 
-      let y = Math.floor(playerY/32-2);
-      
-      if (y > this.#tileHeight-4)
-      {
-        y = this.#tileHeight-4;
-      }
-      return y;
-      
+    let y = Math.floor(playerY/32-2);
+
+    if (y > this.#tileHeight-4)
+  {
+      y = this.#tileHeight-4;
+    }
+    return y;
+
   }
 
   // Gets the screen X position for an item should work for both bullets and zombies.
   getObjectScreenPositionX(playerX,objectX)
-  {
+{
 
 
     let playerScreenX = this.getPlayerScreenPositionX(playerX);
@@ -137,7 +137,7 @@ export class Camera
 
   // Gets the screen Y position for an item should work for both bullets and zombies.
   getObjectScreenPositionY(playerY,objectY)
-  {
+{
     let playerScreenY = this.getPlayerScreenPositionY(playerY);
 
     let entityScreenY = playerScreenY - (playerY - objectY);
@@ -148,15 +148,15 @@ export class Camera
 
   // returns the canvas so it can be drawn on
   getCanvas()
-  {
+{
     return this.canvas;
   }
 
   // clears the screen for the next frame
   clearScreen()
-  {
+{
     this.canvas.clearRect(0, 0, 256, 128);
   }
 
 }
-  
+

@@ -4,23 +4,19 @@ export class Water extends Tile {
 
 
 
-    constructor() 
-    {
-        
-
+    constructor() {
         super(true,true,"./assets/floors/water.png");
         // console.log(cost)
         // console.log(this.cost)
-        
     }
-    isWater()
-    {
+
+    isWater() {
         return true;
     }
-    getSpeedModifier()
-    {
+
+    getSpeedModifier() {
         return .5;
     }
 
-  }
-  
+}
+

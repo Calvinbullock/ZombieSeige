@@ -4,15 +4,12 @@ export class UpgradeBench extends Store {
 
     constructor() {
       super("./assets/floors/workbench.png",5000,"Upgrade ")
-
     }
     purchase(player)
     {
         let playerPoints = player.getPoints();
         let gun = player.getActiveGun();
         let costPoints = gun.getCost();
-
-
 
         if (playerPoints >= costPoints)
         {
@@ -52,5 +49,5 @@ export class UpgradeBench extends Store {
         let tip = "Press F to buy";
         ctx.fillText(tip, 141, 50);
     }
-  }
+}
   

@@ -1,5 +1,4 @@
 export class Entity {
-
     #pos_x;
     #pos_y;
     #speed;
@@ -31,88 +30,88 @@ export class Entity {
     }
 
     setMoveUpTrue()
-    {
+{
         this.#movingUp = true;
     }
     setMoveUpFalse()
-    {
+{
         this.#movingUp = false;
     }
 
     setMoveRightFalse()
-    {
+{
         this.#movingRight = false;
     }
     setMoveRightTrue()
-    {
+{
         this.#movingRight = true;
     }
 
     setMoveLeftFalse()
-    {
+{
         this.#movingLeft = false;
     }
     setMoveLeftTrue()
-    {
+{
         this.#movingLeft = true;
     }
 
     setMoveDownTrue()
-    {
+{
         this.#movingDown = true;
     }
     setMoveDownFalse()
-    {
+{
         this.#movingDown = false;
     }
 
     isMovingUp()
-    {
+{
         return this.#movingUp;
     }
 
     isMovingLeft()
-    {
+{
         return this.#movingLeft;
     }
 
     isMovingRight()
-    {
+{
         return this.#movingRight;
     }
 
     isMovingDown()
-    {
+{
         return this.#movingDown;
     }
 
 
     // Returns the entities current health
     getHealth()
-    {
+{
         return this.#health;
     }
 
     // Returns the entities max health
     getMaxHealth()
-    {
+{
         return this.#max_health;
     }
 
-    
+
 
     // Returns the entities collision radius
     getRadius()
-    {
-      return this.radius;
+{
+        return this.radius;
     }
 
     // Damage the entity
     damage(bullet_damage)
-    {
+{
         this.#health -= bullet_damage;
         if (this.#health < 0)
-        {
+    {
             this.#health = 0;
         }
     }
@@ -121,42 +120,42 @@ export class Entity {
         // Calculate the movement vector
         let movementX = 0;
         let movementY = 0;
-    
+
         if (this.isMovingUp()) {
-          movementY -= this.#speed;
+            movementY -= this.#speed;
         }
         if (this.isMovingDown()) {
-          movementY += this.#speed;
+            movementY += this.#speed;
         }
         if (this.isMovingLeft()) {
-          movementX -= this.#speed;
+            movementX -= this.#speed;
         }
         if (this.isMovingRight()) {
-          movementX += this.#speed;
+            movementX += this.#speed;
         }
-      
+
         // Give the movement values to moveby to calculate player new position
         this.moveBy(movementX,movementY,map);
-      }
+    }
 
     // move the entity
     moveBy(movementX, movementY,map)
-    {
+{
 
-        
+
         // Normalize the movement vector
         const diagonalFactor = 0.7;
         if (movementX !== 0 && movementY !== 0) 
-        {
+    {
             movementX *= diagonalFactor;
             movementY *= diagonalFactor;
         }
 
         let tileX = this.getTileX();
         let tileY = this.getTileY();
-        
+
         if (map.getIsWater(tileX,tileY))
-        {
+    {
             let marray = map.getMapArray();
             let waterfactor = marray[tileY][tileX].getSpeedModifier();
             movementX *= waterfactor;
@@ -169,7 +168,7 @@ export class Entity {
         let Y_offset = 1;
 
         if (movementX < 0) {
-             x_offset -= 1;
+            x_offset -= 1;
         }
 
         if (movementX > 0) {
@@ -200,7 +199,7 @@ export class Entity {
 
     // Return entity speed
     getSpeed()
-    {
+{
         return this.#speed
     }
 
@@ -211,30 +210,30 @@ export class Entity {
 
     // return entity y position
     getY()
-    {
+{
         return this.#pos_y;
     }
 
     // return entity left sprite
     getSpriteLeft()
-    {
-      return this.#sprite_left;
+{
+        return this.#sprite_left;
     }
 
     // return entity right sprite
     getSpriteRight(){
-      return this.#sprite_right;
+        return this.#sprite_right;
     }
 
     // return entity x tile
     getTileX(x_offset = 0)
-    {
+{
         return Math.floor((this.#pos_x + x_offset)/32);
     }
 
     // return entity y tile
     getTileY(y_offset = 0)
-    {
+{
         return Math.floor((this.#pos_y+y_offset)/32);
     }
 
@@ -250,19 +249,19 @@ export class Entity {
 
         ctx.drawImage(this.#sprite_right, x, y);
         //draws the player's sprite dependant on the direction fed in
-    //     switch (direction) {
-    //         case "left":
-    //           ctx.drawImage(this.#sprite_left, x, y);
-    //           break;
+        //     switch (direction) {
+        //         case "left":
+        //           ctx.drawImage(this.#sprite_left, x, y);
+        //           break;
 
-    //         case "right":
-    //           ctx.drawImage(this.#sprite_right, x, y);
-    //           break;
+        //         case "right":
+        //           ctx.drawImage(this.#sprite_right, x, y);
+        //           break;
 
-    //         default:
-    //             ctx.drawImage(this.#sprite_left, x, y);
-    //             break;   
-    //     }  
+        //         default:
+        //             ctx.drawImage(this.#sprite_left, x, y);
+        //             break;   
+        //     }  
 
     }
 }
