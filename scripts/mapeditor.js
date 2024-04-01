@@ -115,13 +115,12 @@ class mapEditor {
 
                     console.log("Map Array:", this.#mapArray);
 
-<<<<<<< HEAD
                     this.#height = this.#mapArray.length;
                     this.#width = this.#height > 0 ? this.#mapArray[0].length : 0;
                     console.log("Map Array:", this.#mapArray);
                     console.log("Width:", this.#width);
                     console.log("Height:", this.#height);
-=======
+
          
 
   
@@ -290,7 +289,6 @@ class mapEditor {
 
 
           
->>>>>>> cefead3 (Add bridge)
 
 
 
@@ -494,14 +492,6 @@ class mapEditor {
         let key = event.key;
         if (event.repeat) return; // If the key is being held down and repeating, ignore the event
 
-<<<<<<< HEAD
-        switch (key) {
-            case 'ArrowUp':
-                if (this.#tileY != 0) {
-                    this.#tileY -= 1;
-                }
-                break;
-=======
     switch (key) {
         case 'ArrowUp':
             if (this.#tileY != 0) {
@@ -722,7 +712,6 @@ class mapEditor {
           this.#selectedTile = this.#bridgeBottom;
           this.#selectedChar = '/';
           break;   
->>>>>>> cefead3 (Add bridge)
 
             case 'ArrowLeft':
                 if (this.#tileX != 0) {
