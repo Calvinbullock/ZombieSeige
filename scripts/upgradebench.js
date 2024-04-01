@@ -16,6 +16,9 @@ export class UpgradeBench extends Store {
             player.usePoints(costPoints)
 
             gun.upgrade();
+            gun.refillAmmo();
+            gun.reload();
+            gun.refillAmmo();
         }
     }
     drawUI(camera)
