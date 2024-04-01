@@ -149,7 +149,15 @@ export class Gun {
   shoot(bullets, mouseX, mouseY, player, camera) {
     // Calculate the angle between the shooter and the mouse position
 
+
+
     if (this.#loaded_ammo > 0) {
+          // Create an Audio object with an M4A file
+    const audio = new Audio('./assets/GunShoot.mp3');
+    
+    // Play the sound
+    audio.play();
+
       this.#loaded_ammo -= 1;
       let x = camera.getObjectScreenPositionX(player.getX(), this.#posX + 4);
       let y = camera.getObjectScreenPositionY(player.getY(), this.#posY + 2);

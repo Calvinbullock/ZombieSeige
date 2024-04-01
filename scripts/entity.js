@@ -110,6 +110,11 @@ export class Entity {
     damage(bullet_damage)
 {
         this.#health -= bullet_damage;
+        const audio = new Audio('./assets/ZombieScream.mp3');
+
+        // Play the sound
+        audio.play();
+
         if (this.#health < 0)
     {
             this.#health = 0;
