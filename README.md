@@ -5,7 +5,6 @@
 {Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running and a walkthrough of the code. Focus should be on sharing what you learned about the language syntax.}
 
 - [github hosted  site link](https://calvinbullock.github.io/ZombieSeige/)
-- [Software Demo Video - **dead**]()
 
 # Development Environment
 Tools:
