@@ -59,6 +59,13 @@ class mapEditor
     #stoneWallRightT = new Wall("./assets/walls/stonewall_t_right.png");
     #stoneWallUpT = new Wall("./assets/walls/stonewall_t_up.png");
 
+    #cabinWallBottomLeft = new Wall("./assets/walls/cabinWall_corner_NE.png");
+    #cabinWallBottomRight = new Wall("./assets/walls/cabinWall_corner_NW.png");
+    #cabinWallTopLeft = new Wall("./assets/walls/cabinWall_corner_SE.png");
+    #cabinWallTopRight = new Wall("./assets/walls/cabinWall_corner_SW.png");
+    #cabinWallHorizontal = new Wall("./assets/walls/cabinWall_EW.png");
+    #cabinWallVertical = new Wall("./assets/walls/cabinWall_NS.png");
+
     // floors
     #grass = new Floor("./assets/floors/green_grass.png");
     #woodFloor = new Floor("./assets/floors/woodfloor.png");
@@ -250,7 +257,24 @@ class mapEditor
                 case '2':
                   this.#mapArray[y][x] = this.#bottom_left_tarp;
                   break;  
-                    
+                case 'x':
+                  this.#mapArray[y][x] = this.#cabinWallBottomLeft;
+                  break;
+                case 'c':
+                    this.#mapArray[y][x] = this.#cabinWallBottomRight;
+                    break;
+                case 'v':
+                    this.#mapArray[y][x] = this.#cabinWallTopLeft;
+                    break;
+                case 'b':
+                    this.#mapArray[y][x] = this.#cabinWallTopRight;
+                    break;
+                case 'n':
+                    this.#mapArray[y][x] = this.#cabinWallHorizontal;
+                    break;
+                case 'm':
+                    this.#mapArray[y][x] = this.#cabinWallVertical;
+                    break;   
                 default:
                     // Handle default case if needed
                     break;
@@ -505,6 +529,30 @@ class mapEditor
           this.#selectedTile = this.#bottom_left_tarp;
           this.#selectedChar = '2';
           break;  
+        case 'x':
+          this.#selectedTile = this.#cabinWallBottomLeft;
+          this.#selectedChar = 'x';
+          break;
+        case 'c':
+          this.#selectedTile = this.#cabinWallBottomRight;
+          this.#selectedChar = 'c';
+          break;
+        case 'v':
+          this.#selectedTile = this.#cabinWallTopLeft;
+          this.#selectedChar = 'v';
+          break;
+        case 'b':
+          this.#selectedTile = this.#cabinWallTopRight;
+          this.#selectedChar = 'b';
+          break;
+        case 'n':
+          this.#selectedTile = this.#cabinWallHorizontal;
+          this.#selectedChar = 'n';
+          break;
+        case 'm':
+          this.#selectedTile = this.#cabinWallVertical;
+          this.#selectedChar = 'm';
+          break;   
 
           
 
