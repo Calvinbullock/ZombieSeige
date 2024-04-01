@@ -236,7 +236,30 @@ export class Map {
                 case '2':
                   this.#mapArray[y][x] = this.#bottom_left_tarp;
                   break;  
-                    
+                case 'x':
+                  this.#mapArray[y][x] = this.#cabinWallBottomLeft;
+                  break;
+                case 'c':
+                    this.#mapArray[y][x] = this.#cabinWallBottomRight;
+                    break;
+                case 'v':
+                    this.#mapArray[y][x] = this.#cabinWallTopLeft;
+                    break;
+                case 'b':
+                    this.#mapArray[y][x] = this.#cabinWallTopRight;
+                    break;
+                case 'n':
+                    this.#mapArray[y][x] = this.#cabinWallHorizontal;
+                    break;
+                case 'm':
+                    this.#mapArray[y][x] = this.#cabinWallVertical;
+                    break;   
+                case '.':
+                  this.#mapArray[y][x] = this.#bridgeTop;
+                  break;
+                case '/':
+                    this.#mapArray[y][x] = this.#bridgeBottom;
+                    break;  
                 default:
                     // Handle default case if needed
                     break;
