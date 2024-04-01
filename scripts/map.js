@@ -7,6 +7,7 @@ import { MysteryBox } from "./mysterybox.js";
 import { Tarp } from "./tarp.js";
 import { Water } from "./water.js";
 import { UpgradeBench } from "./upgradebench.js";
+import { Floor } from "./floor.js";
 
 export class Map {
   #path = "./assets/newmap.txt";
@@ -15,16 +16,46 @@ export class Map {
   #height;
   #pixelWidth;
   #pixelHeight;
-  #grass = new Grass();
-  #pit = new Pit();
-  #bottom_fence = new Wall("./assets/fence/fence_bottom.png");
-  #bottom_left_fence = new Wall("./assets/fence/fence_corner_bottom_left.png");
-  #bottom_right_fence = new Wall("./assets/fence/fence_corner_bottom_right.png");
-  #top_left_fence = new Wall("./assets/fence/fence_corner_top_left.png");
-  #top_right_fence = new Wall("./assets/fence/fence_corner_top_right.png");
-  #left_fence = new Wall("./assets/fence/fence_left.png");
-  #right_fence = new Wall("./assets/fence/fence_right.png");
-  #top_fence = new Wall("./assets/fence/fence_top.png");
+
+
+  // walls
+  #leftFence = new Wall("./assets/fence/fence_right.png");
+  #rightFence = new Wall("./assets/fence/fence_left.png");
+  #topFence = new Wall("./assets/fence/fence_bottom.png");
+  #bottomFence = new Wall("./assets/fence/fence_top.png");
+  #topRightFence = new Wall("./assets/fence/fence_corner_bottom_left.png");
+  #topLeftFence = new Wall("./assets/fence/fence_corner_bottom_right.png");
+  #bottomRightFence = new Wall("./assets/fence/fence_corner_top_left.png");
+  #bottomLeftFence = new Wall("./assets/fence/fence_corner_top_right.png");
+  #houseWall4Corners = new Wall("./assets/walls/houseWall_4_corner.png");
+  #houseWallBottomLeft = new Wall("./assets/walls/houseWall_corner_NE.png");
+  #houseWallBottomRight = new Wall("./assets/walls/houseWall_corner_NW.png");
+  #houseWallTopLeft = new Wall("./assets/walls/houseWall_corner_SE.png");
+  #houseWallTopRight = new Wall("./assets/walls/houseWall_corner_SW.png");
+  #houseWallHorizontal = new Wall("./assets/walls/houseWall_EW.png");
+  #houseWallVertical = new Wall("./assets/walls/houseWall_NS.png");
+  #houseWallDownT = new Wall("./assets/walls/houseWall_t_down.png");
+  #houseWallLeftT = new Wall("./assets/walls/houseWall_t_left.png");
+  #houseWallRightT = new Wall("./assets/walls/housewall_t_right.png");
+  #houseWallUpT = new Wall("./assets/walls/houseWall_t_up.png");
+  #stoneWall4Corners = new Wall("./assets/walls/stonewall_4_corner.png");
+  #stoneWallBottomLeft = new Wall("./assets/walls/stonewall_corner_NE.png");
+  #stoneWallBottomRight = new Wall("./assets/walls/stonewall_corner_NW.png");
+  #stoneWallTopLeft = new Wall("./assets/walls/stonewall_corner_SE.png");
+  #stoneWallTopRight = new Wall("./assets/walls/stonewall_corner_SW.png");
+  #stoneWallHorizontal = new Wall("./assets/walls/stonewall_EW.png");
+  #stoneWallVertical = new Wall("./assets/walls/stonewall_NS.png");
+  #stoneWallDownT = new Wall("./assets/walls/stonewall_t_down.png");
+  #stoneWallLeftT = new Wall("./assets/walls/stonewall_t_left.png");
+  #stoneWallRightT = new Wall("./assets/walls/stonewall_t_right.png");
+  #stoneWallUpT = new Wall("./assets/walls/stonewall_t_up.png");
+
+  // floors
+  #grass = new Floor("./assets/floors/green_grass.png");
+  #woodFloor = new Floor("./assets/floors/woodfloor.png");
+
+
+  // Special Tiles
   #ammo_crate = new AmmoCrate();
   #health_crate = new HealthCrate();
   #mystery_crate = new MysteryBox();
@@ -35,9 +66,9 @@ export class Map {
   #top_right_tarp = new Tarp("./assets/tarp/tarp_top_right.png");
 
   #water = new Water();
+  #pit = new Pit();
   #upgradeBench = new UpgradeBench();
 
-  #tempwall = new Wall("./assets/Wall.png");
 
   #pathfindingMap = [];
 
@@ -70,70 +101,137 @@ export class Map {
             for (let x = 0; x < this.#width; x++) {
               const cellValue = this.#mapArray[y][x];
               switch (cellValue) {
-                case '1':
+                case '3':
+                    this.#mapArray[y][x] = this.#leftFence;
+                    break;
+                case '4':
+                    this.#mapArray[y][x] = this.#rightFence;
+                    break;
+                case '5':
+                    this.#mapArray[y][x] = this.#topFence;
+                    break;
+                case '6':
+                    this.#mapArray[y][x] = this.#bottomFence;
+                    break;
+                case '7':
+                    this.#mapArray[y][x] = this.#topRightFence;
+                    break;
+                case '8':
+                    this.#mapArray[y][x] = this.#topLeftFence;
+                    break;
+                case '9':
+                    this.#mapArray[y][x] = this.#bottomRightFence;
+                    break;
+                case '0':
+                    this.#mapArray[y][x] = this.#bottomLeftFence;
+                    break;
+                case '-':
+                    this.#mapArray[y][x] = this.#houseWall4Corners;
+                    break;
+                case '=':
+                    this.#mapArray[y][x] = this.#houseWallBottomLeft;
+                    break;
+                case 'q':
+                    this.#mapArray[y][x] = this.#houseWallBottomRight;
+                    break;
+                case 'w':
+                    this.#mapArray[y][x] = this.#houseWallTopLeft;
+                    break;
+                case 'e':
+                    this.#mapArray[y][x] = this.#houseWallTopRight;
+                    break;
+                case 'r':
+                    this.#mapArray[y][x] = this.#houseWallHorizontal;
+                    break;
+                case 't':
+                    this.#mapArray[y][x] = this.#houseWallVertical;
+                    break;
+                case 'y':
+                    this.#mapArray[y][x] = this.#houseWallDownT;
+                    break;
+                case 'u':
+                    this.#mapArray[y][x] = this.#houseWallLeftT;
+                    break;
+                case 'i':
+                    this.#mapArray[y][x] = this.#houseWallRightT;
+                    break;
+                case 'o':
+                    this.#mapArray[y][x] = this.#houseWallUpT;
+                    break;
+                case 'p':
+                    this.#mapArray[y][x] = this.#stoneWall4Corners;
+                    break;
+                case '[':
+                    this.#mapArray[y][x] = this.#stoneWallBottomLeft;
+                    break;
+                case ']':
+                    this.#mapArray[y][x] = this.#stoneWallBottomRight;
+                    break;
+                case '\\':
+                    this.#mapArray[y][x] = this.#stoneWallTopLeft;
+                    break;
+                case 'a':
+                    this.#mapArray[y][x] = this.#stoneWallTopRight;
+                    break;
+                case 's':
+                    this.#mapArray[y][x] = this.#stoneWallHorizontal;
+                    break;
+                case 'd':
+                    this.#mapArray[y][x] = this.#stoneWallVertical;
+                    break;
+                case 'f':
+                    this.#mapArray[y][x] = this.#stoneWallDownT;
+                    break;
+                case 'g':
+                    this.#mapArray[y][x] = this.#stoneWallLeftT;
+                    break;
+                case 'h':
+                    this.#mapArray[y][x] = this.#stoneWallRightT;
+                    break;
+                case 'j':
+                    this.#mapArray[y][x] = this.#stoneWallUpT;
+                    break;
+                case 'l':
                   this.#mapArray[y][x] = this.#grass;
                   break;
-                case 'p':
-                  this.#mapArray[y][x] = this.#pit;
-                  break;
-                case '3':
-                  this.#mapArray[y][x] = this.#bottom_fence;
-                  break;
-                case '4':
-                  this.#mapArray[y][x] = this.#bottom_left_fence;
-                  break;
-                case '5':
-                  this.#mapArray[y][x] = this.#bottom_right_fence;
-                  break;
-                case '6':
-                  this.#mapArray[y][x] = this.#top_left_fence;
-                  break;
-                case '7':
-                  this.#mapArray[y][x] = this.#top_right_fence;
-                  break;
-                case '8':
-                  this.#mapArray[y][x] = this.#left_fence;
-                  break;
-                case '9':
-                  this.#mapArray[y][x] = this.#right_fence;
-                  break;
-                case 'a':
-                  this.#mapArray[y][x] = this.#top_fence;
-                  break;
-                case 'c':
-                  this.#mapArray[y][x] = this.#ammo_crate;
-                  break;
-                case 'h':
-                  this.#mapArray[y][x] = this.#health_crate;
-                  break;
-                case 'm':
-                  this.#mapArray[y][x] = this.#mystery_crate;
-                  break;
-                case 't':
-                  this.#mapArray[y][x] = this.#bottom_left_tarp;
-                  break;
-                case 'y':
-                  this.#mapArray[y][x] = this.#bottom_right_tarp;
-                  break;
-                case 'g':
-                  this.#mapArray[y][x] = this.#top_left_tarp;
-                  break;
-                case 'l':
-                  this.#mapArray[y][x] = this.#top_right_tarp;
-                  break;
-                case 'w':
+                case ';':
+                    this.#mapArray[y][x] = this.#woodFloor;
+                    break;
+                case 'W':
                   this.#mapArray[y][x] = this.#water;
                   break;
-                case 'u':
+                case 'P':
+                  this.#mapArray[y][x] = this.#pit;
+                  break;
+                case 'A':
+                  this.#mapArray[y][x] = this.#ammo_crate;
+                  break;    
+                case 'H':
+                  this.#mapArray[y][x] = this.#health_crate;
+                  break;  
+                case 'M':
+                  this.#mapArray[y][x] = this.#mystery_crate;
+                  break;  
+                case 'U':
                   this.#mapArray[y][x] = this.#upgradeBench;
-                  break;
-                case '$':
-                  this.#mapArray[y][x] = this.#tempwall;
-                  break;
+                  break;  
+                case 'z':
+                  this.#mapArray[y][x] = this.#top_right_tarp;
+                  break;  
+                case '`':
+                  this.#mapArray[y][x] = this.#top_left_tarp;
+                  break;  
+                case '1':
+                  this.#mapArray[y][x] = this.#bottom_right_tarp;
+                  break;  
+                case '2':
+                  this.#mapArray[y][x] = this.#bottom_left_tarp;
+                  break;  
+                    
                 default:
-                  // Handle other cases or unknown values
-                  break;
-              }
+                    // Handle default case if needed
+                    break;
+            }
             }
           }
 

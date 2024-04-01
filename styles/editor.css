@@ -1,0 +1,19 @@
+canvas {
+    border: 1px solid black;
+    width: 100%;
+    height: auto;
+
+}
+
+th,
+td {
+    width: 4em;
+    border: 1px solid #ddd;
+    /* Add a light grey border around cells */
+    padding: 5px;
+    /* Add some padding within cells */
+}
+img {
+    width: 100%;
+    height: auto;
+}

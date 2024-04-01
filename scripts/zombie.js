@@ -130,10 +130,6 @@ export class Zombie extends Entity {
 
     const path = astar(zombTileX, zombTileY, playerTileX, playerTileY, graph);
 
-    console.log( "zombie tiles " + zombTileX + " " + zombTileY)
-    console.log(path)
-    console.log( "player tiles " + playerTileX + " " + playerTileY)
-
     if (path && path.length > 1) {
       const nextStep = path[1];
 

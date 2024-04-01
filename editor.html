@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Realm of the Undead</title>
-    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/editor.css">
     <script src="scripts/mapeditor.js" type="module" defer></script>
 </head>
 <body>
@@ -14,8 +14,259 @@
    
     <button id="saveMapBtn">Save Map</button>
    
-    <h1>test</h1>
+    <h2>Walls</h2>
+    <table border="1">
+        <tr>
+            <th>Tile</th>
+            <th>Key</th>
+            <th>Image</th>
+        </tr>
+        <tr>
+            <th>Left Fence</th>
+            <th>3</th>
+            <td><img src="./assets/fence/fence_right.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Right Fence</th>
+            <th>4</th>
+            <td><img src="./assets/fence/fence_left.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Top Fence</th>
+            <th>5</th>
+            <td><img src="./assets/fence/fence_bottom.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Bottom Fence</th>
+            <th>6</th>
+            <td><img src="./assets/fence/fence_top.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Top Right Fence</th>
+            <th>7</th>
+            <td><img src="./assets/fence/fence_corner_bottom_left.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Top Left Fence</th>
+            <th>8</th>
+            <td><img src="./assets/fence/fence_corner_bottom_right.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Bottom Right Fence</th>
+            <th>9</th>
+            <td><img src="./assets/fence/fence_corner_top_left.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Bottom Left Fence</th>
+            <th>0</th>
+            <td><img src="./assets/fence/fence_corner_top_right.png"" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>House Wall 4 corners</th>
+            <th>-</th>
+            <td><img src="./assets/walls/houseWall_4_corner.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>House Wall Bottom Left</th>
+            <th>=</th>
+            <td><img src="./assets/walls/houseWall_corner_NE.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>House Wall Bottom Right</th>
+            <th>q</th>
+            <td><img src="./assets/walls/houseWall_corner_NW.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>House Wall Top Left</th>
+            <th>w</th>
+            <td><img src="./assets/walls/houseWall_corner_SE.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>House Wall Top Right</th>
+            <th>e</th>
+            <td><img src="./assets/walls/houseWall_corner_SW.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>House Wall Horizontal</th>
+            <th>r</th>
+            <td><img src="./assets/walls/houseWall_EW.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>House Wall Vertical</th>
+            <th>t</th>
+            <td><img src="./assets/walls/houseWall_NS.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>House wall Down T</th>
+            <th>y</th>
+            <td><img src="./assets/walls/houseWall_t_down.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>House wall Left T</th>
+            <th>u</th>
+            <td><img src="./assets/walls/houseWall_t_left.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>House wall right T</th>
+            <th>i</th>
+            <td><img src="./assets/walls/housewall_t_right.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>House wall up T</th>
+            <th>o</th>
+            <td><img src="./assets/walls/houseWall_t_up.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Stone Wall 4 corners</th>
+            <th>p</th>
+            <td><img src="./assets/walls/stonewall_4_corner.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Stone Wall Bottom Left</th>
+            <th>[</th>
+            <td><img src="./assets/walls/stonewall_corner_NE.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Stone Wall Bottom Right</th>
+            <th>]</th>
+            <td><img src="./assets/walls/stonewall_corner_NW.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Stone Wall Top Left</th>
+            <th>\</th>
+            <td><img src="./assets/walls/stonewall_corner_SE.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Stone Wall Top Right</th>
+            <th>a</th>
+            <td><img src="./assets/walls/stonewall_corner_SW.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Stone Wall Horizontal</th>
+            <th>s</th>
+            <td><img src="./assets/walls/stonewall_EW.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Stone Wall Vertical</th>
+            <th>d</th>
+            <td><img src="./assets/walls/stonewall_NS.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Stone wall Down T</th>
+            <th>f</th>
+            <td><img src="./assets/walls/stonewall_t_down.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Stone wall Left T</th>
+            <th>g</th>
+            <td><img src="./assets/walls/stonewall_t_left.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Stone wall right T</th>
+            <th>h</th>
+            <td><img src="./assets/walls/stonewall_t_right.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Stone wall up T</th>
+            <th>j</th>
+            <td><img src="./assets/walls/stonewall_t_up.png" alt="Image 2"></td>
+        </tr>
+
+    </table>
+
+    <h2>Floors</h2>
+    <table border="1">
+        <tr>
+            <th>Tile</th>
+            <th>Key</th>
+            <th>Img</th>
+        </tr>
+        <tr>
+            <th>Grass</th>
+            <th>l</th>
+            <td><img src="./assets/floors/green_grass.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Wood Floor</th>
+            <th>;</th>
+            <td><img src="./assets/floors/woodfloor.png" alt="Image 2"></td>
+        </tr>
+    </table>
     
+    <h2>Special Tiles</h2>
+    <table border="1">
+        <tr>
+            <th>Tile</th>
+            <th>Key</th>
+            <th>Img</th>
+        </tr>
+        <tr>
+            <th>Water</th>
+            <th>W</th>
+            <td><img src="./assets/floors/water.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Pit</th>
+            <th>P</th>
+            <td><img src="./assets/edge.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Ammo Crate</th>
+            <th>A</th>
+            <td><img src="./assets/floors/ammocrate.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Health Crate</th>
+            <th>H</th>
+            <td><img src="./assets/floors/healthcrate.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Mystery Box</th>
+            <th>M</th>
+            <td><img src="./assets/floors/mystery_crate.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Upgrade Bench</th>
+            <th>U</th>
+            <td><img src="./assets/floors/workbench.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Top Right Tarp</th>
+            <th>z</th>
+            <td><img src="./assets/tarp/tarp_top_right.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Top Left Tarp</th>
+            <th>`</th>
+            <td><img src="./assets/tarp/tarp_top_left.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Bottom Right Tarp</th>
+            <th>1</th>
+            <td><img src="./assets/tarp/tarp_bottom_right.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Top Left Tarp</th>
+            <th>2</th>
+            <td><img src="./assets/tarp/tarp_bottom_left.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Sniper Shop</th>
+            <th>S</th>
+            <td><img src="./assets/floors/woodfloor.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>Rifle Shop</th>
+            <th>R</th>
+            <td><img src="./assets/floors/woodfloor.png" alt="Image 2"></td>
+        </tr>
+        <tr>
+            <th>ShotGun Shop</th>
+            <th>G</th>
+            <td><img src="./assets/floors/green_grass.png" alt="Image 2"></td>
+        </tr>
+        
+    </table>
     
 
 </body>

@@ -156,6 +156,10 @@ export class Player extends Entity {
   }
 
   shoot(bullets, mousex, mousey, camera) {
+    if (this.activegun == null)
+    {
+      return;
+    }
     this.activegun.shoot(bullets, mousex, mousey, this, camera);
   }
 
