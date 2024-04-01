@@ -26,6 +26,7 @@ class mapEditor
     #pixelWidth;
     #pixelHeight;
     #grass = new Grass();
+    #tempwall = new Wall("./assets/Wall.png");
     #pit = new Pit();
     #bottom_fence = new Wall("./assets/fence/fence_bottom.png");
     #bottom_left_fence = new Wall("./assets/fence/fence_corner_bottom_left.png");
@@ -49,7 +50,7 @@ class mapEditor
     #water = new Water();
     #upgradeBench = new UpgradeBench();
   
-    #tempwall = new Wall("./assets/Wall.png");
+    
   
     #pathfindingMap = [];
 
@@ -63,6 +64,7 @@ class mapEditor
 
 
   // Loads the map from a text file
+  
   loadMap() {
     return new Promise((resolve, reject) => {
       fetch(this.#path)
