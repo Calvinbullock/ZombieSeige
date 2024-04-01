@@ -29,13 +29,12 @@ export class Player extends Entity {
       health_in,
       max_health_in,
       speed_in,
-      300,
-      300,
+      1080,
+      520,
       xbound_in,
       ybound_in
     );
     this.#gun1 = new Pistol();
-    this.#gun2 = new Rifle();
 
     this.activegun = this.#gun1;
     // this.activegun = this.#gun2;
