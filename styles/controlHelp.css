@@ -6,27 +6,27 @@
 }
 
 body {
-    background-color: var(--background); 
-    color: white;
-    margin: 0 auto;
-    text-align: center;
-    display:flex;
-    justify-content: center;
+  background-color: var(--background); 
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  display:flex;
+  justify-content: center;
 }
 
 #control-table {
-    text-align: center;
-    display:flex;
-    justify-content: center;
-    padding-bottom: 1rem;
+  text-align: center;
+  display:flex;
+  justify-content: center;
+  padding-bottom: 1rem;
 }
 
 th,
 td {
-    border: 1px solid #ddd;
-    /* Add a light grey border around cells */
-    padding: 10px;
-    /* Add some padding within cells */
+  border: 1px solid #ddd;
+  /* Add a light grey border around cells */
+  padding: 10px;
+  /* Add some padding within cells */
 }
 
 button {
