@@ -8,6 +8,10 @@ import { Tarp } from "./tarp.js";
 import { Water } from "./water.js";
 import { UpgradeBench } from "./upgradebench.js";
 import { Floor } from "./floor.js";
+import { GunShop } from "./gunshop.js";
+import { Sniper } from "./sniper.js";
+import { Rifle } from "./rifle.js";
+import { Shotgun } from "./shotgun.js";
 
 export class Map {
   #path = "./assets/newmap.txt";
@@ -78,6 +82,9 @@ export class Map {
   #pit = new Pit();
   #upgradeBench = new UpgradeBench();
 
+  #rifleShop = new GunShop("./assets/floors/woodfloor.png",1000,new Rifle(),"rifle");
+  #sniperShop = new GunShop("./assets/floors/woodfloor.png",1250,new Sniper(),"sniper");
+  #shotgunShop = new GunShop("./assets/floors/woodfloor.png",1500,new Shotgun(),"shotgun");
 
   #pathfindingMap = [];
 
@@ -260,6 +267,15 @@ export class Map {
                 case '/':
                     this.#mapArray[y][x] = this.#bridgeBottom;
                     break;  
+                case 'S':
+                  this.#mapArray[y][x] = this.#sniperShop
+                  break;   
+                case 'R':
+                  this.#mapArray[y][x] = this.#rifleShop;
+                  break;
+                case 'G':
+                  this.#mapArray[y][x] = this.#shotgunShop;
+                  break;   
                 default:
                     // Handle default case if needed
                     break;
