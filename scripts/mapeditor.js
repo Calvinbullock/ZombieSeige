@@ -543,7 +543,34 @@ class mapEditor
         map.drawMap();
 
         console.log(this.#textMap);
+        console.log(this.#selectedChar)
         
+    }
+    rightClickTileSelect(event)
+    {
+      // sets the canvas to rect
+      const rect = event.target.getBoundingClientRect();
+      // gets the height and width of canvas
+      const scaleX = event.target.width / rect.width;
+      const scaleY = event.target.height / rect.height;
+      // gets the mouse position by subtracting the canvas position from the mouse position
+      const mouseX = (event.clientX - rect.left) * scaleX;
+      const mouseY = (event.clientY - rect.top) * scaleY;
+
+
+      let selectedTileX = Math.floor(mouseX/32)+this.#tileX;
+      let selectedTileY = Math.floor(mouseY/32)+this.#tileY;
+
+
+      console.log("Clicked tile: " + selectedTileX + " " + selectedTileY);
+      console.log(this.#selectedChar)
+      console.log(this.#textMap[selectedTileY][selectedTileX]);
+
+      this.#selectedChar = this.#textMap[selectedTileY][selectedTileX];
+
+      console.log(this.#selectedChar)
+      this.#selectedTile = this.#mapArray[selectedTileY][selectedTileX];
+
     }
 
 
@@ -577,8 +604,21 @@ map.loadMap().then(() => {
     });
 
     document.querySelector("#canvas").addEventListener("mousedown", (event) => {
+      if (event.button === 0) {
+        // Your custom code for handling the left-click event
         map.click(event);
+     }
+        
       });
+      
+
+      document.querySelector("#canvas").addEventListener('contextmenu', function(event) {
+        // Prevent the default right-click menu from appearing
+        event.preventDefault();
+    
+        console.log("Right click")
+        map.rightClickTileSelect(event);
+    });
 
 
     map.drawMap();
