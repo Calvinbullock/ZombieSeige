@@ -28,3 +28,20 @@ img {
     flex: 1;
     max-width: calc(33% - 20px); /* Adjust the percentage based on your layout */
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    /* Adjust the styling as needed */
+}
+
+.tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px; /* Set the width directly */
+    /* Adjust the styling as needed */
+}
