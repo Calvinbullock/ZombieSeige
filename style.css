@@ -18,7 +18,7 @@ body {
 
 main {
   text-align: center;
-  color: var(acce);
+  color: var(--accent1);
 }
 
 #home {
