@@ -16,7 +16,7 @@ export class Game {
 
   constructor(map) {
 
-    let gender = "f";
+    let gender = "m";
 
     let img_path_left = "./assets/player/player_fem_left.png";
     let img_path_right = "./assets/player/player_fem_right.png";
