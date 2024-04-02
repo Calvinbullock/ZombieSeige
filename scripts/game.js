@@ -8,12 +8,10 @@ export class Game {
   #zombies = [];
   #round;
   #map;
-  #direction;
   #camera;
   bullets = [];
   #mapWidth;
   #mapHeight;
-  #counter = 0;
 
 
   constructor(map) {
@@ -95,17 +93,9 @@ export class Game {
   {
       this.#round.spawnRound(this.#zombies,this.#mapWidth, this.#mapHeight, this.#map);
     }
-    // let zombies find their path, counter so it doesnt update path ever frame for performance reasons
-    // counter dcounts to 10 so every 10 frames it updates path, which is 12 times a second
-    if (this.#counter == 0)
-  {
-      this.#zombiePathFinding()
-    }
-    this.#counter++;
-    if (this.#counter == 10)
-  {
-      this.#counter = 0;
-    }
+
+    this.#zombiePathFinding()
+
 
 
     // Move all the entities (zombies and bullets)

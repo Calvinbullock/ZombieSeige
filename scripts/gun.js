@@ -23,6 +23,7 @@ export class Gun {
   #bullet_speed;
   #cost = 5000
   #upgrade = 0
+  #audio = new Audio('./assets/GunShoot.mp3');
 
   constructor(
     max_ammo_in,
@@ -80,7 +81,8 @@ export class Gun {
   upgrade()
 {
     this.#max_ammo *=2;
-    this.#damage *=2;
+    this.#damage *=1.3;
+    this.#bullet_duration *=1.1;
   }
 
 
@@ -153,10 +155,11 @@ export class Gun {
 
     if (this.#loaded_ammo > 0) {
           // Create an Audio object with an M4A file
-    const audio = new Audio('./assets/GunShoot.mp3');
     
     // Play the sound
-    audio.play();
+    this.#audio.pause();
+    this.#audio.currentTime = 0;
+    this.#audio.play();
 
       this.#loaded_ammo -= 1;
       let x = camera.getObjectScreenPositionX(player.getX(), this.#posX + 4);

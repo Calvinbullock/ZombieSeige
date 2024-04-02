@@ -9,6 +9,8 @@ export class Zombie extends Entity {
   cooldown = 10;
   wait=0;
   #activeSprite;
+  #pathFindFrame = Math.floor(Math.random() * 21);;
+  #frameNumber = 0;
 
   constructor(
     damage_in,
@@ -108,6 +110,19 @@ export class Zombie extends Entity {
 
   pathfind(player,map) {
     // a simple form of movement as a placeholder
+    if (this.#frameNumber == 20)
+    {
+      this.#frameNumber = 0;
+    }
+    else
+    {
+      this.#frameNumber++;
+    }
+    
+    if (this.#frameNumber != this.#pathFindFrame)
+    {
+      return;
+    }
 
     let graph = map.getPathFindingMap();
 
@@ -182,6 +197,4 @@ export class Zombie extends Entity {
       }
     }
   }
-
-  pathFinding() {}
 }
