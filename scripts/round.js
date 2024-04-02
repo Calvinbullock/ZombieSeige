@@ -30,9 +30,7 @@ export class Round {
     // this.#zombies[3][3].push(new Zombie(2, "./assets/zombie_fem.png", "direction_in", 100, 100, .3));
 
     let count = 0;
-    let frames = Math.floor(
-      (this.zombNumber * this.countModifier ** (this.currentRound - 1)) / 3
-    );
+    let frames = Math.floor((this.zombNumber * this.countModifier ** (this.currentRound - 1)) / 4);
     let current_frame = 0;
     while (
       count <
@@ -103,6 +101,8 @@ export class Round {
 
   // Draw the round number
   draw(camera) {
+    console.log("Current zombies "+ this.CurrentAliveZombies )
+
     let ctx = camera.getCanvas();
     ctx.font = "13px serif";
     let roundtxt = "Round: " + this.currentRound.toString();

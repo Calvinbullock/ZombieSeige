@@ -12,6 +12,7 @@ export class Game {
   bullets = [];
   #mapWidth;
   #mapHeight;
+  #pathfindcache = {};
 
   constructor(map) {
     let gender = "m";
@@ -347,7 +348,7 @@ export class Game {
     this.#zombies.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
         arrayY.forEach((zombie, z) => {
-          zombie.pathfind(this.player, this.#map);
+          zombie.pathfind(this.player, this.#map, this.#pathfindcache);
         });
       });
     });

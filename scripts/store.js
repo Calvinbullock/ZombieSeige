@@ -6,13 +6,10 @@ export class Store extends Tile {
 
   constructor(path, cost, name) {
     super(true, true, path, true);
-    // console.log(cost)
     this.cost = cost;
     this.name = name;
-    // console.log(this.cost)
   }
   getCost() {
-    // console.log(this.cost)
     return this.cost;
   }
   getName() {

@@ -1,5 +1,5 @@
 import { Entity } from "./entity.js";
-import { astar, Node } from "./astar.js";
+import { astar } from "./astar.js";
 
 export class Zombie extends Entity {
   #damage;
@@ -12,6 +12,11 @@ export class Zombie extends Entity {
   #pathFindFrame;
   #frameNumber = 0;
   #total_frames = 0;
+  #stuck = false;
+  #stuck_frame;
+  #last_path;
+  #stuck_max_frame;
+  #max_nodes = 100;
 
   constructor(
     damage_in,
@@ -113,7 +118,7 @@ export class Zombie extends Entity {
     }
   }
 
-  pathfind(player, map) {
+  pathfind(player, map, cache) {
     // a simple form of movement as a placeholder
     if (this.#frameNumber == this.#total_frames) {
       this.#frameNumber = 0;
@@ -121,9 +126,12 @@ export class Zombie extends Entity {
       this.#frameNumber++;
     }
 
-    if (this.#frameNumber != this.#pathFindFrame) {
-      return;
+    let astar_frame = false;
+    if (this.#frameNumber == this.#pathFindFrame) {
+      astar_frame = true;
     }
+
+    
 
     // if (Math.abs(player.getX() - this.getX()) < 5 && Math.abs(player.getY() - this.getY()) < 5)
     // {
@@ -135,15 +143,37 @@ export class Zombie extends Entity {
     let zombTileX = this.getTileX(4);
     let zombTileY = this.getTileY(5);
 
-    // console.log( "zombie tiles " + zombTileX + " " + zombTileY)
-
     let playerTileX = player.getTileX(4);
     let playerTileY = player.getTileY(5);
 
-    const path = astar(zombTileX, zombTileY, playerTileX, playerTileY, graph);
+    // console.log( "zombie tiles " + zombTileX + " " + zombTileY)
+    // console.log( "player tiles " + playerTileX + " " + playerTileY)
 
-    if (path && path.length > 1) {
-      const nextStep = path[1];
+    let path = null;
+    
+    if (astar_frame == true)
+    {
+      path = astar(zombTileX, zombTileY, playerTileX, playerTileY, graph,this.#max_nodes, cache);
+    }
+    else
+    {
+      let cacheKey = `${zombTileX},${zombTileY},${playerTileX},${playerTileY}`;
+      path = cache[cacheKey];
+      if (path == null)
+      {
+        return;
+      }
+    }
+    
+
+    if (this.#last_path == null && path == null)
+    {
+      this.#max_nodes+=10;
+    }
+
+    this.#last_path = path;
+    if (path) {
+      const nextStep = path;
 
       if (nextStep.x > zombTileX) {
         this.#activeSprite = this.getSpriteRight();

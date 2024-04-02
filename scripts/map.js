@@ -62,7 +62,6 @@ export class Map {
   // floors
   #grass = new Floor("./assets/floors/green_grass.png");
   #woodFloor = new Floor("./assets/floors/woodfloor.png");
-
   #bridgeTop = new Floor("./assets/floors/bridgefloor_top.png");
   #bridgeBottom = new Floor("./assets/floors/bridgefloor_bottom.png");
 
@@ -70,16 +69,13 @@ export class Map {
   #ammo_crate = new AmmoCrate();
   #health_crate = new HealthCrate();
   #mystery_crate = new MysteryBox();
-
   #bottom_left_tarp = new Tarp("./assets/tarp/tarp_bottom_left.png");
   #bottom_right_tarp = new Tarp("./assets/tarp/tarp_bottom_right.png");
   #top_left_tarp = new Tarp("./assets/tarp/tarp_top_left.png");
   #top_right_tarp = new Tarp("./assets/tarp/tarp_top_right.png");
-
   #water = new Water();
   #pit = new Pit();
   #upgradeBench = new UpgradeBench();
-
   #rifleShop = new GunShop(
     "./assets/floors/woodfloor.png",
     1000,
