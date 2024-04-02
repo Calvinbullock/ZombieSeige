@@ -4,7 +4,6 @@ export class Pit extends Tile {
   #duration;
 
   constructor() {
-    super(false,true,"./assets/edge.png")
+    super(false, true, "./assets/edge.png");
   }
 }
-

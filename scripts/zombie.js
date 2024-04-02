@@ -7,7 +7,7 @@ export class Zombie extends Entity {
   radius = 6;
   alive = true;
   cooldown = 10;
-  wait=0;
+  wait = 0;
   #activeSprite;
   #pathFindFrame;
   #frameNumber = 0;
@@ -44,28 +44,22 @@ export class Zombie extends Entity {
     this.#total_frames = total_frames_in;
   }
 
-
   getDamage() {
-
-    if (this.wait == 0)
-    {
+    if (this.wait == 0) {
       this.wait += 1;
       return this.#damage;
     }
     this.wait += 1;
-    if (this.wait == this.cooldown)
-    {
+    if (this.wait == this.cooldown) {
       this.wait = 0;
     }
 
     return 0;
-    
   }
-  getStatus()
-  {
-    return (this.getHealth() > 0);
+  getStatus() {
+    return this.getHealth() > 0;
   }
-  
+
   // Draws the zombie
   draw(camera, player) {
     // get the canvas to draw on
@@ -78,54 +72,56 @@ export class Zombie extends Entity {
     let zombY = this.getY();
 
     // find the screen position to draw the zombie on
-    let screenPositionX = Math.floor(camera.getObjectScreenPositionX(playerX, zombX));
-    let screenPositionY = Math.floor(camera.getObjectScreenPositionY(playerY, zombY));
+    let screenPositionX = Math.floor(
+      camera.getObjectScreenPositionX(playerX, zombX)
+    );
+    let screenPositionY = Math.floor(
+      camera.getObjectScreenPositionY(playerY, zombY)
+    );
 
     // Only draw if the zombie is visible on the canvas
-    if (screenPositionX <= 256 && screenPositionY <= 128 && screenPositionX >= -16 && screenPositionY >= -16) {
+    if (
+      screenPositionX <= 256 &&
+      screenPositionY <= 128 &&
+      screenPositionX >= -16 &&
+      screenPositionY >= -16
+    ) {
+      ctx.drawImage(this.#activeSprite, screenPositionX, screenPositionY);
 
-        ctx.drawImage(this.#activeSprite, screenPositionX, screenPositionY);
+      // get zombie health
+      let maxHealth = this.getMaxHealth();
+      let health = this.getHealth();
+      // draw only if zombie is damaged
+      if (health != maxHealth) {
+        // draw the black backround for the health bar
+        ctx.beginPath();
+        ctx.lineWidth = "1";
+        ctx.strokeStyle = "black";
+        ctx.rect(screenPositionX + 2, screenPositionY, 10, 0.5);
+        ctx.stroke();
 
-        // get zombie health
-        let maxHealth = this.getMaxHealth();
-        let health = this.getHealth();
-        // draw only if zombie is damaged
-        if (health != maxHealth)
-        {
-          // draw the black backround for the health bar
-          ctx.beginPath();
-          ctx.lineWidth = "1";
-          ctx.strokeStyle = "black";
-          ctx.rect(screenPositionX + 2, screenPositionY, 10, 0.5);
-          ctx.stroke();
+        // find the blue healthbar width
+        let healthPercent = health / maxHealth;
+        let healthWidth = 10 * healthPercent;
 
-          // find the blue healthbar width
-          let healthPercent = health / maxHealth;
-          let healthWidth = 10 * healthPercent;
-
-          // draw blue health bar
-          ctx.beginPath();
-          ctx.strokeStyle = "blue";
-          ctx.rect(screenPositionX + 2, screenPositionY, healthWidth, 0.5);
-          ctx.stroke();
-        }
-
+        // draw blue health bar
+        ctx.beginPath();
+        ctx.strokeStyle = "blue";
+        ctx.rect(screenPositionX + 2, screenPositionY, healthWidth, 0.5);
+        ctx.stroke();
+      }
     }
-}
+  }
 
-  pathfind(player,map) {
+  pathfind(player, map) {
     // a simple form of movement as a placeholder
-    if (this.#frameNumber == this.#total_frames)
-    {
+    if (this.#frameNumber == this.#total_frames) {
       this.#frameNumber = 0;
-    }
-    else
-    {
+    } else {
       this.#frameNumber++;
     }
 
-    if (this.#frameNumber != this.#pathFindFrame)
-    {
+    if (this.#frameNumber != this.#pathFindFrame) {
       return;
     }
 
@@ -144,54 +140,38 @@ export class Zombie extends Entity {
     let playerTileX = player.getTileX(4);
     let playerTileY = player.getTileY(5);
 
-
-
-
-
     const path = astar(zombTileX, zombTileY, playerTileX, playerTileY, graph);
 
     if (path && path.length > 1) {
       const nextStep = path[1];
 
-      if ( nextStep.x > zombTileX)
-      {
+      if (nextStep.x > zombTileX) {
         this.#activeSprite = this.getSpriteRight();
         this.setMoveLeftFalse();
         this.setMoveRightTrue();
-      } else if ( nextStep.x < zombTileX)
-      {
+      } else if (nextStep.x < zombTileX) {
         this.#activeSprite = this.getSpriteLeft();
         this.setMoveRightFalse();
         this.setMoveLeftTrue();
-      }
-      else
-      {
+      } else {
         this.setMoveRightFalse();
         this.setMoveLeftFalse();
       }
 
-      if ( nextStep.y > zombTileY)
-      {
+      if (nextStep.y > zombTileY) {
         this.setMoveUpFalse();
         this.setMoveDownTrue();
-      } else if ( nextStep.y < zombTileY)
-      {
+      } else if (nextStep.y < zombTileY) {
         this.setMoveUpTrue();
         this.setMoveDownFalse();
-      }
-      else
-      {
+      } else {
         this.setMoveUpFalse();
         this.setMoveDownFalse();
       }
-    }
-
-    else
-    {
+    } else {
       let diff_y = this.getY() - player.getY();
       let diff_x = this.getX() - player.getX();
-  
-  
+
       if (diff_x > 1) {
         this.#activeSprite = this.getSpriteRight();
         this.setMoveLeftTrue();
@@ -201,7 +181,7 @@ export class Zombie extends Entity {
         this.setMoveRightTrue();
         this.setMoveLeftFalse();
       }
-  
+
       if (diff_y > 1) {
         this.setMoveUpTrue();
         this.setMoveDownFalse();

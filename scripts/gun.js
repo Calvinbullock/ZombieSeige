@@ -21,9 +21,9 @@ export class Gun {
   #muzzle_dist_left;
   #muzzle_dist_right;
   #bullet_speed;
-  #cost = 5000
-  #upgrade = 0
-  #audio = new Audio('./assets/GunShoot.mp3');
+  #cost = 5000;
+  #upgrade = 0;
+  #audio = new Audio("./assets/GunShoot.mp3");
 
   constructor(
     max_ammo_in,
@@ -74,17 +74,14 @@ export class Gun {
   getTileY() {
     return Math.floor(this.#posY / 32);
   }
-  getCost()
-{
+  getCost() {
     return this.#cost;
   }
-  upgrade()
-{
-    this.#max_ammo *=2;
-    this.#damage *=1.3;
-    this.#bullet_duration *=1.1;
+  upgrade() {
+    this.#max_ammo *= 2;
+    this.#damage *= 1.3;
+    this.#bullet_duration *= 1.1;
   }
-
 
   // --- methods ---
 
@@ -122,8 +119,7 @@ export class Gun {
   getAmmo() {
     return this.#current_ammo;
   }
-  getMaxAmmo()
-{
+  getMaxAmmo() {
     return this.#max_ammo;
   }
 
@@ -151,15 +147,13 @@ export class Gun {
   shoot(bullets, mouseX, mouseY, player, camera) {
     // Calculate the angle between the shooter and the mouse position
 
-
-
     if (this.#loaded_ammo > 0) {
-          // Create an Audio object with an M4A file
-    
-    // Play the sound
-    this.#audio.pause();
-    this.#audio.currentTime = 0;
-    this.#audio.play();
+      // Create an Audio object with an M4A file
+
+      // Play the sound
+      this.#audio.pause();
+      this.#audio.currentTime = 0;
+      this.#audio.play();
 
       this.#loaded_ammo -= 1;
       let x = camera.getObjectScreenPositionX(player.getX(), this.#posX + 4);
@@ -173,7 +167,7 @@ export class Gun {
       for (let i = 0; i < this.#bullet_count; i++) {
         let angle_offset =
           Math.random() * (this.#bullet_accuracy + this.#bullet_accuracy) -
-            this.#bullet_accuracy;
+          this.#bullet_accuracy;
 
         let bullet;
         let directionX = player.whereIsMouseX(
@@ -257,20 +251,21 @@ export class Gun {
     //changes the gun sprite and position based on the direction given by whereIsMouseX
     switch (direction) {
       case "left":
-        ctx.drawImage(this.#sprite_left, x - 5, y+2);
+        ctx.drawImage(this.#sprite_left, x - 5, y + 2);
         break;
 
       case "right":
-        ctx.drawImage(this.#sprite_right, x - 4, y+2);
+        ctx.drawImage(this.#sprite_right, x - 4, y + 2);
         break;
 
       default:
-        ctx.drawImage(this.#sprite_left, x - 5, y+2);
+        ctx.drawImage(this.#sprite_left, x - 5, y + 2);
         break;
     }
 
     ctx.font = "10px serif";
-    let ammoCount = this.#loaded_ammo.toString() + "  " + this.#current_ammo.toString();
+    let ammoCount =
+      this.#loaded_ammo.toString() + "  " + this.#current_ammo.toString();
 
     // Draw black border for name text
     ctx.strokeStyle = "black";
@@ -289,6 +284,5 @@ export class Gun {
     // Draw white fill for ammo count text
     ctx.fillStyle = "white";
     ctx.fillText(ammoCount, 220, 120);
-
   }
 }

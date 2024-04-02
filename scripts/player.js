@@ -69,9 +69,7 @@ export class Player extends Entity {
     if (this.activegun == this.#gun1) {
       this.#gun1 = null;
       this.activegun = this.#gun2;
-
     } else if (this.activegun == this.#gun2) {
-
       this.#gun2 = null;
       this.activegun = this.#gun1;
     }
@@ -80,60 +78,50 @@ export class Player extends Entity {
   // equips the given gun
   equipWeapon(gun) {
     if (this.#gun1 == null) {
-      this.#gun1 = gun
-      this.activegun = this.#gun1
+      this.#gun1 = gun;
+      this.activegun = this.#gun1;
     } else if (this.#gun2 == null) {
-      this.#gun2 = gun
-      this.activegun = this.#gun2
-    }
-    else {
-      if (this.activegun == this.#gun1)
-    {
-        this.#gun1 = gun
-        this.activegun = this.#gun1
-
+      this.#gun2 = gun;
+      this.activegun = this.#gun2;
+    } else {
+      if (this.activegun == this.#gun1) {
+        this.#gun1 = gun;
+        this.activegun = this.#gun1;
       } else if (this.activegun == this.#gun2) {
-
-        this.#gun2 = gun
-        this.activegun = this.#gun2
+        this.#gun2 = gun;
+        this.activegun = this.#gun2;
       }
     }
   }
 
-  interact(map)
-{
+  interact(map) {
     let tile = map.getMapArray()[this.getTileY(5)][this.getTileX(5)];
 
     if (tile.isInteractable()) {
-      tile.purchase(this)
+      tile.purchase(this);
     }
   }
 
-  getPoints()
-{
+  getPoints() {
     return this.points;
   }
-  usePoints(points)
-{
+  usePoints(points) {
     this.points -= points;
   }
 
   switchActiveGun(value) {
-    switch(value)
-      {
+    switch (value) {
       case 1:
-        if (this.#gun1 != null)
-      {
-          this.activegun = this.#gun1
+        if (this.#gun1 != null) {
+          this.activegun = this.#gun1;
         }
 
         // console.log("gun1")
         break;
 
       case 2:
-        if (this.#gun2 != null)
-      {
-          this.activegun = this.#gun2
+        if (this.#gun2 != null) {
+          this.activegun = this.#gun2;
         }
         // console.log("gun2")
         break;
@@ -141,8 +129,7 @@ export class Player extends Entity {
   }
 
   shoot(bullets, mousex, mousey, camera) {
-    if (this.activegun == null)
-  {
+    if (this.activegun == null) {
       return;
     }
     this.activegun.shoot(bullets, mousex, mousey, this, camera);
@@ -153,21 +140,16 @@ export class Player extends Entity {
 
     if (this.#mouseX > canPosX) {
       return "right";
-
     } else if (this.#mouseX < canPosX) {
       return "left";
-    }
-    else
-  {
+    } else {
       return "right";
-
     }
   }
 
   whereIsMouseY(canPosY) {
     if (this.#mouseY < canPosY) {
       return "above";
-
     } else if (this.#mouseY > canPosY) {
       return "below";
     }
@@ -192,19 +174,15 @@ export class Player extends Entity {
     }
 
     // Give the movement values to moveby to calculate player new position
-    this.moveBy(movementX,movementY,map);
+    this.moveBy(movementX, movementY, map);
   }
 
   // draws the player
   draw(camera) {
     let ctx = camera.getCanvas();
 
-    let mapPositionX = camera.getPlayerScreenPositionX(
-      this.getX()
-    );
-    let mapPositionY = camera.getPlayerScreenPositionY(
-      this.getY()
-    );
+    let mapPositionX = camera.getPlayerScreenPositionX(this.getX());
+    let mapPositionY = camera.getPlayerScreenPositionY(this.getY());
 
     let direction = this.whereIsMouseX(mapPositionX);
 

@@ -8,7 +8,7 @@ export class Bullet {
   alive = true;
   damage;
 
-  constructor(duration_in,x,y,angle,damage,speed) {
+  constructor(duration_in, x, y, angle, damage, speed) {
     this.#duration = duration_in;
     this.posX = x;
     this.posY = y;
@@ -18,87 +18,71 @@ export class Bullet {
   }
 
   // Returns the bullet damage
-  getDamage()
-{
-    if (this.alive)
-  {
+  getDamage() {
+    if (this.alive) {
       return this.damage;
     }
     return 0;
   }
 
   // returns the bullet radius
-  getRadius()
-{
+  getRadius() {
     return 1;
   }
 
   // Returns bullet x position
-  getX()
-{
+  getX() {
     return this.posX;
   }
 
   // Returns bullet y position
-  getY()
-{
+  getY() {
     return this.posY;
   }
 
   // returns bullet X tile
-  getTileX()
-{
-    return Math.floor(this.posX/32);
+  getTileX() {
+    return Math.floor(this.posX / 32);
   }
 
   // returns bullet Y tile
-  getTileY()
-{
-    return Math.floor(this.posY/32);
+  getTileY() {
+    return Math.floor(this.posY / 32);
   }
 
   // moves the bullet
-  move()
-{
+  move() {
     this.posX += Math.cos(this.angle) * this.speed;
     this.posY += Math.sin(this.angle) * this.speed;
-    this.time +=.15;
-    if (this.time > this.#duration)
-  {
+    this.time += 0.15;
+    if (this.time > this.#duration) {
       this.alive = false;
     }
   }
 
   // Returns true until the bullet duration is up or it hits a zombie
-  getStatus()
-{
+  getStatus() {
     return this.alive;
   }
 
   // Destroy the bullet
-  kill()
-{
+  kill() {
     this.alive = false;
   }
 
   // Draws the bullet
-  draw(camera,player)
-{
+  draw(camera, player) {
     let ctx = camera.getCanvas();
     ctx.fillStyle = "#000000";
     ctx.strokeStyle = "#FFFFFF";
-    ctx.lineWidth = .3;
+    ctx.lineWidth = 0.3;
     ctx.beginPath();
 
-    let x = camera.getObjectScreenPositionX(player.getX(),this.posX)
-    let y = camera.getObjectScreenPositionY(player.getY(),this.posY)
+    let x = camera.getObjectScreenPositionX(player.getX(), this.posX);
+    let y = camera.getObjectScreenPositionY(player.getY(), this.posY);
 
-
-    ctx.arc(x,y, 1, 0, 2 * Math.PI);
+    ctx.arc(x, y, 1, 0, 2 * Math.PI);
     ctx.fill();
     ctx.stroke(); // Draw the border
-
-
-
   }
 }

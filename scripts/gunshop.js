@@ -4,42 +4,30 @@ import { Shotgun } from "./shotgun.js";
 import { Rifle } from "./rifle.js";
 import { Sniper } from "./sniper.js";
 
+export class GunShop extends Store {
+  inventory;
+  constructor(path, cost, gun, name) {
+    super(path, cost, name);
+    this.inventory = gun;
+  }
+  purchase(player) {
+    let playerPoints = player.getPoints();
 
-export class GunShop extends Store {    
+    let costPoints = this.getCost();
 
-    inventory;
-    constructor(path,cost,gun,name) {
-        super(path,cost,name)
-        this.inventory = gun;
+    if (playerPoints >= costPoints) {
+      player.usePoints(costPoints);
 
+      player.equipWeapon(this.inventory);
     }
-    purchase(player)
-    {
-        let playerPoints = player.getPoints();
+  }
+  draw(x, y, camera) {
+    let ctx = camera.getCanvas();
+    ctx.drawImage(this.sprite, x, y);
 
-        let costPoints = this.getCost();
-
-
-
-        if (playerPoints >= costPoints)
-         {
-            player.usePoints(costPoints)
-
-            player.equipWeapon(this.inventory);
-
-         }
-        
+    if (this.inventory != null) {
+      this.inventory.drawImage;
+      ctx.drawImage(this.inventory.getSpriteRight(), x + 13, y + 12);
     }
-    draw(x,y,camera)
-    {
-        let ctx = camera.getCanvas();
-        ctx.drawImage(this.sprite, x, y);
-
-        if (this.inventory != null)
-        {
-            this.inventory.drawImage
-            ctx.drawImage(this.inventory.getSpriteRight(), x+13,y+12)
-        }
-    }
+  }
 }
-
