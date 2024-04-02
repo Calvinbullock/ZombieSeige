@@ -108,7 +108,7 @@ export class Entity {
         return this.radius;
     }
 
-    // screams
+    screams
     scream()
     {
         if (this.#screaming == false)

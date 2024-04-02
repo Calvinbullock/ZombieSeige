@@ -84,7 +84,7 @@ export class Map {
 
   #rifleShop = new GunShop("./assets/floors/woodfloor.png",1000,new Rifle(),"rifle");
   #sniperShop = new GunShop("./assets/floors/woodfloor.png",1250,new Sniper(),"sniper");
-  #shotgunShop = new GunShop("./assets/floors/woodfloor.png",1500,new Shotgun(),"shotgun");
+  #shotgunShop = new GunShop("./assets/floors/green_grass.png",1500,new Shotgun(),"shotgun");
 
   #pathfindingMap = [];
 

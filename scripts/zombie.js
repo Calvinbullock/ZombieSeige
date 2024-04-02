@@ -9,8 +9,9 @@ export class Zombie extends Entity {
   cooldown = 10;
   wait=0;
   #activeSprite;
-  #pathFindFrame = Math.floor(Math.random() * 21);;
+  #pathFindFrame;
   #frameNumber = 0;
+  #total_frames = 0;
 
   constructor(
     damage_in,
@@ -22,7 +23,9 @@ export class Zombie extends Entity {
     x,
     y,
     xbound_in,
-    ybound_in
+    ybound_in,
+    frames_in,
+    total_frames_in
   ) {
     super(
       sprite_left_in,
@@ -37,6 +40,8 @@ export class Zombie extends Entity {
     );
     this.#activeSprite = this.getSpriteLeft();
     this.#damage = damage_in;
+    this.#pathFindFrame = frames_in;
+    this.#total_frames = total_frames_in;
   }
 
 
@@ -110,7 +115,7 @@ export class Zombie extends Entity {
 
   pathfind(player,map) {
     // a simple form of movement as a placeholder
-    if (this.#frameNumber == 20)
+    if (this.#frameNumber == this.#total_frames)
     {
       this.#frameNumber = 0;
     }
@@ -118,11 +123,16 @@ export class Zombie extends Entity {
     {
       this.#frameNumber++;
     }
-    
+
     if (this.#frameNumber != this.#pathFindFrame)
     {
       return;
     }
+
+    // if (Math.abs(player.getX() - this.getX()) < 5 && Math.abs(player.getY() - this.getY()) < 5)
+    // {
+    //   return;
+    // }
 
     let graph = map.getPathFindingMap();
 
@@ -133,6 +143,10 @@ export class Zombie extends Entity {
 
     let playerTileX = player.getTileX(4);
     let playerTileY = player.getTileY(5);
+
+
+
+
 
     const path = astar(zombTileX, zombTileY, playerTileX, playerTileY, graph);
 

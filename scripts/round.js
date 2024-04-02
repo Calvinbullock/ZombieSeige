@@ -41,9 +41,11 @@ export class Round
     // this.#zombies[3][3].push(new Zombie(2, "./assets/zombie_fem.png", "direction_in", 100, 100, .3));
 
     let count = 0;
+    let frames = Math.floor((this.zombNumber * (this.countModifier ** (this.currentRound-1)))/3);
+    let current_frame = 0;
     while (count < this.zombNumber * (this.countModifier ** (this.currentRound-1)) )
     {
-
+      
       let zombieXpos = Math.floor(Math.random() * ((xbound*32)-5));
       let zombieYpos = Math.floor(Math.random() * ((ybound*32)-5));
 
@@ -72,13 +74,26 @@ export class Round
 
       if(map.getWalkthrough(zombieTileX,zombieTileY))
       {
-        zombies[zombieTileX][zombieTileY].push(new Zombie(this.zombDamage* (this.damageModifier ** (this.currentRound-1)),img_path_left, img_path_right,this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombSpeed * (this.speedModifier ** (this.currentRound-1)),zombieXpos,zombieYpos,xbound,ybound));
+        zombies[zombieTileX][zombieTileY].push(new Zombie(this.zombDamage* (this.damageModifier ** (this.currentRound-1)),img_path_left, img_path_right,this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombHealth * (this.healthModifier ** (this.currentRound-1)),this.zombSpeed * (this.speedModifier ** (this.currentRound-1)),zombieXpos,zombieYpos,xbound,ybound,current_frame,frames));
      
         this.CurrentAliveZombies ++;
         count++;
+
+        if(current_frame == frames)
+        {
+          current_frame = 0
+        }
+        else
+        {
+          current_frame++;
+        }
+
+
       }
       
     }
+
+    console.log(this.CurrentAliveZombies);
   }
 
   // When called remove 1 from current zombie count
