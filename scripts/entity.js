@@ -13,6 +13,8 @@ export class Entity {
     #movingUp = false;
     #movingDown = false;
     #movingRight = false;
+    #screaming = false;
+    #audio;
 
     // added a comma since there was an error ;)
     constructor(spriteLeft_in, spriteRight_in, health_in, max_health_in, speed_in, pos_x_in, pos_y_in,mapX,mapY) {
@@ -102,21 +104,42 @@ export class Entity {
 
     // Returns the entities collision radius
     getRadius()
-{
+    {
         return this.radius;
+    }
+
+    // screams
+    scream()
+    {
+        if (this.#screaming == false)
+        {
+            this.#screaming = true;
+
+            this.#audio = new Audio('./assets/ZombieScream.mp3');
+
+            // Play the sound
+            this.#audio.play();
+
+            this.#audio.addEventListener('ended', () => {
+                this.#screaming = false;
+            });
+        }
+    }
+    stopScreaming()
+    {
+        this.#screaming = false;
+        this.#audio.pause();
     }
 
     // Damage the entity
     damage(bullet_damage)
 {
+        this.scream();
         this.#health -= bullet_damage;
-        const audio = new Audio('./assets/ZombieScream.mp3');
 
-        // Play the sound
-        audio.play();
-
-        if (this.#health < 0)
-    {
+        if (this.#health <= 0)
+        {
+            this.stopScreaming();
             this.#health = 0;
         }
     }
