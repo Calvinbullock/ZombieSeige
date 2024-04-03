@@ -122,13 +122,13 @@ export class Entity {
 
   // Damage the entity
   damage(bullet_damage) {
-    // this.scream();
-    // this.#health -= bullet_damage;
+    this.scream();
+    this.#health -= bullet_damage;
 
-    // if (this.#health <= 0) {
-    //   this.stopScreaming();
-    //   this.#health = 0;
-    // }
+    if (this.#health <= 0) {
+      this.stopScreaming();
+      this.#health = 0;
+    }
   }
 
   move(map) {

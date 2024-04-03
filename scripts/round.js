@@ -6,7 +6,7 @@ export class Round {
   damageModifier = 1.05;
   healthModifier = 1.05;
 
-  zombNumber = 2000;
+  zombNumber = 20;
   zombDamage = 1;
   zombHealth = 50;
   zombSpeed = 0.3;
@@ -30,7 +30,7 @@ export class Round {
     // this.#zombies[3][3].push(new Zombie(2, "./assets/zombie_fem.png", "direction_in", 100, 100, .3));
 
     let count = 0;
-    let frames = Math.floor((this.zombNumber * this.countModifier ** (this.currentRound - 1)) / 4);
+    let frames = Math.floor((this.zombNumber * this.countModifier ** (this.currentRound - 1)) / 1);
     let current_frame = 0;
     while (
       count <
