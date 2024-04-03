@@ -153,7 +153,7 @@ export class Zombie extends Entity {
     
     if (astar_frame == true)
     {
-      path = astar(zombTileX, zombTileY, playerTileX, playerTileY, graph,this.#max_nodes, cache);
+      path = astar(zombTileX, zombTileY, playerTileX, playerTileY, graph,Infinity, cache);
     }
     else
     {
@@ -166,10 +166,10 @@ export class Zombie extends Entity {
     }
     
 
-    if (this.#last_path == null && path == null)
-    {
-      this.#max_nodes+=10;
-    }
+    // if (this.#last_path == null && path == null)
+    // {
+    //   this.#max_nodes+=10;
+    // }
 
     this.#last_path = path;
     if (path) {
