@@ -133,10 +133,10 @@ export class Zombie extends Entity {
 
     
 
-    // if (Math.abs(player.getX() - this.getX()) < 5 && Math.abs(player.getY() - this.getY()) < 5)
-    // {
-    //   return;
-    // }
+    if (Math.abs(player.getX() - this.getX()) < 5 && Math.abs(player.getY() - this.getY()) < 5)
+    {
+      astar_frame = false;
+    }
 
     let graph = map.getPathFindingMap();
 
@@ -159,12 +159,10 @@ export class Zombie extends Entity {
     {
       let cacheKey = `${zombTileX},${zombTileY},${playerTileX},${playerTileY}`;
       path = cache[cacheKey];
-      if (path == null)
-      {
-        return;
-      }
+
     }
-    
+    // console.log(cache)
+    // console.log(Object.keys(cache).length);
 
     // if (this.#last_path == null && path == null)
     // {

@@ -20,7 +20,7 @@ class Node {
   export function astar(start_x, start_y, goal_x, goal_y, map, maxDepth = 100, cache) {
     const cacheKey = `${start_x},${start_y},${goal_x},${goal_y}`;
     if (cache[cacheKey]) {
-        console.log("USe Cache");
+        // console.log("USe Cache");
         return cache[cacheKey];
     }
   
@@ -57,9 +57,9 @@ class Node {
           path.unshift({ x: node.x, y: node.y });
           node = node.parent;
         }
-        console.log("*****************Add path to Cache ************");
+        // console.log("*****************Add path to Cache ************");
         path.forEach((p, index) => {
-            if (index !== 0 ) { // Skip the first element, which is the goal node itself
+            if (index !== 0 && index < path.length) { // Skip the first element, which is the goal node itself
               const cacheKey = `${p.x},${p.y},${goal_x},${goal_y}`;
               cache[cacheKey] = path[index+1];
             }
