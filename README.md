@@ -27,11 +27,23 @@ For a comprehensive insight into our implementation of JavaScript language synta
 - [Pathfinding Documentation](https://en.wikipedia.org/wiki/Pathfinding)
 
 # Future Work
-- Implement additional features to enhance gameplay.
-- Introduce multiplayer functionality to allow cooperative or competitive gameplay experiences.
-- Expand the arsenal of weapons and upgrades to provide players with more strategic options.
-- Enhance the AI behavior of the zombies to create more dynamic and challenging encounters.
-- Integrate leaderboard functionality to encourage competition among players and foster a sense of achievement.
-- Explore the possibility of porting the game to other platforms, such as mobile devices or consoles, to reach a wider audience.
-- Implement procedural generation techniques to create dynamically generated levels for increased replayability.
-- Incorporate player feedback to iterate on existing features and address any issues or areas for improvement.
+- Rework collision detection to use hitboxes to prevent clipping into certain sides of walls.
+- Add controller support and rework how mouse is used.
+- Change how keys are used and let user change keybinds.
+- Add Multiplayer.
+- Add more weapons and more types of zombies.
+- Add arrows that point to off screen zombies.
+- Rework the balance of the game to be more difficult.
+- Add doors that you can spend points on to open.
+- Add an online leaderboard.
+- Implement an open world procedurally generated mode for a different experience.
+- Optimize code and refactor to be more modular.
+- Allow player to hold mouse to auto fire for certain guns.
+- Add shoot and reload cooldowns.
+- Add sound effects to many actions and entities.
+- Implement perks to give player new upgrades.
+- Add copy and paste to map editor.
+- Let users import their own maps to play.
+- Add priority tiles to pathfinding.
+- Add ability to choose spawn point in map editor.
+- Explore caching all paths and saving them to a file that can be quickly loaded each game.
