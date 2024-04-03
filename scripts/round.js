@@ -6,7 +6,7 @@ export class Round {
   damageModifier = 1.05;
   healthModifier = 1.05;
 
-  zombNumber = 20;
+  zombNumber = 2000;
   zombDamage = 1;
   zombHealth = 50;
   zombSpeed = 0.3;

@@ -131,25 +131,29 @@ export class Zombie extends Entity {
       astar_frame = true;
     }
 
-    
-
-    if (Math.abs(player.getX() - this.getX()) < 5 && Math.abs(player.getY() - this.getY()) < 5)
-    {
-      astar_frame = false;
-    }
-
-    let graph = map.getPathFindingMap();
-
     let zombTileX = this.getTileX(4);
     let zombTileY = this.getTileY(5);
 
     let playerTileX = player.getTileX(4);
     let playerTileY = player.getTileY(5);
+    
+    let close = false;
+
+    if ((Math.abs(player.getX() - this.getX()) < 5 && Math.abs(player.getY() - this.getY()) < 5) || (zombTileX == playerTileX && zombTileY == playerTileY))
+    {
+      astar_frame = false;
+      close = true;
+    }
+
+    let graph = map.getPathFindingMap();
+
+
 
     // console.log( "zombie tiles " + zombTileX + " " + zombTileY)
     // console.log( "player tiles " + playerTileX + " " + playerTileY)
 
     let path = null;
+
     
     if (astar_frame == true)
     {
@@ -159,6 +163,23 @@ export class Zombie extends Entity {
     {
       let cacheKey = `${zombTileX},${zombTileY},${playerTileX},${playerTileY}`;
       path = cache[cacheKey];
+
+
+
+      // if (Math.abs(player.getX() - this.getX()) < 5 && Math.abs(player.getY() - this.getY()) < 5)
+      // {
+      //   path = null;
+      // }
+
+      if (close)
+      {
+        path = null;
+      } else if (path == null && close == false)
+      {
+        return;
+      }
+
+
 
     }
     // console.log(cache)

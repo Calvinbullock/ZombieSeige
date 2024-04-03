@@ -17,7 +17,7 @@ class Node {
   
   
   
-  export function astar(start_x, start_y, goal_x, goal_y, map, maxDepth = 100, cache) {
+  export function astar(start_x, start_y, goal_x, goal_y, map, maxDepth = Infinity, cache) {
     const cacheKey = `${start_x},${start_y},${goal_x},${goal_y}`;
     if (cache[cacheKey]) {
         // console.log("USe Cache");
@@ -59,7 +59,7 @@ class Node {
         }
         // console.log("*****************Add path to Cache ************");
         path.forEach((p, index) => {
-            if (index !== 0 && index < path.length) { // Skip the first element, which is the goal node itself
+            if (index < path.length-1) { // Skip the first element, which is the goal node itself
               const cacheKey = `${p.x},${p.y},${goal_x},${goal_y}`;
               cache[cacheKey] = path[index+1];
             }
