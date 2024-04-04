@@ -193,22 +193,22 @@ export class Game {
   // Handles the collision detection
   #checkColisions() {
     // Check for zombie and bullet collisions
-    this.#zombies.forEach((arrayX, x) => {
+    this.bullets.forEach((arrayX, x) => {
       arrayX.forEach((arrayY, y) => {
-        arrayY.forEach((zombie, z) => {
+        arrayY.forEach((bullet, z) => {
           for (let i = -1; i < 2; i++) {
             for (let j = -1; j < 2; j++) {
-              let BulletXIndex = x + i;
-              let BulletYIndex = y + j;
+              let ZombieXIndex = x + i;
+              let ZombieYIndex = y + j;
 
               if (
-                BulletXIndex < this.#mapWidth &&
-                BulletXIndex >= 0 &&
-                BulletYIndex < this.#mapHeight &&
-                BulletYIndex >= 0
+                ZombieXIndex < this.#mapWidth &&
+                ZombieXIndex >= 0 &&
+                ZombieYIndex < this.#mapHeight &&
+                ZombieYIndex >= 0
               ) {
-                this.bullets[BulletXIndex][BulletYIndex].forEach(
-                  (bullet, b) => {
+                this.#zombies[ZombieXIndex][ZombieYIndex].forEach(
+                  (zombie, b) => {
                     let bulletX = bullet.getX();
                     let bulletY = bullet.getY();
                     let bulletR = bullet.getRadius();
