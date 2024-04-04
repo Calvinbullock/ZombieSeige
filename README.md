@@ -3,7 +3,7 @@ We created Realm of the Undead, a JavaScript application, to showcase our profic
 
 This project served as a platform to exhibit our adeptness with JavaScript syntax and fundamental concepts such as functions, arrays, loops, and event handling. In Realm of the Undead, players engage in battles against waves of zombies using an array of weapons. Noteworthy features include a sophisticated wave-based zombie spawning system, an intuitive map editor, a map loader, a robust pathfinding mechanism for the zombies, original artwork, collision detection, and more.
 
-For a comprehensive insight into our implementation of JavaScript language syntax within the game, we've prepared a 4-5 minute demonstration on [YouTube](link_to_youtube_demo). This walkthrough delves into our codebase, highlighting its functionality and demonstrating how JavaScript was effectively utilized to bring the game to life.
+For a comprehensive insight into our implementation of JavaScript language syntax within the game, we've prepared a 4-5 minute demonstration on [YouTube](https://youtu.be/n-S71mU--uk). This walkthrough delves into our codebase, highlighting its functionality and demonstrating how JavaScript was effectively utilized to bring the game to life.
 
 - [GitHub Hosted Site Link](https://calvinbullock.github.io/ZombieSeige/)
 
